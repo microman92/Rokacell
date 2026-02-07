@@ -1,36 +1,218 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rokacell - Теплоизоляционные материалы
 
-## Getting Started
+Современный веб-сайт компании Rokacell, производителя высококачественных теплоизоляционных материалов. Проект построен на Next.js 16 с поддержкой трёх языков (русский, английский, узбекский).
 
-First, run the development server:
+## 🚀 Технологии
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript (strict mode)
+- **Styling**: SCSS Modules
+- **Animation**: Framer Motion
+- **State Management**: Zustand
+- **Image Optimization**: Next.js Image
+- **Fonts**: Local fonts (Open Sans, Roboto Condensed, Inter)
+
+## 📁 Структура проекта
+
+```
+rockacell/
+├── src/
+│   ├── app/                    # Next.js App Router
+│   │   ├── [locale]/          # Локализованные маршруты
+│   │   │   ├── layout.tsx    # Layout с метаданными
+│   │   │   ├── page.tsx      # Главная страница
+│   │   │   ├── about/        # О компании
+│   │   │   ├──  products/     # Продукция
+│   │   │   └── ...
+│   │   └── layout.tsx         # Корневой layout
+│   ├── components/
+│   │   ├── layout/           # Layout компоненты (Header, Footer, Nav)
+│   │   ├── sections/         # Секции страниц
+│   │   └── ui/               # UI компоненты
+│   ├── hooks/                # Custom React hooks
+│   │   ├── useCurrentLocale.ts
+│   │   └── useClickOutside.ts
+│   ├── lib/
+│   │   ├── routes.ts         # Роутинг и навигация
+│   │   ├── locales.ts        # Локализация
+│   │   ├── i18n/             # Инфраструктура переводов
+│   │   └── utils/            # Утилиты
+│   ├── types/                # TypeScript типы
+│   ├── assets/               # Константы с путями к медиа
+│   ├── styles/               # Глобальные стили
+│   └── middleware.ts         # Next.js middleware для i18n
+├── public/                   # Статические файлы
+└── ...
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌍 Локализация
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Проект поддерживает три языка:
+- **ru** (русский) - язык по умолчанию
+- **en** (английский)
+- **uz** (узбекский)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Структура URL
 
-## Learn More
+- Русский (default): `/`, `/about`, `/products`
+- Английский: `/en`, `/en/about`, `/en/products`
+- Узбекский: `/uz`, `/uz/about`, `/uz/products`
 
-To learn more about Next.js, take a look at the following resources:
+### Как работает локализация
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. `middleware.ts` перенаправляет пути без локали на `/ru`
+2. App Router использует динамический сегмент `[locale]`
+3. Функция `href(locale, path)` генерирует корректные ссылки
+4. `LangSwitcher` переключает язык, сохраняя текущий путь
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Установка и запуск
 
-## Deploy on Vercel
+### Требования
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Node.js 18+ 
+- npm/yarn/pnpm
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Установка
+
+```bash
+# Клонировать репозиторий
+git clone <repository-url>
+
+# Установить зависимости
+npm install
+
+# Скопировать example env файл
+cp .env.example .env.local
+```
+
+### Разработка
+
+```bash
+# Запустить dev сервер
+npm run dev
+
+# Открыть в браузере
+# http://localhost:3000
+```
+
+### Production
+
+```bash
+# Собрать проект
+npm run build
+
+# Запустить production сервер
+npm start
+```
+
+### Линтинг и форматирование
+
+```bash
+# Проверка ESLint
+npm run lint
+
+# Форматирование с Prettier (если настроено)
+npx prettier --write .
+```
+
+## 📝 Соглашения по коду
+
+### TypeScript
+
+- **Strict mode** включен
+- Все компоненты типизированы
+- Используем интерфейсы для props
+- Избегаем `any`, используем `unknown` при необходимости
+
+### Компоненты
+
+```tsx
+// ✅ Правильно
+interface ButtonProps {
+  text: string;
+  onClick: () => void;
+}
+
+export default function Button({ text, onClick }: ButtonProps) {
+  return <button onClick={onClick}>{text}</button>;
+}
+
+// ❌ Неправильно
+export default function Button({ text, onClick }: any) {
+  // ...
+}
+```
+
+### Imports
+
+- Используем alias `@/` для абсолютных импортов
+- Группируем импорты: библиотеки, компоненты, утилиты, стили
+
+```tsx
+// Библиотеки
+import { useState } from "react";
+import Link from "next/link";
+
+// Компоненты
+import Header from "@/components/layout/Header";
+
+// Утилиты и типы
+import { cn } from "@/lib/utils";
+import type { Locale } from "@/lib/locales";
+
+// Стили
+import styles from "./Component.module.scss";
+```
+
+### SCSS Modules
+
+- Используем kebab-case для классов: `.header__nav`
+- БЭМ методология для именования
+- CSS переменные определены в `styles/variables.scss`
+
+## 🔧 Ключевые особенности
+
+### Image Optimization
+
+- Растровые изображения (.png, .jpg) - через `next/image`
+- SVG - обычный `<img>` тег
+- Автоматическая генерация WebP/AVIF форматов
+
+### Accessibility
+
+- ARIA атрибуты для интерактивных элементов
+- Навигация с клавиатуры
+- Семантический HTML
+
+### Performance
+
+- React Strict Mode
+- Оптимизация bundle size
+- Lazy loading компонентов
+
+## 📦 Доступные scripts
+
+- `npm run dev` - запуск dev сервера
+- `npm run build` - production сборка
+- `npm start` - запуск production сервера
+- `npm run lint` - проверка ESLint
+
+## 🤝 Разработка
+
+При добавлении новых функций:
+
+1. Создайте типы в `src/types/`
+2. Добавьте утилиты в `src/lib/utils/`
+3. Создайте компоненты с TypeScript интерфейсами
+4. Добавьте ARIA атрибуты для accessibility
+5. Протестируйте на всех языках
+6. Запустите `npm run lint`
+
+## 📄 Лицензия
+
+Частный проект Rokacell
+
+---
+
+**Разработано с ❤️ для Rokacell**

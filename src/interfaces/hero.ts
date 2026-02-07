@@ -54,6 +54,8 @@ export type HeroSlide = {
   bg?: {
     src: string;
     alt: string;
+    width: number;
+    height: number;
   };
 
   // Элементы поверх фона

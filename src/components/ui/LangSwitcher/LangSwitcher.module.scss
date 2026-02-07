@@ -1,0 +1,60 @@
+.lang {
+  position: relative;
+  padding: 5px 10px;
+  background: var(--yellow);
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--txt-black);
+  cursor: pointer;
+  border-radius: 5px;
+
+  &.lang__open {
+    border-radius: 5px 5px 0 0;
+  }
+
+  &__options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--yellow);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    animation: slideDown 0.2s ease-out;
+
+    & button {
+      padding: 5px 10px;
+    }
+  }
+}
+
+.lang__open .lang__options {
+  border-radius: 0 0 5px 5px;
+}
+
+.nav__option {
+  padding: 5px 10px;
+  color: var(--txt-black);
+  text-decoration: none;
+  transition: background 0.2s;
+  cursor: pointer;
+  border-radius: 5px 5px 0 0;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

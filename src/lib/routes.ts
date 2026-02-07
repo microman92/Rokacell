@@ -1,6 +1,4 @@
-import type { Locale } from './locales';
-
-export const DEFAULT_LOCALE: Locale = 'ru';
+import { type Locale, DEFAULT_LOCALE } from './locales';
 
 export const ROUTES = {
   HOME: '/',
@@ -25,17 +23,20 @@ export const ROUTES = {
  * en  + '/about'   -> '/en/about'
  */
 export function href(locale: Locale, path: string) {
+  // Гарантируем, что путь начинается со слэша
+  const safePath = path.startsWith('/') ? path : `/${path}`;
+
   // русский — без префикса
   if (locale === DEFAULT_LOCALE) {
-    return path;
+    return safePath;
   }
 
   // главная
-  if (path === '/') {
+  if (safePath === '/') {
     return `/${locale}`;
   }
 
-  return `/${locale}${path}`;
+  return `/${locale}${safePath}`;
 }
 
 /**
@@ -62,10 +63,20 @@ export function switchLocale(pathname: string, nextLocale: Locale) {
  * Навигация (без локали)
  */
 export const NAV_LINKS = [
-  { key: 'about', path: ROUTES.ABOUT },
-  { key: 'documents', path: ROUTES.DOCUMENTS },
-  { key: 'products', path: ROUTES.PRODUCTS },
-  { key: 'calculator', path: ROUTES.CALCULATOR },
-  { key: 'logistics', path: ROUTES.LOGISTICS },
-  { key: 'contacts', path: ROUTES.CONTACTS },
+  { key: 'About us', path: ROUTES.ABOUT },
+  { key: 'Documents', path: ROUTES.DOCUMENTS },
+  { key: 'Our Products', path: ROUTES.PRODUCTS },
+  { key: 'Calculator', path: ROUTES.CALCULATOR },
+  { key: 'Logistics', path: ROUTES.LOGISTICS },
+  { key: 'Contacts', path: ROUTES.CONTACTS },
 ] as const;
+
+/**
+ * Возвращает навигацию с учетом локали
+ */
+export function getNavLinks(locale: Locale) {
+  return NAV_LINKS.map((link) => ({
+    ...link,
+    path: href(locale, link.path),
+  }));
+}

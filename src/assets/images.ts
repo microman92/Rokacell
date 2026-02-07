@@ -5,27 +5,20 @@ export const IMAGES = {
       logo: '/svg/Logo-rokacell.svg',
       bg: {
         exhibition: '/img/vystavka-stroitelnyh-materialov-rokacell-bg.png',
-        energyEfficiency: '/img/rokacell-hero-background-energy-efficiency.png',
-        insulation: '/img/rokacell-effektivnaya-teploizolyaciya-produkciya.png',
+        international: '/img/map.png',
+        energyEfficiency: '/img/insulations-bg.png',
+        insulation: '/img/rokacell-effektivnaya-teploizolyaciya-elastomerniy-kauchuk.png',
       },
 
       overlay: {
-        // product-cutouts (UI-композиция для hero)
+        // Изображения поверх фона (рулоны, логотипы и т.д.)
         pipeInsulation: '/img/rokacell-trubnaya-teploizolyaciya-produkty.png',
         insulationsLogo: '/img/insulations-logo.svg',
         copperPipes: '/img/teploizolyaciya-mednyh-trub-rokacell.png',
         foilRoll: '/img/folgirovannaya-rulonnaya-izolyaciya.png',
         aluCoating: '/img/izolyaciya-s-zaschitnym-pokrytiem-alyu.png',
         rubberSheet: '/img/kauchukovaya-izolyaciya-listovaya-chernaya.png',
-
-        // expo people (UI-композиция для hero-коллажа)
-        negotiations: '/img/biznes-peregovory-rokacell-vystavka.png',
-        teamStand: '/img/komanda-rokacell-na-vystavke.png',
-        managerStand: '/img/menedjer-rokacell-na-stende.png',
-        staffExpo: '/img/sotrudniki-rokacell-vystavka-stroitelstva.png',
-        samplesOnStand: '/img/obrazcy-produkcii-rokacell-na-stende.png',
-        consultation: '/img/konsultaciya-po-tehnicheskoy-izolyacii.png',
-        expert: '/img/ekspert-po-izolyacii-rokacell.png',
+        blackRoll: '/img/rokacell-kauchukovaya-izolyaciya-rulon-cherny.png',
       },
     },
 

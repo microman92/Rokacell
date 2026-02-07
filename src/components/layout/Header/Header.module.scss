@@ -1,4 +1,16 @@
-
-.header{
+.header {
   background: var(--blue);
+  padding: 22px 0;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 82px;
+  }
 }

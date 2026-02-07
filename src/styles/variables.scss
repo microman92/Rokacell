@@ -4,7 +4,10 @@
   --txt-black: #0f0e0e;
   --txt-white: #fff;
   --plashka: rgba(15, 14, 14, 0.8);
-  --font-family: "Open Sans";
-  --second-family: "Roboto Condensed";
-  --third-family: "Inter";
+}
+
+body {
+  --font-family: var(--font-open-sans), "Open Sans", sans-serif;
+  --second-family: var(--font-roboto-condensed), "Roboto Condensed", sans-serif;
+  --third-family: var(--font-inter), "Inter", sans-serif;
 }
