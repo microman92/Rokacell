@@ -1,0 +1,63 @@
+.strip {
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+    padding: 20px 0;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+
+.strip__track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+}
+
+.strip__item {
+    display: flex;
+    align-items: center;
+    padding-right: 32px;
+
+    &::before {
+        content: "";
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--blue);
+        margin-right: 20px;
+        flex-shrink: 0;
+    }
+}
+
+// Если есть иконка - убираем точку
+.strip__item:has(.strip__icon)::before {
+    display: none;
+}
+
+.strip__icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    margin-right: 20px;
+}
+
+.strip__text {
+    font-family: var(--second-family);
+    font-weight: 500;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: var(--txt-black);
+    white-space: nowrap;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}

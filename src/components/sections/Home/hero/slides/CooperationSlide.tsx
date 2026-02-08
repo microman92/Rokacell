@@ -1,6 +1,8 @@
-import Image from 'next/image';
-import { IMAGES } from '@/assets/images';
-import styles from '../Hero.module.scss';
+import Image from "next/image";
+import { IMAGES } from "@/assets/images";
+import styles from "../Hero.module.scss";
+import Container from "@/components/layout/Container/Container";
+import { cn } from "@/lib/utils";
 
 /**
  * Слайд 3 — International Cooperation of Rokacell
@@ -14,17 +16,16 @@ export default function CooperationSlide() {
         src={IMAGES.home.hero.bg.international}
         alt="Map showing Rokacell international cooperation in CIS region"
         fill
-        style={{ objectFit: 'cover' }}
+        style={{ objectFit: "cover" }}
         className={styles.slide__bg}
       />
 
       {/* Content — Left bottom */}
-      <div className={`${styles.slide__content} ${styles.slide__content_leftBottom}`}>
-        <h2 className={styles.slide__title}>
-          INTERNATIONAL<br />
-          COOPERATION OF ROKACELL
+      <Container className={`${styles.slide__international}`}>
+        <h2 className={cn(styles.slide__title, styles.slide__international_title)}>
+          INTERNATIONAL COOPERATION OF ROKACELL
         </h2>
-      </div>
+      </Container>
     </>
   );
 }

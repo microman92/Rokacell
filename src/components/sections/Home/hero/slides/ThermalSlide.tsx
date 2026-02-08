@@ -1,6 +1,7 @@
-import Image from 'next/image';
-import { IMAGES } from '@/assets/images';
-import styles from '../Hero.module.scss';
+import Image from "next/image";
+import { IMAGES } from "@/assets/images";
+import styles from "../Hero.module.scss";
+import Container from "@/components/layout/Container/Container";
 
 /**
  * Слайд 1 — Efficient Thermal Insulation
@@ -15,19 +16,16 @@ export default function ThermalSlide() {
         alt="Rokacell efficient thermal insulation"
         fill
         priority
-        style={{ objectFit: 'cover' }}
+        unoptimized
+        style={{ objectFit: "cover" }}
         className={styles.slide__bg}
+        fetchPriority="high"
       />
 
-      {/* Content */}
-      <div className={`${styles.slide__content} ${styles.slide__content_leftTop}`}>
-        <h2 className={styles.slide__title}>
-          EFFICIENT THERMAL INSULATION
-        </h2>
-        <p className={styles.slide__text}>
-          ELASTOMERIC RUBBER FOAM PRODUCTS
-        </p>
-      </div>
+      <Container className={`${styles.slide__content} ${styles.slide__content_leftTop}`}>
+        <h2 className={styles.slide__title}>EFFICIENT THERMAL INSULATION</h2>
+        <p className={styles.slide__text}>ELASTOMERIC RUBBER FOAM PRODUCTS</p>
+      </Container>
     </>
   );
 }

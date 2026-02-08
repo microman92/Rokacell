@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import { IMAGES } from '@/assets/images';
-import styles from '../Hero.module.scss';
+import Image from "next/image";
+import { IMAGES } from "@/assets/images";
+import styles from "../Hero.module.scss";
 
 /**
  * Слайд 4 — Rokacell Products at Leading International Exhibitions
@@ -14,19 +14,20 @@ export default function ExhibitionSlide() {
         src={IMAGES.home.hero.bg.exhibition}
         alt="Rokacell exhibition stand at international construction materials fair"
         fill
-        style={{ objectFit: 'cover' }}
+        style={{ objectFit: "cover" }}
         className={styles.slide__bg}
       />
 
       {/* Blue overlay band */}
       <div className={styles.slide__overlay}>
-        <div className={styles.slide__overlayContent}>
-          <h2 className={styles.slide__title}>
-            ROKACELL PRODUCTS AT LEADING<br />
-            INTERNATIONAL EXHIBITIONS
+        <div className={styles.slide__overlay_content}>
+          <h2 className={styles.slide__overlay_title}>
+            ROKACELL PRODUCTS AT LEADING INTERNATIONAL EXHIBITIONS
           </h2>
-          <p className={styles.slide__text}>
-            ROKACELL REGULARLY PARTICIPATES IN LEADING INTERNATIONAL EXHIBITIONS OF CONSTRUCTION AND INSULATION MATERIALS, SHOWCASING INNOVATIVE PRODUCTS AND ESTABLISHING NEW PARTNERSHIPS IN THE CIS REGION AND BEYOND.
+          <p className={styles.slide__overlay_text}>
+            ROKACELL REGULARLY PARTICIPATES IN LEADING INTERNATIONAL EXHIBITIONS OF CONSTRUCTION AND
+            INSULATION MATERIALS, SHOWCASING INNOVATIVE PRODUCTS AND ESTABLISHING NEW PARTNERSHIPS
+            IN THE CIS REGION AND BEYOND.
           </p>
         </div>
       </div>

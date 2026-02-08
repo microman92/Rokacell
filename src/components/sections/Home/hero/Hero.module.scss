@@ -1,14 +1,14 @@
-// ═══════════════════════════════════════════════════════════════════════════════
-// Hero Section Styles
-// Классы соответствуют структуре компонентов
-// ═══════════════════════════════════════════════════════════════════════════════
-
 // Основной контейнер
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 830px;
   overflow: hidden;
+
+  &__content {
+    background: #1d1d1d;
+    height: 100%;
+  }
 }
 
 // Swiper контейнер
@@ -17,24 +17,114 @@
   height: 100%;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Slide Base
-// ─────────────────────────────────────────────────────────────────────────────
-
 .slide {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
+
+  &__content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+
+    &_desc {
+      max-width: 646px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    &_splitLeft {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      height: 660px;
+    }
+
+  }
+
+  &__international {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    position: relative;
+    z-index: 5;
+
+    &_title {
+      max-width: 760px;
+      padding-bottom: 100px;
+    }
+  }
+
+  &__decor {
+    position: absolute;
+    top: 0;
+    left: 0px;
+    z-index: 0;
+  }
+
+  &__bottomBar {
+    height: 180px;
+    width: 100%;
+    background: var(--blue);
+  }
+
+  &__products {
+    position: relative;
+    height: 100%;
+  }
+
+  &__overlay {
+    height: 100%;
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    &_title {
+      font-family: var(--second-family);
+      font-weight: 500;
+      font-size: 48px;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--txt-white);
+      max-width: 700px;
+    }
+
+    &_text {
+      font-family: var(--second-family);
+      font-weight: 500;
+      font-size: 24px;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--txt-white);
+      max-width: 932px;
+      margin-top: 24px;
+    }
+
+    &_content {
+      padding: 50px 0;
+      width: 100%;
+      background: rgba(33, 89, 123, 0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
 }
 
 .slide__bg {
   z-index: 0;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Content Block
-// ─────────────────────────────────────────────────────────────────────────────
 
 .slide__content {
   position: relative;
@@ -54,11 +144,18 @@
 }
 
 .slide__title {
-  margin: 0;
+  font-family: var(--second-family);
+  font-weight: 500;
+  font-size: 64px;
+  text-transform: uppercase;
+  color: var(--txt-white);
 }
 
 .slide__text {
-  margin: 0;
+  font-family: var(--second-family);
+  font-weight: 500;
+  font-size: 24px;
+  color: var(--txt-white);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -74,11 +171,28 @@
 }
 
 .productRoll {
-  // Отдельный рулон
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.productRoll:nth-child(1) {
+  left: 0;
+  z-index: 5;
+}
+
+.productRoll:nth-child(2) {
+  left: 276px;
+  z-index: 3;
+}
+
+.productRoll:nth-child(3) {
+  left: 556px;
 }
 
 .slide__bottomBar {
   // Голубая полоса внизу
+  position: relative;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

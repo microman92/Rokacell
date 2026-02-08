@@ -1,9 +1,8 @@
-'use client';
+"use client";
 
 import styles from "./Hero.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
-import { HERO_SLIDER_CONFIG } from "@/lib/content/heroSlides";
 
 // Swiper styles
 import "swiper/css";
@@ -14,6 +13,15 @@ import ThermalSlide from "./slides/ThermalSlide";
 import QualitySlide from "./slides/QualitySlide";
 import CooperationSlide from "./slides/CooperationSlide";
 import ExhibitionSlide from "./slides/ExhibitionSlide";
+
+export const HERO_SLIDER_CONFIG = {
+  autoplayInterval: 6000000, // 6 секунд между слайдами
+  transitionDuration: 800, // длительность анимации перехода (ms)
+  pauseOnHover: true, // пауза при наведении
+  slidesPerView: 1,
+  spaceBetween: 0,
+  loop: true,
+};
 
 export default function HeroSection() {
   return (

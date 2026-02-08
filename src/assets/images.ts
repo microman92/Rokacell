@@ -18,7 +18,7 @@ export const IMAGES = {
         foilRoll: '/img/folgirovannaya-rulonnaya-izolyaciya.png',
         aluCoating: '/img/izolyaciya-s-zaschitnym-pokrytiem-alyu.png',
         rubberSheet: '/img/kauchukovaya-izolyaciya-listovaya-chernaya.png',
-        blackRoll: '/img/rokacell-kauchukovaya-izolyaciya-rulon-cherny.png',
+        blackRoll: '/img/izolyaciya-s-zaschitnym-pokrytiem-alyu.png',
       },
     },
 
@@ -34,7 +34,7 @@ export const IMAGES = {
 
     // Примеры инженерных систем (картинки под секции/баннеры)
     engineering: {
-      hvacPipes: '/img/rokacell-hvac-teploizolyaciya-trub.png',
+      hvacPipes: '/img/industries__img.png',
       ventilationDucts: '/img/izolyaciya-vozduhovodov-ventilyacii.png',
       heatingPipelines: '/img/teploizolyaciya-truboprovodov-otopleniya.png',
       rollMaterial: '/img/rokacell-rulonnaya-teploizolyaciya-material.png',
