@@ -1,36 +1,42 @@
 "use client";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
 import styles from "./Branches.module.scss";
+import "swiper/css";
+import "swiper/css/pagination";
+import Container from "@/components/layout/Container/Container";
+import { BRANCHES } from "./branches.data";
+import BranchPhotoSlide from "./slides/BranchPhotoSlide";
+import BranchProductSlide from "./slides/BranchProductSlide";
 
-const BRANCHES = [
-  {
-    image: "/img/rokacell-proizvodstvo-zavod-tashkent.png",
-    city: "TASHKENT, UZBEKISTAN",
-    address: "17 Obikhaet Street, Sergeli District",
-    email: "info@rokacell.com",
-    phones: ["+998 95 778-71-32", "+998 77 292-00-99"],
-  },
-  {
-    image: "/img/rokacell-almaty-branch.png",
-    city: "ALMATY, KAZAKHSTAN",
-    address: "Zhetysu district, Turar Ryskulov Avenue 61E.",
-    email: "infokz@rokacell.com",
-    phones: ["+7 707 422-89-58"],
-  },
-  {
-    image: "/img/rokacell-moscow-branch.png",
-    city: "MOSCOW, RUSSIAN FEDERATION",
-    address: "",
-    email: "inforu@rokacell.com",
-    phones: ["+7 925 078-01-11"],
-  },
-];
+// Map variant to component
+const SLIDE_COMPONENTS = {
+  photo: BranchPhotoSlide,
+  products: BranchProductSlide,
+} as const;
 
 export default function Branches() {
   return (
     <section className={styles.branches}>
-      {/* Заголовок */}
-      {/* Swiper слайдер */}
-      {/* Карточки: image + info (city, address, email, phones) */}
+      <Container>
+        <h2 className={styles.branches__title}>Our branches</h2>
+
+        <Swiper
+          className={styles.branches__swiper}
+          modules={[Autoplay, Pagination]}
+          autoplay={{ delay: 50000000 }}
+          pagination={{ clickable: true }}
+        >
+          {BRANCHES.map((branch) => {
+            const SlideComponent = SLIDE_COMPONENTS[branch.variant];
+            return (
+              <SwiperSlide key={branch.city}>
+                <SlideComponent data={branch as never} />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </Container>
     </section>
   );
 }
