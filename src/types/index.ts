@@ -51,3 +51,15 @@ export interface WithClassName {
 export interface WithChildren {
   children: React.ReactNode;
 }
+
+/**
+ * Интерфейс новости
+ */
+export interface NewsItem {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  slug: string;
+  date?: string;
+}
