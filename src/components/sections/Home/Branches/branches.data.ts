@@ -1,3 +1,5 @@
+import { IMAGES } from "@/assets/images";
+
 // Types for branch slides with discriminated union
 export type BaseBranch = {
   city: string;
@@ -23,7 +25,7 @@ export type Branch = PhotoBranch | ProductBranch;
 export const BRANCHES: Branch[] = [
   {
     variant: 'photo',
-    image: "/img/rokacell-proizvodstvo-zavod-tashkent.png",
+    image: IMAGES.about.plant,
     city: "TASHKENT, UZBEKISTAN",
     address: "17 Obikhaet Street, Sergeli District",
     email: "info@rokacell.com",
@@ -31,8 +33,8 @@ export const BRANCHES: Branch[] = [
   },
   {
     variant: 'products',
-    image: "/img/rokacell-almaty-kazakhstan.png",
-    logo: '/svg/Logo-rokacell.svg',
+    image: IMAGES.branches.almaty,
+    logo: IMAGES.icons.logo,
     city: "ALMATY, KAZAKHSTAN",
     address: "Zhetysu district, Turar Ryskulov Avenue 61E.",
     email: "infokz@rokacell.com",
@@ -40,8 +42,8 @@ export const BRANCHES: Branch[] = [
   },
   {
     variant: 'products',
-    image: "/img/rokacell-russia-moskva.png",
-    logo: '/svg/Logo-rokacell.svg',
+    image: IMAGES.branches.moscow,
+    logo: IMAGES.icons.logo,
     city: "MOSCOW, RUSSIAN FEDERATION",
     address: "",
     email: "inforu@rokacell.com",

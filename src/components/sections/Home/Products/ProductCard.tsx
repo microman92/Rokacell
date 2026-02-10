@@ -1,4 +1,4 @@
-import Image from 'next/image';
+
 import type { Product } from '@/data/products';
 import styles from './Products.module.scss';
 
@@ -22,12 +22,13 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
       }}
     >
       <div className={styles.card__imageWrapper}>
-        <Image
+        <img
           src={product.image}
           alt={product.name}
           width={205}
           height={194}
           className={styles.card__image}
+          loading="lazy"
         />
       </div>
       <div className={styles.card__content}>

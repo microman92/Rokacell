@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import { IMAGES } from "@/assets/images";
 import Container from "@/components/layout/Container/Container";
 import MarqueeStrip from "@/components/ui/MarqueeStrip/MarqueeStrip";
@@ -32,12 +32,13 @@ export default function Industries() {
           <div className={styles.industries__inner}>
             {INDUSTRIES.map((item, index) => (
               <div key={index} className={styles.industries__card}>
-                <Image
+                <img
                   src={item.image}
                   alt={item.label}
                   width={471}
                   height={281}
                   className={styles.industries__image}
+                  loading="lazy"
                 />
                 <span className={styles.industries__label}>{item.label}</span>
               </div>
@@ -49,19 +50,21 @@ export default function Industries() {
       <MarqueeStrip items={APPLICATIONS} />
 
       <div className={styles.industries__imgBlock}>
-        <Image
+        <img
           src={IMAGES.home.engineering.ventilationDucts}
           alt="Ventilation ducts insulation"
           width={730}
           height={400}
           className={styles.industries__imgItem}
+          loading="lazy"
         />
-        <Image
+        <img
           src={IMAGES.home.engineering.hvacPipes}
           alt="HVAC pipes insulation"
           width={730}
           height={400}
           className={styles.industries__imgItem}
+          loading="lazy"
         />
       </div>
     </section>

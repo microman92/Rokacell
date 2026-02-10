@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import { IMAGES } from "@/assets/images";
 import styles from "../Hero.module.scss";
 import Container from "@/components/layout/Container/Container";
@@ -11,14 +11,12 @@ export default function ThermalSlide() {
   return (
     <>
       {/* Background */}
-      <Image
+      <img
         src={IMAGES.home.hero.bg.insulation}
         alt="Rokacell efficient thermal insulation"
-        fill
-        priority
-        unoptimized
-        style={{ objectFit: "cover" }}
+        style={{ position: 'absolute', width: '100%', height: '100%', inset: 0, objectFit: 'cover' }}
         className={styles.slide__bg}
+        loading="eager"
         fetchPriority="high"
       />
 

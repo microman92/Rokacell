@@ -1,4 +1,4 @@
-import Image from 'next/image';
+
 import type { ProductBranch } from '../branches.data';
 import styles from '../Branches.module.scss';
 
@@ -21,12 +21,13 @@ export default function BranchProductSlide({ data }: BranchProductSlideProps) {
           width={525}
           height={170}
         />
-        <Image
+        <img
           src={data.image}
           alt={data.city}
           className={styles.branches__productImage}
           width={525}
           height={170}
+          loading="lazy"
         />
       </div>
 

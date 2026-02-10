@@ -7,7 +7,7 @@ export const NEWS_DATA: NewsItem[] = [
     title: 'ROKACELL held a meeting with design engineers from Kazan',
     description:
       'ROKACELL hosted a group of design engineers from Kazan (Russia) at its production facility in Tashkent for an exchange of experience and discussion',
-    image: IMAGES.home.hero.bg.exhibition, 
+    image: IMAGES.home.hero.bg.exhibition,
     slug: 'meeting-kazan-engineers',
     date: '2025-02-10',
   },

@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import { IMAGES } from "@/assets/images";
 import styles from "../Hero.module.scss";
 
@@ -10,12 +10,12 @@ export default function ExhibitionSlide() {
   return (
     <>
       {/* Background — Exhibition photo */}
-      <Image
+      <img
         src={IMAGES.home.hero.bg.exhibition}
         alt="Rokacell exhibition stand at international construction materials fair"
-        fill
-        style={{ objectFit: "cover" }}
+        style={{ position: 'absolute', width: '100%', height: '100%', inset: 0, objectFit: 'cover' }}
         className={styles.slide__bg}
+        loading="lazy"
       />
 
       {/* Blue overlay band */}

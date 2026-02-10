@@ -2,7 +2,7 @@
 
 import { useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import Image from 'next/image';
+
 import type { Product } from '@/data/products';
 import styles from './Products.module.scss';
 
@@ -65,13 +65,12 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
 
         <div className={styles.modal__content}>
           <div className={styles.modal__imageWrapper}>
-            <Image
+            <img
               src={product.image}
               alt={product.name}
               width={400}
               height={400}
               className={styles.modal__image}
-              unoptimized
             />
           </div>
           <div className={styles.modal__info}>

@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import { IMAGES } from "@/assets/images";
 import styles from "../Hero.module.scss";
 import Container from "@/components/layout/Container/Container";
@@ -11,12 +11,13 @@ export default function QualitySlide() {
   return (
     <>
       {/* Background */}
-      <Image
+      <img
         src={IMAGES.home.hero.bg.energyEfficiency}
         alt="Dark background with geometric lines"
         width={950}
         height={700}
         className={styles.slide__decor}
+        loading="lazy"
       />
 
       <div className={styles.hero__content}>
@@ -29,40 +30,41 @@ export default function QualitySlide() {
             </p>
           </div>
           <div className={styles.slide__logo}>
-            <Image
+            <img
               src={IMAGES.home.hero.overlay.insulationsLogo}
               alt="Rokacell Insulation logo"
               width={670}
               height={205}
+              loading="lazy"
             />
           </div>
         </Container>
         {/* Blue bar — Bottom */}
         <div className={styles.slide__bottomBar}>
           <Container className={styles.slide__products}>
-            <Image
+            <img
               src={IMAGES.home.hero.overlay.foilRoll}
               alt="Foil covered insulation roll"
               width={300}
               height={330}
-              unoptimized
               className={styles.productRoll}
+              loading="lazy"
             />
-            <Image
+            <img
               src={IMAGES.home.hero.overlay.rubberSheet}
               alt="Rubber sheet insulation"
               width={300}
               height={330}
-              unoptimized
               className={styles.productRoll}
+              loading="lazy"
             />
-            <Image
+            <img
               src={IMAGES.home.hero.overlay.blackRoll}
               alt="Black elastomeric rubber roll"
               width={300}
-              unoptimized
               height={330}
               className={styles.productRoll}
+              loading="lazy"
             />
           </Container>
         </div>

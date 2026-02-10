@@ -3,7 +3,7 @@ import Logo from "@/components/ui/Logo";
 import Container from "../Container/Container";
 import { LocaleProps } from "@/types";
 import { getNavLinks } from "@/lib/routes";
-import Image from "next/image";
+
 import Nav from "../Nav/Nav";
 
 export default function Footer({ locale }: LocaleProps) {
@@ -61,11 +61,12 @@ export default function Footer({ locale }: LocaleProps) {
                 className={styles.footer__icon}
                 aria-label="Instagram"
               >
-                <Image
+                <img
                   src="/svg/rokacell-instagram-official.svg"
                   alt="Instagram"
                   width={40}
                   height={40}
+                  loading="lazy"
                 />
               </a>
               <a
@@ -75,11 +76,12 @@ export default function Footer({ locale }: LocaleProps) {
                 className={styles.footer__icon}
                 aria-label="Facebook"
               >
-                <Image
+                <img
                   src="/svg/facebook-rokacell-community.svg"
                   alt="Facebook"
                   width={40}
                   height={40}
+                  loading="lazy"
                 />
               </a>
             </div>
