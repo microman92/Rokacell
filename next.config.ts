@@ -20,6 +20,9 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['framer-motion'],
   },
+  sassOptions: {
+    prependData: `@use "src/styles/mixins.scss" as *;`,
+  },
 };
 
 export default nextConfig;

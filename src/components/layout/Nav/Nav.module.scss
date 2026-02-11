@@ -5,6 +5,10 @@
     align-items: center;
     height: 100%;
     gap: 95px;
+
+    @media (max-width:1200px) {
+      gap: 53px;
+    }
   }
 
   &__link {

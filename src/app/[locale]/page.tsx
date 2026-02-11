@@ -5,6 +5,7 @@ import Products from "@/components/sections/Home/Products";
 import Branches from "@/components/sections/Home/Branches/Branches";
 import CalculateSavings from "@/components/sections/Home/CalculateSavings";
 import { News } from "@/components/sections/Home/News/News";
+import AboutVideo from "@/components/sections/Home/AboutVideo/AboutVideo";
 
 export default function Page() {
   return (
@@ -12,8 +13,9 @@ export default function Page() {
       <HeroSection />
       <FeaturesStrip />
       <Industries />
-      <Branches />
       <Products />
+      <AboutVideo />
+      <Branches />
       <CalculateSavings />
       <News />
     </main>

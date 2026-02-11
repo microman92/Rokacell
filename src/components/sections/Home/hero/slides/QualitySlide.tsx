@@ -33,8 +33,6 @@ export default function QualitySlide() {
             <img
               src={IMAGES.home.hero.overlay.insulationsLogo}
               alt="Rokacell Insulation logo"
-              width={670}
-              height={205}
               loading="lazy"
             />
           </div>
@@ -45,24 +43,18 @@ export default function QualitySlide() {
             <img
               src={IMAGES.home.hero.overlay.foilRoll}
               alt="Foil covered insulation roll"
-              width={300}
-              height={330}
               className={styles.productRoll}
               loading="lazy"
             />
             <img
               src={IMAGES.home.hero.overlay.rubberSheet}
               alt="Rubber sheet insulation"
-              width={300}
-              height={330}
               className={styles.productRoll}
               loading="lazy"
             />
             <img
               src={IMAGES.home.hero.overlay.blackRoll}
               alt="Black elastomeric rubber roll"
-              width={300}
-              height={330}
               className={styles.productRoll}
               loading="lazy"
             />

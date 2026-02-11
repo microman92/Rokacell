@@ -53,16 +53,12 @@ export default function Industries() {
         <img
           src={IMAGES.home.engineering.ventilationDucts}
           alt="Ventilation ducts insulation"
-          width={730}
-          height={400}
           className={styles.industries__imgItem}
           loading="lazy"
         />
         <img
           src={IMAGES.home.engineering.hvacPipes}
           alt="HVAC pipes insulation"
-          width={730}
-          height={400}
           className={styles.industries__imgItem}
           loading="lazy"
         />

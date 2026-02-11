@@ -94,6 +94,7 @@ export const IMAGES = {
     tashkent: '/img/news/rokacell-tashkent.png',
     kazakhstan: '/img/news/rokacell-kazakhstan.png',
     moscow: '/img/news/rokacell-moskow.png',
+    kazan: '/img/news/news-kazan.png',
   },
 
   // Calculator

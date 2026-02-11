@@ -1,5 +1,5 @@
 .branches {
-    margin-top: 120px;
+    margin: 120px 0;
 
     &__title {
         font-family: var(--second-family);
@@ -118,11 +118,6 @@
         z-index: -1;
     }
 
-    &__visual {}
-
-    &__logo {}
-
-    &__productImage {}
 
     &__info {
         max-width: 672px;
@@ -133,6 +128,10 @@
         flex-direction: column;
         justify-content: center;
         background: rgba(33, 89, 123, 0.8);
+
+        @include media(1440) {
+            max-width: 515px;
+        }
     }
 
     &__city {

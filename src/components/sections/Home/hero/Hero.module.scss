@@ -5,6 +5,10 @@
   height: 830px;
   overflow: hidden;
 
+  @include media(1440) {
+    height: 780px;
+  }
+
   &__content {
     background: #1d1d1d;
     height: 100%;
@@ -52,13 +56,21 @@
     flex-direction: column;
     justify-content: center;
     gap: 24px;
+    position: relative;
 
     &_desc {
       max-width: 646px;
       display: flex;
       flex-direction: column;
       gap: 24px;
+
+      @include media(1440) {
+        max-width: 550px;
+      }
     }
+
+
+
 
     &_splitLeft {
       display: flex;
@@ -68,6 +80,26 @@
       height: 660px;
     }
 
+  }
+
+  &__title {
+    font-family: var(--second-family);
+    font-weight: 500;
+    font-size: 64px;
+    text-transform: uppercase;
+    color: var(--txt-white);
+
+    @include media(1440) {
+      font-size: 54px;
+    }
+  }
+
+  &__logo {
+    max-width: 500px;
+
+    & img {
+      width: 100%;
+    }
   }
 
 
@@ -96,6 +128,10 @@
     height: 180px;
     width: 100%;
     background: var(--blue);
+
+    @include media(1440) {
+      height: 120px;
+    }
   }
 
   &__products {
@@ -146,35 +182,7 @@
 
 }
 
-.slide__bg {
-  z-index: 0;
-}
 
-
-.slide__content {
-  position: relative;
-}
-
-// Модификаторы позиции контента
-.slide__content_leftTop {
-  // Слайд 1
-}
-
-.slide__content_splitLeft {
-  // Слайд 2
-}
-
-.slide__content_leftBottom {
-  // Слайд 3
-}
-
-.slide__title {
-  font-family: var(--second-family);
-  font-weight: 500;
-  font-size: 64px;
-  text-transform: uppercase;
-  color: var(--txt-white);
-}
 
 .slide__text {
   font-family: var(--second-family);
@@ -183,22 +191,19 @@
   color: var(--txt-white);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Slide 2 — Quality (элементы)
-// ─────────────────────────────────────────────────────────────────────────────
-
-.slide__logo {
-  // Логотип справа
-}
-
-.slide__products {
-  // Контейнер для рулонов
-}
 
 .productRoll {
   position: absolute;
   bottom: 0;
   left: 0;
+  max-width: 320px;
+  height: 350px;
+  width: 100%;
+
+  @include media(1440) {
+    max-width: 250px;
+    height: 250px;
+  }
 }
 
 .productRoll:nth-child(1) {
@@ -209,10 +214,18 @@
 .productRoll:nth-child(2) {
   left: 276px;
   z-index: 3;
+
+  @include media(1440) {
+    left: 230px;
+  }
 }
 
 .productRoll:nth-child(3) {
   left: 556px;
+
+  @include media(1440) {
+    left: 460px;
+  }
 }
 
 .slide__bottomBar {

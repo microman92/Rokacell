@@ -1,0 +1,33 @@
+.aboutVideo {
+  background: var(--blue);
+  padding: 70px 0;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__video {
+    border-radius: 10px;
+
+    @include media(1440) {
+      max-width: 600px;
+      width: 100%;
+
+    }
+  }
+
+  &__text {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 36px;
+    text-align: center;
+    color: var(--txt-white);
+    max-width: 590px;
+
+    @include media(1440) {
+      max-width: 520px;
+    }
+  }
+}

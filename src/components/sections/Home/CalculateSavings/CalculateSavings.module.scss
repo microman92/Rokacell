@@ -31,6 +31,10 @@
     display: flex;
     gap: 32px;
     flex-direction: column;
+
+    @include media(1440) {
+      max-width: 545px;
+    }
   }
 
   &__title {
@@ -39,6 +43,10 @@
     font-size: 48px;
     text-transform: uppercase;
     color: var(--txt-white);
+
+    @include media(1440) {
+      font-size: 36px;
+    }
   }
 
   &__description {
@@ -47,5 +55,9 @@
     font-size: 36px;
     color: var(--txt-white);
     max-width: 812px;
+
+    @include media(1440) {
+      font-size: 24px;
+    }
   }
 }
