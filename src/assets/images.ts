@@ -5,10 +5,9 @@ export const IMAGES = {
       logo: '/svg/Logo-rokacell.svg',
       bg: {
         exhibition: '/img/vystavka-stroitelnyh-materialov-rokacell-bg.png', // 1.7MB
-        international: '/img/map.png', // 700KB
         energyEfficiency: '/img/insulations-bg.png', // 130KB
         insulation: '/img/rokacell-effektivnaya-teploizolyaciya-elastomerniy-kauchuk.png', // 3.6MB
-        energyEfficiencyHero: '/img/rokacell-hero-background-energy-efficiency.png', // 280KB
+        // 280KB
       },
 
       overlay: {
@@ -37,9 +36,7 @@ export const IMAGES = {
     engineering: {
       hvacPipes: '/img/industries__img.png',
       ventilationDucts: '/img/izolyaciya-vozduhovodov-ventilyacii.png',
-      // Note: This file was referenced but not found in the file list, using nearest apparent match or placeholder if needed.
-      // Used 'rokacell-hvac-teploizolyaciya-trub.png' for heating pipelines as a reasonable guess or fallback.
-      heatingPipelines: '/img/rokacell-hvac-teploizolyaciya-trub.png',
+
       rollMaterial: '/img/rokacell-rulonnaya-teploizolyaciya-material.png',
       consultation: '/img/konsultaciya-po-tehnicheskoy-izolyacii.png',
     },
@@ -50,15 +47,13 @@ export const IMAGES = {
 
   // About Company
   about: {
-    team: '/img/rokacell-company-team-about-us.png',
+    HeroBg: '/img/rokacell-hvac-teploizolyaciya-trub.png',
+    heroVisual: '/img/rokacell-hero-background-energy-efficiency.png',
     plant: '/img/rokacell-proizvodstvo-zavod-tashkent.png',
-    qualityControl: '/img/rokacell-kontrol-kachestva-proizvodstva.png',
-    exhibitionTeam: '/img/sotrudniki-rokacell-vystavka-stroitelstva.png',
-    teamAtExhibition: '/img/komanda-rokacell-na-vystavke.png',
-    managerAtStand: '/img/menedjer-rokacell-na-stende.png',
-    businessMeeting: '/img/biznes-peregovory-rokacell-vystavka.png',
-    expert: '/img/ekspert-po-izolyacii-rokacell.png',
-    productSamples: '/img/obrazcy-produkcii-rokacell-na-stende.png',
+    companyPolicy: '/img/rokacell-korporativnaya-politika-kompanii.png',
+    warmBusiness: '/img/rokacell-energoeffektivnost-teplovogo-biznesa.png',
+    upArrow: '/svg/up-arrow.svg',
+    downArrow: '/svg/down-arrow.svg',
   },
 
   // Products
@@ -111,11 +106,6 @@ export const IMAGES = {
     container40hc: '/img/rokacell-konteyner-40hc-mezhdunarodnaya-dostavka.png',
   },
 
-  // Policy
-  policy: {
-    companyPolicy: '/img/rokacell-korporativnaya-politika-kompanii.png',
-    warmBusiness: '/img/rokacell-energoeffektivnost-teplovogo-biznesa.png',
-  },
 
   // Branches
   branches: {

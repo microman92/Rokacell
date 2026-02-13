@@ -4,7 +4,7 @@ import Industries from "@/components/sections/Home/Industries/Industries";
 import Products from "@/components/sections/Home/Products";
 import Branches from "@/components/sections/Home/Branches/Branches";
 import CalculateSavings from "@/components/sections/Home/CalculateSavings";
-import { News } from "@/components/sections/Home/News/News";
+import { News } from "@/components/common/News/News";
 import AboutVideo from "@/components/sections/Home/AboutVideo/AboutVideo";
 
 export default function Page() {
@@ -17,7 +17,7 @@ export default function Page() {
       <AboutVideo />
       <Branches />
       <CalculateSavings />
-      <News />
+      <News variant="home" />
     </main>
   );
 }

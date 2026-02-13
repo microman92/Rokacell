@@ -1,0 +1,111 @@
+@import '@/styles/variables';
+
+.policy {
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 428px;
+    margin-bottom: 64px;
+  }
+
+  &__title {
+    font-family: var(--second-family);
+    font-weight: 500;
+    font-size: 48px;
+    text-transform: uppercase;
+    color: var(--txt-black);
+  }
+
+  &__subtitle {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--txt-black);
+  }
+
+  // Vision & Mission
+  &__mission {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    &_img {
+      max-width: 806px;
+      width: 100%;
+    }
+
+    &_text {
+      max-width: 800px;
+
+      & p {
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 24px;
+        color: var(--txt-black);
+        margin-bottom: 15px;
+
+        span {
+          color: var(--yellow);
+        }
+      }
+
+    }
+
+    &_title {
+      font-family: var(--second-family);
+      font-weight: 500;
+      font-size: 36px;
+      text-transform: uppercase;
+      color: var(--txt-black);
+      margin-bottom: 16px;
+    }
+  }
+
+  // Main Areas
+  &__areas {
+    margin-top: 36px;
+
+    &_title {
+      font-family: var(--font-family);
+      font-weight: 400;
+      font-size: 36px;
+      color: var(--txt-black);
+      margin-bottom: 24px;
+    }
+
+    &_content {
+      display: flex;
+      gap: 48px;
+    }
+
+    &_img {
+      max-width: 806px;
+      width: 100%;
+
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+  }
+
+  // Accordion
+  &__accordion {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  &__disclaimer {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: 40px;
+    font-family: var(--second-family);
+    color: var(--txt-black);
+  }
+}

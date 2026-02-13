@@ -23,6 +23,7 @@ const nextConfig: NextConfig = {
   sassOptions: {
     prependData: `@use "src/styles/mixins.scss" as *;`,
   },
+
 };
 
 export default nextConfig;

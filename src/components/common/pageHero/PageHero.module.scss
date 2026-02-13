@@ -1,0 +1,91 @@
+.hero {
+  position: relative;
+  height: 830px;
+  overflow: hidden;
+
+  &__bg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+
+    &_img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: -1;
+
+      & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      @include media(1440) {
+        max-width: 100%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &_overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+
+      & img {
+        width: 100%;
+        height: 100%;
+      }
+
+      @include media(1440) {
+        max-width: 900px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      @include media(1200) {
+        max-width: 800px;
+      }
+    }
+
+
+  }
+
+  &__content {
+    height: 100%;
+
+
+  }
+
+  &__desc {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    max-width: 717px;
+    height: 100%
+  }
+
+  &__title {
+    font-family: var(--second-family);
+    font-weight: 500;
+    font-size: 64px;
+    text-transform: uppercase;
+    color: var(--txt-black);
+    max-width: 550px;
+  }
+
+  &__description {
+    font-family: var(--second-family);
+    font-weight: 500;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: var(--txt-black);
+  }
+}

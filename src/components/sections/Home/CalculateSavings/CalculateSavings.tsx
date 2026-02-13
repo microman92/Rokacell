@@ -1,6 +1,6 @@
 import styles from './CalculateSavings.module.scss';
 import Container from '@/components/layout/Container/Container';
-import Button from '@/components/ui/Button';
+import Button from '@/components/ui/Button/Button';
 
 export default function CalculateSavings() {
   return (
