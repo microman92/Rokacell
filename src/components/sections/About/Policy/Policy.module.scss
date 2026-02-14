@@ -75,21 +75,40 @@
       margin-bottom: 24px;
     }
 
-    &_content {
-      display: flex;
-      gap: 48px;
-    }
 
     &_img {
       max-width: 806px;
       width: 100%;
+      position: relative;
 
       img {
         width: 100%;
-        height: auto;
         object-fit: cover;
       }
+
+      h3 {
+        font-family: var(--second-family);
+        font-weight: 500;
+        font-size: 96px;
+        text-transform: uppercase;
+        color: var(--yellow);
+        position: absolute;
+        top: 37px;
+        left: 44px;
+        display: flex;
+        flex-direction: column;
+
+        & span {
+          font-size: 48px;
+          color: var(--txt-white);
+        }
+      }
     }
+  }
+
+  &__activity {
+    display: flex;
+    gap: 15px;
   }
 
   // Accordion

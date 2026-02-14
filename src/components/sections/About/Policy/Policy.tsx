@@ -40,25 +40,28 @@ export default function Policy() {
 
         {/* Main Areas of Activity */}
         <div className={styles.policy__areas}>
-          <h3 className={styles.policy__areas_title}>MAIN AREAS OF ACTIVITY</h3>
 
           <div className={styles.policy__areas_content}>
+            <h3 className={styles.policy__areas_title}>MAIN AREAS OF ACTIVITY</h3>
             {/* Accordion (Left) */}
-            <div className={styles.policy__accordion}>
-              {ACCORDION_DATA.map((item) => (
-                <AccordionItem
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  content={item.content}
-                  defaultOpen={item.id === 1}
-                />
-              ))}
-            </div>
+            <div className={styles.policy__activity}>
+              <div className={styles.policy__accordion}>
+                {ACCORDION_DATA.map((item) => (
+                  <AccordionItem
+                    key={item.id}
+                    id={item.id}
+                    title={item.title}
+                    content={item.content}
+                    defaultOpen={item.id === 1}
+                  />
+                ))}
+              </div>
 
-            {/* Image (Right) */}
-            <div className={styles.policy__areas_img}>
-              <img src={IMAGES.about.warmBusiness} alt="The heart of a warm business" />
+              {/* Image (Right) */}
+              <div className={styles.policy__areas_img}>
+                <img src={IMAGES.about.warmBusiness} alt="The heart of a warm business" />
+                <h3>The heart <span>of a warm business</span></h3>
+              </div>
             </div>
           </div>
         </div>
