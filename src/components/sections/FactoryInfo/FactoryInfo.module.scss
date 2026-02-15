@@ -15,6 +15,11 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
+
+    @include media(1440) {
+      max-width: 600px;
+      gap: 15px;
+    }
   }
 
   &__text {
@@ -25,6 +30,20 @@
 
     & span {
       color: var(--yellow);
+    }
+
+    @include media(1440) {
+      font-size: 22px;
+    }
+  }
+
+  &__img {
+    max-width: 625px;
+    width: 100%;
+    display: flex;
+
+    & img {
+      width: 100%;
     }
   }
 }

@@ -1,75 +1,34 @@
+@import '@/styles/variables';
+
+// ===========================
+// Base hero styles
+// ===========================
 .hero {
   position: relative;
-  height: 830px;
   overflow: hidden;
 
   &__bg {
-    height: 100%;
-    width: 100%;
     position: absolute;
-    z-index: -1;
     inset: 0;
+    z-index: 0;
 
-    &_img {
-      position: absolute;
-      top: 0;
-      right: 0;
-      z-index: -1;
-
-      & img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      @include media(1440) {
-        max-width: 100%;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-
-    &_overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: -1;
-
-      & img {
-        width: 100%;
-        height: 100%;
-      }
-
-      @include media(1440) {
-        max-width: 900px;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      @include media(1200) {
-        max-width: 800px;
-      }
-    }
-
-
   }
 
   &__content {
+    position: relative;
+    z-index: 1;
     height: 100%;
-
-
   }
 
   &__desc {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     gap: 20px;
-    height: 100%;
-    max-width: 717px;
-    height: 100%
   }
 
   &__title {
@@ -78,7 +37,7 @@
     font-size: 64px;
     text-transform: uppercase;
     color: var(--txt-black);
-    max-width: 550px;
+
   }
 
   &__description {
@@ -87,5 +46,200 @@
     font-size: 24px;
     text-transform: uppercase;
     color: var(--txt-black);
+  }
+
+  &__overlay {
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+// ===========================
+// About — bg image + overlay circle, text left
+// ===========================
+.about {
+  height: 830px;
+
+  .hero__bg {
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  .hero__content {
+    display: flex;
+    align-items: center;
+  }
+
+  .hero__desc {
+    max-width: 717px;
+    height: 100%;
+    justify-content: center;
+  }
+
+  .hero__title {
+    font-size: 64px;
+    max-width: 550px;
+  }
+
+  .hero__description {
+    font-size: 24px;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    height: 100%;
+
+  }
+}
+
+// ===========================
+// Documents — split layout: text left, logo right
+// ===========================
+.documents {
+  height: auto;
+  padding: 100px 0 80px;
+  background: var(--bg-white, #fff);
+
+  .hero__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .hero__desc {
+    max-width: 808px;
+  }
+
+
+  .hero__overlay {
+    max-width: 670px;
+    width: 100%;
+  }
+}
+
+// ===========================
+// Products — centered text, no images
+// ===========================
+.products {
+  height: auto;
+  padding: 100px 0 80px;
+  background: var(--bg-white, #fff);
+
+  .hero__content {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero__desc {
+    align-items: center;
+    text-align: center;
+    max-width: 800px;
+  }
+
+  .hero__title {
+    font-size: 48px;
+    max-width: 700px;
+  }
+
+  .hero__description {
+    font-size: 16px;
+    text-transform: none;
+    font-family: var(--font-family);
+    font-weight: 400;
+  }
+}
+
+// ===========================
+// Calculator — centered text, no images
+// ===========================
+.calculator {
+  height: auto;
+  padding: 100px 0 80px;
+  background: var(--bg-white, #fff);
+
+  .hero__content {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero__desc {
+    align-items: center;
+    text-align: center;
+    max-width: 800px;
+  }
+
+  .hero__title {
+    font-size: 48px;
+    max-width: 700px;
+  }
+
+  .hero__description {
+    font-size: 16px;
+    text-transform: none;
+    font-family: var(--font-family);
+    font-weight: 400;
+  }
+}
+
+// ===========================
+// Logistics — full bg image, text left
+// ===========================
+.logistics {
+  height: 830px;
+
+  .hero__content {
+    display: flex;
+    align-items: center;
+  }
+
+  .hero__desc {
+    max-width: 600px;
+    height: 100%;
+    justify-content: center;
+  }
+
+  .hero__title {
+    font-size: 64px;
+    color: var(--txt-white, #fff);
+    max-width: 500px;
+  }
+
+  .hero__description {
+    font-size: 20px;
+    color: var(--txt-white, #fff);
+    text-transform: uppercase;
+  }
+}
+
+// ===========================
+// Contacts
+// ===========================
+.contacts {
+  height: auto;
+  padding: 100px 0 80px;
+
+  .hero__desc {
+    max-width: 700px;
+  }
+
+  .hero__title {
+    font-size: 48px;
+  }
+
+  .hero__description {
+    font-size: 16px;
+    text-transform: none;
+    font-family: var(--font-family);
+    font-weight: 400;
   }
 }

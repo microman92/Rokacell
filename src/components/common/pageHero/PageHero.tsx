@@ -1,19 +1,23 @@
+import { ReactNode } from "react";
 import Container from "@/components/layout/Container/Container";
 import styles from "./PageHero.module.scss";
 import { cn } from "@/lib/utils";
 
-
 interface PageHeroProps {
-  title: string;
-  description: string;
-  bgImage: string;
-  overlayImage: string;
+  title: ReactNode;
+  description?: string;
+  bgImage?: string;
+  overlayImage?: string;
   variant: "about" | "products" | "documents" | "calculator" | "logistics" | "contacts";
 }
 
-
-export default function PageHero({ title, description, bgImage, overlayImage, variant }: PageHeroProps) {
-
+export default function PageHero({
+  title,
+  description,
+  bgImage,
+  overlayImage,
+  variant,
+}: PageHeroProps) {
   const variantClass = {
     about: styles.about,
     documents: styles.documents,
@@ -21,29 +25,38 @@ export default function PageHero({ title, description, bgImage, overlayImage, va
     calculator: styles.calculator,
     logistics: styles.logistics,
     contacts: styles.contacts,
-  }
+  };
+
+  // Варианты с абсолютным overlay (декоративный фон, вне Container)
+  const isAbsoluteOverlay = variant === "about" || variant === "logistics";
+
+  const overlayElement = overlayImage && (
+    <div className={styles.hero__overlay}>
+      <img src={overlayImage} alt="" />
+    </div>
+  );
 
   return (
     <div className={cn(styles.hero, variantClass[variant])}>
-      <div className={styles.hero__bg}>
-
-        <div className={styles.hero__bg_img}>
+      {/* Background image */}
+      {bgImage && (
+        <div className={styles.hero__bg}>
           <img src={bgImage} alt="" />
         </div>
+      )}
 
-        <div className={styles.hero__bg_overlay}>
-          <img src={overlayImage} alt="" />
-        </div>
-
-      </div>
+      {/* Overlay — абсолютный (About, Logistics) */}
+      {isAbsoluteOverlay && overlayElement}
 
       <Container className={styles.hero__content}>
         <div className={styles.hero__desc}>
           <h1 className={styles.hero__title}>{title}</h1>
-          <p className={styles.hero__description}>{description}</p>
+          {description && <p className={styles.hero__description}>{description}</p>}
         </div>
-      </Container>
 
+        {/* Overlay — в потоке (Documents и др.) */}
+        {!isAbsoluteOverlay && overlayElement}
+      </Container>
     </div>
-  )
+  );
 }

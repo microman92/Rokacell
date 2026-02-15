@@ -1,0 +1,54 @@
+.passport {
+    margin: 120px 0;
+
+    &__title {
+        text-align: center;
+        font-family: var(--second-family);
+        font-weight: 500;
+        font-size: 48px;
+        text-transform: uppercase;
+        text-align: center;
+        color: var(--txt-black);
+    }
+
+    &__grid {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 148px;
+        margin-top: 100px;
+    }
+
+    &__card {
+        max-width: 400px;
+        width: 100%;
+        padding: 84px 24px 24px;
+        background: rgba(255, 255, 255, 0.7);
+        border: 3px solid var(--blue);
+        border-radius: 5px;
+        text-align: center;
+
+        &_icon {}
+
+        &_title {
+            font-family: var(--second-family);
+            font-weight: 500;
+            font-size: 24px;
+            text-transform: uppercase;
+            color: var(--txt-black);
+            margin-top: 55px;
+        }
+
+        &_download {
+            margin-top: 8px;
+            font-family: var(--font-family);
+            font-weight: 400;
+            font-size: 24px;
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+        }
+    }
+}

@@ -46,7 +46,8 @@
     margin: 0 auto;
 
     @include media(1200) {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 515px);
+      justify-content: center;
     }
 
     @include media(768) {

@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-import { locales, DEFAULT_LOCALE } from './lib/locales';
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { locales, DEFAULT_LOCALE } from "./lib/locales";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -32,6 +32,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|img|svg|video).*)',
+    "/((?!api|_next/static|_next/image|favicon.ico|img|svg|video|docs).*)",
   ],
 };
