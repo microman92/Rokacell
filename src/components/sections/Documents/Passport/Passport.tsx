@@ -40,7 +40,7 @@ export default function Passport() {
               <h3 className={styles.passport__card_title}>{item.title}</h3>
 
               <a href={item.downloadUrl} download className={styles.passport__card_download}>
-                download
+                Download
                 <svg
                   width="24"
                   height="24"

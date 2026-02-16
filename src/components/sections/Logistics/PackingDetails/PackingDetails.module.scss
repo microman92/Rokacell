@@ -1,0 +1,147 @@
+@use "@/styles/mixins.scss" as *;
+
+.packingDetails {
+  margin: 120px auto;
+  background-color: #fff;
+
+  @include media(768) {
+    padding: 20px 0;
+  }
+}
+
+.category {
+  margin-bottom: 120px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__header {
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 1275px;
+  }
+
+  &__title {
+    font-family: var(--second-family);
+    font-weight: 500;
+    font-size: 48px;
+    text-transform: uppercase;
+    color: var(--txt-black);
+  }
+
+  &__desc {
+    font-family: var(--second-family);
+    font-weight: 500;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: var(--txt-black);
+  }
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+
+
+  &__content {
+    max-width: 810px;
+    width: 100%;
+  }
+
+  &__imageWrapper {
+    max-width: 810px;
+    width: 100%;
+    display: flex;
+    border-radius: 5px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__title {
+    font-family: var(--second-family);
+    font-weight: 500;
+    font-size: 48px;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--txt-black);
+  }
+
+  &__subtitle {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    color: var(--txt-black);
+    margin-top: 13px;
+  }
+
+  &__specs {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 67px;
+  }
+
+  &__specRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #ffae2d; // Orange line separator
+    max-width: 532px;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 32px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__paramTitle {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--txt-black);
+    flex-basis: 150px;
+    text-align: left;
+  }
+
+  &__values {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: right;
+  }
+
+  &__valueRow {
+    display: flex;
+    justify-content: flex-end;
+    gap: 32px; 
+
+
+    & span {
+      font-family: var(--font-family);
+      font-weight: 400; 
+      font-size: 24px;
+      color: var(--txt-black);
+    }
+  }
+
+
+  &__valueQty {
+    font-weight: 600 !important;
+  }
+}

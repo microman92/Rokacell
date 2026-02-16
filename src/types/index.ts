@@ -1,65 +1,66 @@
-import { Locale } from "@/lib/locales";
-
-/**
- * Props для страниц с динамическим параметром locale
- */
-export interface PageProps {
-  params: Promise<{ locale: Locale }>;
-  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
+// Interface for air properties at different temperatures
+export interface AirProperties {
+    kinematicViscosity: number; // Kinematic viscosity, m²/s
+    thermalConductivity: number; // Thermal conductivity, W/(m·K)
+    prandtlNumber: number; // Prandtl number
+    thermalExpansion: number; // Thermal expansion coefficient, 1/K
 }
 
-/**
- * Props для layout компонентов с динамическим параметром locale
- */
-export interface LayoutProps {
-  children: React.ReactNode;
-  params: Promise<{ locale: Locale }>;
+// Interface for heat loss calculation parameters (SOLID - Interface Segregation)
+export interface CalculationParams {
+    ambientTemp: number; // Ambient temperature, °C
+    mediumTemp: number; // Medium temperature in pipe, °C
+    tubeDiameter: number; // Pipe diameter, mm
+    insulationThickness: number; // Insulation thickness, mm
+    pipeWallThickness?: number; // Pipe wall thickness, mm
+    pipeLength: number; // Pipe length, m
+    material: import('../utils/constants').AnyMaterialKey; // Insulation material
+    h: number; // Heat transfer coefficient, W/m²K
+    costPerKWh: number; // Energy cost, ₽/kWh
+    // Optional: thickness selection by target heat losses
+    recommendByHeatLoss?: boolean; // Enable thickness selection
+    targetHeatLossWPerM?: number; // Target heat losses, W/m
 }
 
-/**
- * Props для компонентов с параметром locale
- */
-export interface LocaleProps {
-  locale: Locale;
+// Interface for heat loss calculation results
+export interface CalculationResults {
+    meanLambda: number; // Mean thermal conductivity, W/m·K
+    thermalTransmittance: number; // Insulation thermal transmittance, W/m²K
+    heatLoss: number; // Heat losses, W
+    decrease: number; // Heat loss reduction, %
+    costPerHour: number; // Cost per hour, ₽/h
+    rokaflexDimension: number; // ROKAFLEX dimension, mm
+    // Optional: recommended thickness when selecting
+    recommendedThicknessMm?: number; // mm
 }
 
-/**
- * Навигационная ссылка
- */
-export interface NavLink {
-  key: string;
-  path: string;
+// Interface for condensation calculation parameters
+export interface CondensationParams {
+    ambientTemp: number; // Ambient temperature, °C
+    mediumTemp: number; // Medium temperature in pipe, °C
+    tubeDiameter: number; // Pipe diameter, mm
+    material: import('../utils/constants').AnyMaterialKey; // Insulation material
+    h: number; // Heat transfer coefficient, W/m²K
+    relativeHumidity: number; // Relative humidity, %
 }
 
-/**
- * Навигационная ссылка с учетом локали
- */
-export interface LocalizedNavLink extends NavLink {
-  localizedPath: string;
+// Interface for condensation calculation results
+export interface CondensationResults {
+    dewpointTemperature: number; // Dew point, °C
+    minimumThickness: number; // Minimum insulation thickness, mm
+    nominalThickness: string; // Recommended pipe from stock
 }
 
-/**
- * Общий тип для компонентов с className
- */
-export interface WithClassName {
-  className?: string;
+// Interface for modal window parameters
+export interface ModalParams {
+    calculationType?: 'inside' | 'outside'; // Calculation type
+    orientation: import('./domain').Orientation; // Pipe orientation
+    emissivity: number; // Emissivity coefficient (0-1)
 }
 
-/**
- * Общий тип для компонентов с children
- */
-export interface WithChildren {
-  children: React.ReactNode;
-}
-
-/**
- * Интерфейс новости
- */
-export interface NewsItem {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  slug: string;
-  date?: string;
+// Interface for modal window parameters for h calculation in condensation
+export interface CondensationModalParams {
+    calculationType: 'inside' | 'outside'; // Calculation type
+    orientation: import('./domain').Orientation; // Pipe orientation
+    emissivity: number; // Emissivity coefficient (0-1)
 }

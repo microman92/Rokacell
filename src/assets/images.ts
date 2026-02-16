@@ -131,8 +131,8 @@ export const IMAGES = {
     certificatesIcon: "/img/rokacell-tehnicheskaya-dokumentaciya-i-sertifikaty.svg",
     tubePassport: "/img/rokacell-tehnicheskiy-pasport-trubnoy-izolyacii.svg",
     rollPassport: "/img/rokacell-tehnicheskiy-pasport-rulonnoy-izolyacii.svg",
-
     certificatesBg: "/img/certificates-bg.png",
+    qualityControl: "/img/rokacell-kontrol-kachestva-proizvodstva.png",
 
     certificates: {
       conformityUzEng: "/docs/sertificat-uzbekistan-eng.png",

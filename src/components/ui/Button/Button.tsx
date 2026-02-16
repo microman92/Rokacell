@@ -2,47 +2,53 @@ import Link from 'next/link';
 import styles from './Button.module.scss';
 import { cn } from '@/lib/utils';
 
-
-
+// Common props for both Link and Button
 interface BaseProps {
   children: React.ReactNode;
-  variant?: string;
+  variant?: string; // e.g., 'primary', 'secondary', 'outline'
   className?: string;
+  disabled?: boolean;
 }
 
+// Props specific to Link usage
 interface LinkButtonProps extends BaseProps {
   href: string;
   onClick?: never;
+  type?: never;
 }
 
+// Props specific to Button usage
 interface ActionButtonProps extends BaseProps {
-  onClick: () => void;
   href?: never;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void; // Optional onClick
+  type?: "button" | "submit" | "reset"; // Standard button types
 }
 
 type ButtonProps = LinkButtonProps | ActionButtonProps;
 
 /**
- * Универсальный компонент кнопки
- * - С href → рендерит как Link
- * - С onClick → рендерит как button
+ * Universal Button Component
+ * - Renders as <Link> if 'href' is provided.
+ * - Renders as <button> otherwise.
+ * - Supports variants via CSS modules composed with 'cn'.
  */
 export default function Button({
   children,
   variant,
   href,
-  onClick,
+  className,
+  ...props
 }: ButtonProps) {
+
+  // Compose classes: base .button + variant class + custom className
   const buttonClasses = cn(
     styles.button,
-    styles[`${variant}`],
+    variant && styles[variant],
+    className
   );
 
-
-  console.log(variant);
-  
-  // Если есть href — это ссылка
-  if (href) {
+  // 1. Render as Link if href is present (and is a string)
+  if (typeof href === 'string') {
     return (
       <Link href={href} className={buttonClasses}>
         {children}
@@ -50,10 +56,19 @@ export default function Button({
     );
   }
 
-  // Иначе — обычная кнопка
+  // 2. Render as Button
+  const { onClick, type = "button", disabled } = props as ActionButtonProps;
+
   return (
-    <button type="button" onClick={onClick} className={buttonClasses}>
+    <button
+      type={type}
+      onClick={onClick}
+      className={buttonClasses}
+      disabled={disabled}
+    >
       {children}
     </button>
   );
 }
+
+

@@ -1,5 +1,14 @@
 .products {
-  padding: 120px 0;
+  margin: 120px 0;
+
+  // Page variant — less top padding when placed after PageHero
+  &__page {
+    margin-top: 0;
+  }
+
+  &__swiperPlaceholder {
+    min-height: 200px;
+  }
 
   &__top {
     display: flex;

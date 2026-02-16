@@ -2,6 +2,7 @@ import { IMAGES } from "@/assets/images";
 import PageHero from "@/components/common/pageHero/PageHero";
 import Passport from "@/components/sections/Documents/Passport/Passport";
 import Certificates from "@/components/sections/Documents/Certificates/Certificates";
+import Quality from "@/components/sections/Documents/Quality/Quality";
 
 export default function DocumentsPage() {
   const heroData = {
@@ -16,6 +17,7 @@ export default function DocumentsPage() {
       <PageHero {...heroData} variant="documents" />
       <Passport />
       <Certificates />
+      <Quality />
     </main>
   );
 }

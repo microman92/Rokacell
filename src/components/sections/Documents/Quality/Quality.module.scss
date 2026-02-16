@@ -1,0 +1,38 @@
+@import '@/styles/variables';
+
+.quality {
+  margin-bottom: 120px;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__description {
+    max-width: 804px;
+
+    @include media(1440) {
+      max-width: 620px;
+    }
+  }
+
+  &__text {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 36px;
+    color: var(--txt-black);
+  }
+
+  &__img {
+    @include media(1440) {
+      max-width: 620px;
+    }
+
+    & img {
+      @include media(1440) {
+        width: 100%;
+      }
+    }
+  }
+}

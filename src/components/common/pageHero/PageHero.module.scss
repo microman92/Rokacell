@@ -38,6 +38,14 @@
     text-transform: uppercase;
     color: var(--txt-black);
 
+    & span {
+      font-family: var(--second-family);
+      font-weight: 500;
+      font-size: 64px;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--blue);
+    }
   }
 
   &__description {
@@ -131,56 +139,44 @@
 // Products — centered text, no images
 // ===========================
 .products {
-  height: auto;
-  padding: 100px 0 80px;
+  height: 510px;
+
   background: var(--bg-white, #fff);
 
   .hero__content {
     display: flex;
+    align-items: center;
     justify-content: center;
+    text-align: center;
   }
 
   .hero__desc {
-    align-items: center;
-    text-align: center;
-    max-width: 800px;
+    max-width: 922px;
+    gap: 24px;
   }
 
-  .hero__title {
-    font-size: 48px;
-    max-width: 700px;
-  }
-
-  .hero__description {
-    font-size: 16px;
-    text-transform: none;
-    font-family: var(--font-family);
-    font-weight: 400;
-  }
 }
 
 // ===========================
 // Calculator — centered text, no images
 // ===========================
 .calculator {
-  height: auto;
-  padding: 100px 0 80px;
-  background: var(--bg-white, #fff);
+  height: 485px;
 
   .hero__content {
     display: flex;
     justify-content: center;
-  }
-
-  .hero__desc {
     align-items: center;
-    text-align: center;
-    max-width: 800px;
   }
 
   .hero__title {
-    font-size: 48px;
-    max-width: 700px;
+    font-family: var(--second-family);
+    font-weight: 500;
+    font-size: 64px;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--txt-black);
+    max-width: 950px;
   }
 
   .hero__description {
@@ -195,7 +191,7 @@
 // Logistics — full bg image, text left
 // ===========================
 .logistics {
-  height: 830px;
+  height: 885px;
 
   .hero__content {
     display: flex;
@@ -203,21 +199,25 @@
   }
 
   .hero__desc {
-    max-width: 600px;
+    max-width: 870px;
     height: 100%;
     justify-content: center;
   }
 
   .hero__title {
+    font-family: var(--second-family);
+    font-weight: 500;
     font-size: 64px;
-    color: var(--txt-white, #fff);
-    max-width: 500px;
+    text-transform: uppercase;
+    color: var(--txt-white);
   }
 
   .hero__description {
-    font-size: 20px;
-    color: var(--txt-white, #fff);
+    font-family: var(--second-family);
+    font-weight: 500;
+    font-size: 24px;
     text-transform: uppercase;
+    color: var(--txt-white);
   }
 }
 

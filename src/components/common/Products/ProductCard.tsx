@@ -1,23 +1,23 @@
-
+import { memo } from 'react';
 import type { Product } from '@/data/products';
 import styles from './Products.module.scss';
 
 interface ProductCardProps {
   product: Product;
-  onClick: () => void;
+  onClick: (product: Product) => void;
 }
 
-export default function ProductCard({ product, onClick }: ProductCardProps) {
+const ProductCard = memo(function ProductCard({ product, onClick }: ProductCardProps) {
   return (
     <article
       className={styles.card}
-      onClick={onClick}
+      onClick={() => onClick(product)}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          onClick();
+          onClick(product);
         }
       }}
     >
@@ -38,4 +38,6 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
       </div>
     </article>
   );
-}
+});
+
+export default ProductCard;

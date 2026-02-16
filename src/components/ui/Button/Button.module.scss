@@ -1,3 +1,6 @@
+@use '@/styles/variables.scss' as *;
+@use '@/styles/mixins.scss' as *;
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -8,15 +11,22 @@
   text-transform: uppercase;
   color: var(--txt-black);
   cursor: pointer;
-  transition: 0.3s ease;
   background: var(--yellow);
+  border: none;
 
-  &:hover {
-    transform: translateY(-2px);
+  // Use the global hover/active effect
+  @include button-hover-effect;
+
+  // Variants (optional, if you want specific colors)
+  &.primary {
+    background: var(--blue);
+    color: var(--txt-white);
   }
 
-  &:active {
-    transform: translateY(0);
+  &.secondary {
+    background: transparent;
+    border: 2px solid var(--blue);
+    color: var(--blue);
   }
 
   &.big {
@@ -29,5 +39,9 @@
     }
   }
 
-
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none !important;
+  }
 }

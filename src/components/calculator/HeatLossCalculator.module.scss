@@ -1,0 +1,408 @@
+// Modern Minimalist Heat Loss Calculator Styles
+// Using precise units (px, %, rem) for exact control
+@use './mixins.scss' as *;
+
+// Main Calculator Component
+.heatLossCalculator {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f7ff 0%, #fafafa 100%);
+  padding: 60px 24px;
+  font-family: var(--font-family);
+  color: var(--txt-black);
+
+  &__container {
+    @include card-base;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+
+  &__header {
+    background: var(--blue);
+    padding: 32px;
+    position: relative;
+    // overflow: hidden;
+
+    &_title {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--txt-white);
+      letter-spacing: -0.025em;
+      position: relative;
+      z-index: 1;
+      font-family: var(--font-family);
+      text-transform: uppercase;
+    }
+  }
+
+  &__content {
+    padding: 30px;
+  }
+
+  &__section {
+    margin-bottom: 48px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &_title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--txt-black);
+      margin: 0 0 24px 0;
+      letter-spacing: -0.025em;
+      position: relative;
+      padding-left: 16px;
+      font-family: var(--font-family);
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 24px;
+        background: var(--yellow);
+        border-radius: 2px;
+      }
+    }
+  }
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+
+    &>* {
+      flex: 1 1 300px;
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 16px;
+
+      &>* {
+        flex: 1 1 auto;
+        min-width: auto;
+      }
+    }
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    max-width: 360px;
+    width: 100%;
+    gap: 4px;
+
+    &--wide {
+      flex: 1 1 100%;
+      min-width: 100%;
+    }
+
+    &_label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #525252;
+      margin: 0;
+      text-transform: capitalize;
+      letter-spacing: 0.025em;
+      font-family: var(--font-family);
+    }
+
+    &_input {
+      @include input-base;
+      color: var(--txt-black);
+
+      &_readonly {
+        background: #f5f5f5;
+        border-color: #e5e5e5;
+        color: #525252;
+      }
+    }
+
+    &_unit {
+      font-size: 12px;
+      color: #525252;
+      font-weight: 500;
+      margin-top: 4px;
+      text-align: right;
+    }
+
+    &_group {
+      display: flex;
+      gap: 8px;
+
+      .heatLossCalculator__field_input {
+        flex: 1;
+      }
+
+      .heatLossCalculator__button {
+        flex-shrink: 0;
+        min-width: auto;
+        padding: 8px 20px;
+      }
+    }
+
+    &_row {
+      display: flex;
+      gap: 10px;
+
+      &_item {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  &__button {
+    @include button-base;
+
+    &_primary {
+      background: var(--blue);
+      color: var(--txt-white);
+    }
+
+    &_success {
+      background: var(--yellow);
+      color: var(--txt-black);
+
+    }
+
+    &_secondary {
+      background: #f5f5f5;
+      color: var(--txt-black);
+      border: 2px solid #e5e5e5;
+    }
+  }
+
+  &__controls {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid #e5e5e5;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+
+      .heatLossCalculator__button {
+        width: 100%;
+      }
+    }
+  }
+
+  // Results section specific styling
+  &__section:has(.heatLossCalculator__field_input[readonly]) {
+    .heatLossCalculator__field_input {
+      font-weight: 600;
+      background: linear-gradient(135deg, #f0f7ff, #fafafa);
+      border-color: #bae0ff;
+      color: var(--blue);
+    }
+  }
+
+  // Field Input class fix for results section
+  &__fieldInput {
+    @include input-base;
+    width: 100%;
+
+    &--readonly {
+      background: #f5f5f5;
+      border-color: #e5e5e5;
+      color: #525252;
+      font-weight: 600;
+    }
+  }
+
+  // Results display styles
+  &__results {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  &__fields {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1110px;
+    gap: 30px;
+  }
+}
+
+
+// .heatLossCalculator__field:nth-child(4) {
+//   max-width: 360px;
+// }
+
+// Helpers
+.helpText,
+.helpTextTop,
+.helpTextTall {
+  display: block;
+  font-size: 11px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.helpTextTop {
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
+// Utility classes
+.fade-in {
+  animation: fadeIn 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-up {
+  animation: slideUp 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Loading states
+.loading {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+  .heatLossCalculator {
+    padding: 16px;
+
+    &__content {
+      padding: 32px;
+    }
+
+    &__header {
+      padding: 24px;
+
+      &_title {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .heatLossCalculator {
+    padding: 12px;
+
+    &__content {
+      padding: 24px;
+    }
+
+    &__header {
+      padding: 20px;
+
+      &_title {
+        font-size: 18px;
+      }
+    }
+
+    &__section {
+      margin-bottom: 32px;
+
+      &_title {
+        font-size: 18px;
+        margin-bottom: 16px;
+      }
+    }
+
+    &__button {
+      padding: 14px 24px;
+      font-size: 14px;
+      min-height: 44px;
+    }
+
+    &__field_input,
+    &__fieldInput {
+      padding: 14px 16px;
+      font-size: 16px;
+      min-height: 44px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .heatLossCalculator {
+    padding: 8px;
+
+    &__container {
+      border-radius: 16px;
+    }
+
+    &__content {
+      padding: 16px;
+    }
+
+    &__header {
+      padding: 16px;
+      border-radius: 16px 16px 0 0;
+    }
+
+    &__grid {
+      gap: 12px;
+    }
+
+    &__section {
+      margin-bottom: 24px;
+    }
+
+    &__controls {
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 24px;
+    }
+  }
+}

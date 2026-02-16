@@ -1,6 +1,10 @@
+"use client";
+
 import { IMAGES } from "@/assets/images";
 import Container from "@/components/layout/Container/Container";
 import styles from "./Certificates.module.scss";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 interface CertificateItem {
   id: number;
@@ -45,9 +49,27 @@ export default function Certificates() {
 
       <div className={styles.certificates__bg}>
         <Container>
-          <div className={styles.certificates__grid}>
+          <Swiper
+            spaceBetween={10}
+            slidesPerView={1.2}
+            breakpoints={{
+              576: {
+                slidesPerView: 1.2,
+              },
+              768: {
+                slidesPerView: 2.2,
+              },
+              992: {
+                slidesPerView: 3.2,
+              },
+              1440: {
+                slidesPerView: 4,
+              },
+            }}
+            className={styles.certificates__grid}
+          >
             {CERTIFICATES_DATA.map((item) => (
-              <div key={item.id} className={styles.certificates__card}>
+              <SwiperSlide key={item.id} className={styles.certificates__card}>
                 <h3 className={styles.certificates__card_title}>{item.title}</h3>
 
                 <div className={styles.certificates__card_preview}>
@@ -69,9 +91,9 @@ export default function Certificates() {
                     />
                   </svg>
                 </a>
-              </div>
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
         </Container>
       </div>
     </section>
