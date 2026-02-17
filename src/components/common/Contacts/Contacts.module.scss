@@ -1,0 +1,149 @@
+@import "@/styles/variables";
+@import "@/styles/mixins";
+
+.contacts {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  position: relative;
+  background: #fff;
+
+  // Левая часть (Визуал)
+  &__visual {
+    width: 50%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    // Стили для варианта 'products' (синий фон)
+    &--products {
+      background: #035779;
+      padding: 40px;
+    }
+
+    // Стили для варианта 'photo' (картинка на фон)
+    &--photo {
+      .contacts__bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+    }
+  }
+
+  // Логотип (общий для всех, позиционируется поверх)
+  &__logo {
+    position: relative;
+    z-index: 2;
+    max-width: 80%;
+    height: auto;
+
+    // Для фото версии логотип может быть в углу
+    &--overlay {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      margin: 0;
+      max-width: 250px;
+    }
+  }
+
+  // Картинка продукции
+  &__productImage {
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin-top: 40px;
+  }
+
+  // Правая часть (Инфо)
+  &__info {
+    width: 50%;
+    height: 100%;
+    padding: 60px 84px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #21597B; // Цвет плашки
+
+    @include media(1440) {
+      padding: 40px 50px;
+    }
+
+    @include media(768) {
+      padding: 20px;
+    }
+  }
+
+  &__city {
+    font-family: var(--second-family);
+    font-weight: 500;
+    font-size: 48px;
+    text-transform: uppercase;
+    color: var(--txt-white);
+    margin-bottom: 66px;
+
+    @include media(1440) {
+      font-size: 36px;
+      margin-bottom: 40px;
+    }
+  }
+
+  &__address {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 36px;
+    color: var(--txt-white);
+    margin-bottom: 97px;
+
+    @include media(1440) {
+      font-size: 24px;
+      margin-bottom: 40px;
+    }
+  }
+
+  &__email {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 36px;
+    color: var(--txt-white);
+    margin-bottom: 48px;
+
+    @include media(1440) {
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+  }
+
+  &__phones {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 36px;
+    color: var(--txt-white);
+
+    @include media(1440) {
+      font-size: 24px;
+    }
+  }
+
+  // Модификатор для страницы контактов (если нужно что-то специфичное)
+  &--page {
+    margin-bottom: 20px;
+    height: 500px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

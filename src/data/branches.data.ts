@@ -1,37 +1,30 @@
 import { IMAGES } from "@/assets/images";
 
-// Types for branch slides with discriminated union
-export type BaseBranch = {
+export type Branch = {
+  id: string;
+  variant: 'photo' | 'products';
   city: string;
   address: string;
   email: string;
   phones: string[];
-};
-
-export type PhotoBranch = BaseBranch & {
-  variant: 'photo';
   image: string;
+  logo?: string;
 };
-
-export type ProductBranch = BaseBranch & {
-  variant: 'products';
-  image: string;
-  logo: string;
-};
-
-export type Branch = PhotoBranch | ProductBranch;
 
 // Branches data
 export const BRANCHES: Branch[] = [
   {
+    id: 'tashkent',
     variant: 'photo',
     image: IMAGES.about.plant,
+    logo: IMAGES.icons.logo,
     city: "TASHKENT, UZBEKISTAN",
     address: "17 Obikhaet Street, Sergeli District",
     email: "info@rokacell.com",
     phones: ["+998 95 778-71-32", "+998 77 292-00-99"],
   },
   {
+    id: 'almaty',
     variant: 'products',
     image: IMAGES.branches.almaty,
     logo: IMAGES.icons.logo,
@@ -41,6 +34,7 @@ export const BRANCHES: Branch[] = [
     phones: ["+7 707 422-89-58"],
   },
   {
+    id: 'moscow',
     variant: 'products',
     image: IMAGES.branches.moscow,
     logo: IMAGES.icons.logo,
