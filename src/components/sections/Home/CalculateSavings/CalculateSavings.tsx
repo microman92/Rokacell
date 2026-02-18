@@ -1,6 +1,7 @@
 import styles from './CalculateSavings.module.scss';
 import Container from '@/components/layout/Container/Container';
 import Button from '@/components/ui/Button/Button';
+import { Heading } from '@/components/ui/Heading/Heading';
 
 export default function CalculateSavings() {
   return (
@@ -15,9 +16,9 @@ export default function CalculateSavings() {
       <div className={styles.calculate__content}>
         <Container className={styles.calculate__container}>
           <div className={styles.calculate__text}>
-            <h2 className={styles.calculate__title}>
+            <Heading tag="h2" className={styles.calculate__title}>
               Calculate your savings
-            </h2>
+            </Heading>
             <p className={styles.calculate__description}>
               Select the ideal insulation solution and find out how much you'll save on energy. Our calculator will help in a minute!
             </p>

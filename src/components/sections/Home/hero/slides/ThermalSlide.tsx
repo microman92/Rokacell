@@ -2,6 +2,7 @@
 import { IMAGES } from "@/assets/images";
 import styles from "../Hero.module.scss";
 import Container from "@/components/layout/Container/Container";
+import { Heading } from "@/components/ui/Heading/Heading";
 
 /**
  * Слайд 1 — Efficient Thermal Insulation
@@ -21,7 +22,7 @@ export default function ThermalSlide() {
       />
 
       <Container className={`${styles.slide__content} ${styles.slide__content_leftTop}`}>
-        <h2 className={styles.slide__title}>EFFICIENT THERMAL INSULATION</h2>
+        <Heading tag="h2" className={styles.slide__title}>EFFICIENT THERMAL INSULATION</Heading>
         <p className={styles.slide__text}>ELASTOMERIC RUBBER FOAM PRODUCTS</p>
       </Container>
     </>

@@ -3,18 +3,14 @@
 
 .contacts {
   width: 100%;
-  height: 100%;
+  height: 770px;
   display: flex;
-  align-items: stretch;
-  justify-content: flex-start;
+  justify-content: space-between;
   position: relative;
-  background: #fff;
 
   // Левая часть (Визуал)
   &__visual {
-    width: 50%;
-    position: relative;
-    overflow: hidden;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,58 +20,49 @@
     &--products {
       background: #035779;
       padding: 40px;
+      gap: 68px;
     }
 
-    // Стили для варианта 'photo' (картинка на фон)
-    &--photo {
-      .contacts__bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: 0;
-      }
-    }
+  }
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
   }
 
   // Логотип (общий для всех, позиционируется поверх)
   &__logo {
     position: relative;
     z-index: 2;
-    max-width: 80%;
-    height: auto;
+    max-width: 525px;
+    width: 100%;
+    align-self: flex-start;
+
 
     // Для фото версии логотип может быть в углу
     &--overlay {
       position: absolute;
-      top: 40px;
-      left: 40px;
-      margin: 0;
-      max-width: 250px;
+      top: 100px;
+      left: 100px;
     }
-  }
-
-  // Картинка продукции
-  &__productImage {
-    position: relative;
-    z-index: 2;
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    margin-top: 40px;
   }
 
   // Правая часть (Инфо)
   &__info {
-    width: 50%;
+    max-width: 672px;
+    width: 100%;
     height: 100%;
     padding: 60px 84px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: #21597B; // Цвет плашки
+    background: var(--blue); 
+    z-index: 2;
 
     @include media(1440) {
       padding: 40px 50px;
@@ -84,7 +71,12 @@
     @include media(768) {
       padding: 20px;
     }
+
+    &.photo {
+      background: rgba(33, 89, 123, 0.8);
+    }
   }
+
 
   &__city {
     font-family: var(--second-family);

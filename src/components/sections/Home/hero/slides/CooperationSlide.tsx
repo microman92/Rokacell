@@ -2,6 +2,7 @@
 import styles from "../Hero.module.scss";
 import Container from "@/components/layout/Container/Container";
 import { cn } from "@/lib/utils";
+import { Heading } from "@/components/ui/Heading/Heading";
 
 /**
  * Слайд 3 — International Cooperation of Rokacell
@@ -17,9 +18,9 @@ export default function CooperationSlide() {
 
         {/* Content — Left bottom */}
         <Container className={`${styles.slide__international}`}>
-          <h2 className={cn(styles.slide__title, styles.slide__international_title)}>
+          <Heading tag="h2" className={cn(styles.slide__title, styles.slide__international_title)}>
             INTERNATIONAL COOPERATION OF ROKACELL
-          </h2>
+          </Heading>
         </Container>
       </div >
     </>

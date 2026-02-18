@@ -38,14 +38,12 @@
   }
 
   &__title {
-    font-family: var(--second-family);
-    font-weight: 500;
-    font-size: 48px;
-    text-transform: uppercase;
+    // font styles moved to Heading
     color: var(--txt-white);
 
     @include media(1440) {
-      font-size: 36px;
+      // font-size handled by Heading component or override here if different from default
+      font-size: 36px; // Keep this override if it differs from Heading default (Heading h2 mobile behavior might be different)
     }
   }
 

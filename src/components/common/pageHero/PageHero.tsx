@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import Container from "@/components/layout/Container/Container";
 import styles from "./PageHero.module.scss";
+import { Heading } from "@/components/ui/Heading/Heading";
 import { cn } from "@/lib/utils";
 
 interface PageHeroProps {
@@ -50,7 +51,7 @@ export default function PageHero({
 
       <Container className={styles.hero__content}>
         <div className={styles.hero__desc}>
-          <h1 className={styles.hero__title}>{title}</h1>
+          <Heading variant={variant === 'logistics' ? 'white' : 'black'} tag="h1" className={styles.hero__title}>{title}</Heading>
           {description && <p className={styles.hero__description}>{description}</p>}
         </div>
 

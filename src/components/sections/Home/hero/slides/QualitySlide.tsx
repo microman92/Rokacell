@@ -2,6 +2,7 @@
 import { IMAGES } from "@/assets/images";
 import styles from "../Hero.module.scss";
 import Container from "@/components/layout/Container/Container";
+import { Heading } from "@/components/ui/Heading/Heading";
 
 /**
  * Слайд 2 — The Benchmark of Quality in Insulation
@@ -23,7 +24,7 @@ export default function QualitySlide() {
       <div className={styles.hero__content}>
         <Container className={`${styles.slide__content} ${styles.slide__content_splitLeft}`}>
           <div className={`${styles.slide__content_desc}`}>
-            <h2 className={styles.slide__title}>THE BENCHMARK OF QUALITY IN INSULATION</h2>
+            <Heading tag="h2" className={styles.slide__title}>THE BENCHMARK OF QUALITY IN INSULATION</Heading>
             <p className={styles.slide__text}>
               ROKACELL TUBES AND ROLLS — RELIABLE PROTECTION AGAINST HEAT LOSS AND CONDENSATION IN
               ANY OPERATING CONDITIONS

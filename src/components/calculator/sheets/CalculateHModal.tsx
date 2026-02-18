@@ -189,7 +189,7 @@ const CalculateHModal: React.FC<CalculateHModalProps> = ({
 
           <div className={modalStyles.modal__controls}>
             <button onClick={onCalculate} className={`${modalStyles.modal__button} ${modalStyles['modal__button_primary']}`}>Continue</button>
-            <button onClick={() => {}} className={`${modalStyles.modal__button} ${modalStyles['modal__button_secondary']}`}>Help</button>
+            <button onClick={() => { }} className={`${modalStyles.modal__button} ${modalStyles['modal__button_secondary']}`}>Help</button>
             <button onClick={onClose} className={`${modalStyles.modal__button} ${modalStyles['modal__button_secondary']}`}>Cancel</button>
           </div>
         </div>

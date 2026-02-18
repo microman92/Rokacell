@@ -1,6 +1,7 @@
 "use client";
 
 import styles from "./Hero.module.scss";
+import { Heading } from "@/components/ui/Heading/Heading";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
@@ -26,9 +27,9 @@ export const HERO_SLIDER_CONFIG = {
 export default function HeroSection() {
   return (
     <section className={styles.hero}>
-      <h1 className="visuallyHidden">
+      <Heading tag="h1" className="visuallyHidden">
         Rokacell - Эффективная теплоизоляция, ИЗДЕЛИЯ ИЗ ВСПЕНЕННОГО ЭЛАСТОМЕРНОГО КАУЧУКА
-      </h1>
+      </Heading>
 
       <Swiper
         modules={[Autoplay, Pagination]}

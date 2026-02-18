@@ -1,6 +1,7 @@
 
 import { IMAGES } from "@/assets/images";
 import styles from "../Hero.module.scss";
+import { Heading } from "@/components/ui/Heading/Heading";
 
 /**
  * Слайд 4 — Rokacell Products at Leading International Exhibitions
@@ -21,9 +22,9 @@ export default function ExhibitionSlide() {
       {/* Blue overlay band */}
       <div className={styles.slide__overlay}>
         <div className={styles.slide__overlay_content}>
-          <h2 className={styles.slide__overlay_title}>
+          <Heading tag="h2" className={styles.slide__overlay_title}>
             ROKACELL PRODUCTS AT LEADING INTERNATIONAL EXHIBITIONS
-          </h2>
+          </Heading>
           <p className={styles.slide__overlay_text}>
             ROKACELL REGULARLY PARTICIPATES IN LEADING INTERNATIONAL EXHIBITIONS OF CONSTRUCTION AND
             INSULATION MATERIALS, SHOWCASING INNOVATIVE PRODUCTS AND ESTABLISHING NEW PARTNERSHIPS

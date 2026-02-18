@@ -3,6 +3,7 @@ import { IMAGES } from "@/assets/images";
 import Container from "@/components/layout/Container/Container";
 import MarqueeStrip from "@/components/ui/MarqueeStrip/MarqueeStrip";
 import styles from "./Industries.module.scss";
+import { Heading } from "@/components/ui/Heading/Heading";
 
 const INDUSTRIES = [
   { image: IMAGES.home.applicationAreas.hotels, label: "HOTELS" },
@@ -24,7 +25,7 @@ export default function Industries() {
   return (
     <section className={styles.industries}>
       <Container>
-        <h2 className={styles.industries__title}>APPLICATION AREAS</h2>
+        <Heading variant="black" tag="h2" className={styles.industries__title}>APPLICATION AREAS</Heading>
       </Container>
 
       <div className={styles.industries__grid}>

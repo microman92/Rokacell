@@ -1,0 +1,14 @@
+.contacts {
+  margin-top: 60px;
+  margin-bottom: 120px;
+
+  &__branches {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  &__title {
+    margin-bottom: 40px;
+  }
+}

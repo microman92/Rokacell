@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import Container from "@/components/layout/Container/Container";
 import { BRANCHES } from "@/data/branches.data";
 import Contacts from "@/components/common/Contacts/Contacts";
+import { Heading } from "@/components/ui/Heading/Heading";
 
 
 
@@ -15,7 +16,7 @@ export default function Branches() {
   return (
     <section className={styles.branches}>
       <Container>
-        <h2 className={styles.branches__title}>Our branches</h2>
+        <Heading variant="black" tag="h2" className={styles.branches__title}>Our branches</Heading>
 
         <Swiper
           className={styles.branches__swiper}

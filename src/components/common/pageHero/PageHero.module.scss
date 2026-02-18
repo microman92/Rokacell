@@ -32,10 +32,6 @@
   }
 
   &__title {
-    font-family: var(--second-family);
-    font-weight: 500;
-    font-size: 64px;
-    text-transform: uppercase;
     color: var(--txt-black);
 
     & span {
@@ -132,6 +128,10 @@
   .hero__overlay {
     max-width: 670px;
     width: 100%;
+  }
+
+  &__title {
+    color: var(--txt-black);
   }
 }
 

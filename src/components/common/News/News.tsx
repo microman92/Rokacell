@@ -2,6 +2,7 @@
 
 import styles from "./News.module.scss";
 import Link from "next/link";
+import Heading from "@/components/ui/Heading/Heading";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -48,7 +49,7 @@ export const News = ({ variant }: NewsProps) => {
   return (
     <section className={styles.news}>
 
-      <h2 className={styles.news__title}>WHATS NEW?</h2>
+      <Heading variant="black" tag="h2" className={styles.news__title}>WHATS NEW?</Heading>
 
       {!isAboutPage &&
         <div className={styles.news__swiper}>

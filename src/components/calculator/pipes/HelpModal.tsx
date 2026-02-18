@@ -56,7 +56,7 @@ const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
           </div>
 
           <div className={modalStyles.modal__controls}>
-            <button 
+            <button
               onClick={onClose}
               className={`${modalStyles.modal__button} ${modalStyles['modal__button_primary']}`}
             >

@@ -13,8 +13,18 @@ export default function Contacts({ data, variant }: ContactsProps) {
   return (
     <div className={cn(
       styles.contacts,
-      variant === 'ContactsPage' && styles['contacts--page']
+      variant === 'ContactsPage' && styles['contacts__page']
     )}>
+
+      {/* Если фото-вариант: фоновая картинка завода */}
+      {isPhotoVariant && (
+        <img
+          src={data.image}
+          alt={data.city}
+          className={styles.contacts__bg}
+        />
+      )}
+
       {/* Левая часть: Визуал */}
       <div className={cn(
         styles.contacts__visual,
@@ -32,14 +42,7 @@ export default function Contacts({ data, variant }: ContactsProps) {
           />
         )}
 
-        {/* Если фото-вариант: фоновая картинка завода */}
-        {isPhotoVariant && (
-          <img
-            src={data.image}
-            alt={data.city}
-            className={styles.contacts__bg}
-          />
-        )}
+
 
         {/* Если продукт-вариант: картинка продукции */}
         {!isPhotoVariant && (
@@ -50,9 +53,9 @@ export default function Contacts({ data, variant }: ContactsProps) {
           />
         )}
       </div>
-
+      {/* background: rgba(33, 89, 123, 0.8); */}
       {/* Правая часть: Инфо */}
-      <div className={styles.contacts__info}>
+      <div className={cn(styles.contacts__info, isPhotoVariant && styles['photo'])}>
         <h3 className={styles.contacts__city}>{data.city}</h3>
         {data.address && (
           <p className={styles.contacts__address}>{data.address}</p>

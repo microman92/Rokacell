@@ -16,7 +16,7 @@ export const BRANCHES: Branch[] = [
   {
     id: 'tashkent',
     variant: 'photo',
-    image: IMAGES.about.plant,
+    image: IMAGES.branches.bg,
     logo: IMAGES.icons.logo,
     city: "TASHKENT, UZBEKISTAN",
     address: "17 Obikhaet Street, Sergeli District",

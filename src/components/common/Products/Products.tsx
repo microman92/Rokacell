@@ -8,6 +8,7 @@ import ProductCard from './ProductCard';
 import ProductModal from './ProductModal';
 import type { ProductSwiperProps } from './ProductSwiper';
 import styles from './Products.module.scss';
+import { Heading } from '@/components/ui/Heading/Heading';
 
 // Lazy-load Swiper only when needed (mobile only, heavy dependency)
 const ProductSwiper = dynamic<ProductSwiperProps>(
@@ -58,7 +59,7 @@ export default function Products({
       <Container>
         <div className={styles.products__top}>
           {showTitle && (
-            <h2 className={styles.products__title}>OUR PRODUCTS</h2>
+            <Heading variant="black" tag="h2" className={styles.products__title}>OUR PRODUCTS</Heading>
           )}
 
           {/* Tabs */}
