@@ -5,11 +5,16 @@ import AboutInfo from "@/components/sections/About/AboutInfo/AboutInfo";
 import Policy from "@/components/sections/About/Policy/Policy";
 import FactoryInfo from "@/components/sections/FactoryInfo/FactoryInfo";
 
-export default function AboutPage() {
+import { Locale } from "@/lib/locales";
+import { getDictionary } from "@/lib/i18n";
+
+export default async function AboutPage({ params }: { params: Promise<{ locale: Locale }> }) {
+  const { locale } = await params;
+  const dict = await getDictionary(locale);
+
   const heroData = {
-    title: "We preserve heat and energy",
-    description:
-      "ROKACELL is the leading manufacturer of thermal insulation made from elastomeric materials in Central Asia. We create solutions that make buildings, production facilities, and Building mechanical systems more efficient and safer.",
+    title: dict.about?.hero?.title || "",
+    description: dict.about?.hero?.description || "",
     bgImage: IMAGES.about.HeroBg,
     overlayImage: IMAGES.about.heroVisual,
   };
@@ -17,10 +22,10 @@ export default function AboutPage() {
   return (
     <main className="main">
       <PageHero {...heroData} variant="about" />
-      <AboutInfo />
-      <FactoryInfo />
-      <News variant="about" />
-      <Policy />
+      <AboutInfo dict={dict.about} />
+      <FactoryInfo dict={dict.about} />
+      <News variant="about" dict={dict.news} />
+      <Policy dict={dict.about} />
     </main>
   );
 }

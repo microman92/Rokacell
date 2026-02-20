@@ -1,27 +1,36 @@
-
 import Container from "@/components/layout/Container/Container";
 import styles from "./Passport.module.scss";
 import { PASSPORT_DATA } from "@/data/DocumentsData";
+import { Dictionary } from "@/lib/i18n";
 
+interface PassportProps {
+  dict?: Dictionary["documents"];
+}
 
-
-export default function Passport() {
+export default function Passport({ dict }: PassportProps) {
   return (
     <section className={styles.passport}>
       <Container>
-        <h2 className={styles.passport__title}>Technical passport</h2>
+        <h2 className={styles.passport__title}>{dict?.passport?.title}</h2>
 
         <div className={styles.passport__grid}>
           {PASSPORT_DATA.map((item) => (
             <div key={item.id} className={styles.passport__card}>
               <div className={styles.passport__card_icon}>
-                <img src={item.icon} alt={item.title} width={210} height={210} />
+                <img
+                  src={item.icon}
+                  alt={dict?.data?.passports?.[item.titleKey] || ""}
+                  width={210}
+                  height={210}
+                />
               </div>
 
-              <h3 className={styles.passport__card_title}>{item.title}</h3>
+              <h3 className={styles.passport__card_title}>
+                {dict?.data?.passports?.[item.titleKey]}
+              </h3>
 
               <a href={item.downloadUrl} download className={styles.passport__card_download}>
-                Download
+                {dict?.data?.download}
                 <svg
                   width="24"
                   height="24"

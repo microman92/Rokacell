@@ -15,7 +15,8 @@ export default {
       },
       {
         title: "IZOLYATSIYADA SIFAT ETALONI",
-        subtitle: "ROKACELL QUVUR VA RULONLARI – HAR QANDAY FOYDALANISH SHAROITIDA ISSIQLIK YO'QOTISH VA KONDENSATDAN ISHONCHLI HIMOYA.",
+        subtitle:
+          "ROKACELL QUVUR VA RULONLARI – HAR QANDAY FOYDALANISH SHAROITIDA ISSIQLIK YO'QOTISH VA KONDENSATDAN ISHONCHLI HIMOYA.",
       },
       {
         title: "ROKACELL XALQARO HAMKORLIGI",
@@ -23,9 +24,10 @@ export default {
       },
       {
         title: "YETAKCHI XALQARO KO'RGAZMALARDA ROKACELL MAHSULOTLARI",
-        subtitle: "ROKACELL MUNTAZAM RAVISHDA QURILISH VA IZOLYATSIYA MATERIALLARI BO'YICHA YETAKCHI XALQARO KO'RGAZMALARDA QATNASHIB, INNOVATSION MAHSULOTLARNI NAMOYISH ETMOQDA VA MDH HUDUDI HAMDA UNDAN TASHQARIDA YANGI HAMKORLIK ALOQALARINI O'RNATMOQDA.",
-      }
-    ]
+        subtitle:
+          "ROKACELL MUNTAZAM RAVISHDA QURILISH VA IZOLYATSIYA MATERIALLARI BO'YICHA YETAKCHI XALQARO KO'RGAZMALARDA QATNASHIB, INNOVATSION MAHSULOTLARNI NAMOYISH ETMOQDA VA MDH HUDUDI HAMDA UNDAN TASHQARIDA YANGI HAMKORLIK ALOQALARINI O'RNATMOQDA.",
+      },
+    ],
   },
   features: {
     eco: "EKOLOGIK TOZALIK",
@@ -48,7 +50,110 @@ export default {
       airConditioningDucts: "KONDITSIONER QUVURLARI",
       airConditioningPipelines: "KONDITSIONER QUYULMALARI",
       heatingPipelines: "ISITISH QUVURLARI",
-    }
+    },
+  },
+  calculator: {
+    hero: {
+      titlePart1: "BIZNING KALKULYATORIMIZ SIZNING MAHSULOTINGIZNING ",
+      titleHighlight1: "OPTIMAL",
+      titlePart2: " TURINI ",
+      titleHighlight2: "ANIQLASHGA",
+      titlePart3: " YORDAM BERADI.",
+    },
+    form: {
+      title: "ROKACELL ISSIQLIK IZOLATSIYASI KALKULYATORIGA KIRISH YARATING",
+      subtitle: "Asbobdan foydalanish uchun shaklni to'ldiring - va shaxsiy ruxsatga ega bo'ling.",
+      fields: {
+        fullName: "F.I.SH",
+        phone: "Telefon",
+        email: "Email",
+        company: "Kompaniya",
+      },
+      submit: "KIRISH",
+      loading: "",
+      disclaimer1: "BIZ MA'LUMOTLARINGIZ MAXFIYLIGINI KAFOLATLAYMIZ. MA'LUMOTLAR FAQAT ROKACELL",
+      disclaimer2: "MAHSULOTLARI BO'YICHA MASLAHAT VA RUXSAT BERISH UCHUN FOYDALANILADI.",
+      errors: {
+        fullName: "F.I.SH yozish majburiy",
+        phone: "Telefon raqam yozish majburiy",
+        emailReq: "Email yozish majburiy",
+        emailInv: "Email formatida xato",
+        company: "Kompaniya yozish majburiy",
+      },
+    },
+    navigation: {
+      title: "ROKAFLEX Kalkulyatorlari",
+      subtitle: "Issiqlik izolatsiyasi va kondensatning oldini olish bo'yicha hisob-kitoblar",
+      categories: { pipes: "Quvurlar", sheets: "Listlar" },
+      items: {
+        pipesHeatLoss: {
+          title: "Quvurlar uchun issiqlik yo'qotishini hisoblash",
+          desc: "Issiqlik yo'qotishlari va izolatsiyaning iqtisodiy samaradorligini hisoblash",
+        },
+        pipesCond: {
+          title: "Quvurlar uchun kondensatning oldini olish",
+          desc: "Kondensatning oldini olish uchun izolatsiyaning minimal qalinligini aniqlash",
+        },
+        sheetsHeatLoss: {
+          title: "Listlar uchun issiqlik yo'qotishini hisoblash",
+          desc: "Issiqlik yo'qotishlari va izolatsiyaning iqtisodiy samaradorligini hisoblash",
+        },
+        sheetsCond: {
+          title: "Listlar uchun kondensatning oldini olish",
+          desc: "Kondensatning oldini olish uchun izolatsiyaning minimal qalinligini aniqlash",
+        },
+      },
+    },
+    calc: {
+      pipesHeatLossTitle: "QUVURLAR UCHUN ISSIQLIK YO'QOTISHINI HISOBLASH",
+      parameters: "Parametrlar",
+      ambientTemp: "Atrof-muhit harorati",
+      ambientTempDesc: "izolatsiya atrofidagi havo, °C",
+      mediumTemp: "Tashuvchi harorati",
+      mediumTempDesc: "quvur ichidagi issiqlik tashuvchi, °C",
+      pipeDiameter: "Quvur diametri",
+      pipeDiameterDesc: "tashqi diametr, mm (Cu/St ekvivalentlari ko'rsatilgan)",
+      pipeDiameterDescH: "tashqi diametr, mm",
+      insulationThickness: "Izolatsiya qalinligi",
+      insulationThicknessDesc: "issiqlik izolatsiyasi qatlamining qalinligi, mm",
+      pipeLength: "Quvur uzunligi",
+      pipeLengthDesc: "hisoblash uchastkasi, m",
+      insulationMaterial: "Issiqlik izolatsiyasi materiali",
+      insulationMaterialDesc: "issiqlik o'tkazuvchanlik koeffitsiyenti λ(T) ni o'rnatadi",
+      hCoefficient: "Issiqlik uzatish koeffitsiyenti H",
+      hCoefficientDesc: "konveksiya + sirt nurlanishi; hisoblash mumkin",
+      calcHBtn: "h ni hisoblash",
+      energyCost: "Energiya narxi",
+      energyCostDesc: "tarif, valyuta/kVt·soat",
+      results: "Hisoblash natijalari",
+      meanLambda: "O'rtacha issiqlik o'tkazuvchanlik koeffitsiyenti λ",
+      meanLambdaDesc: "o'rtacha haroratda izolyatsiya materialining issiqlik o'tkazuvchanligi",
+      thermalTransmittance: "Izolyatsiya issiqlik o'tkazuvchanligi",
+      thermalTransmittanceDesc: "izolatsiya orqali umumiy issiqlik uzatish koeffitsiyenti",
+      heatLoss: "Issiqlik yo'qotilishi",
+      heatLossDesc: "quvur uzunligiga qarab issiqlik yo'qotishlari",
+      heatLossReduction: "Issiqlik yo'qotishlarini kamaytirish",
+      heatLossReductionDesc: "izolyatsiya qilinmagan quvurga nisbatan izolatsiya samaradorligi",
+      costPerHour: "Soatiga narxi",
+      costPerHourDesc: "berilgan tarif bo'yicha yo'qotishlarni qoplash xarajatlari",
+      calculateBtn: "Hisoblash",
+      helpBtn: "Yordam",
+      backBtn: "← Kalkulyatorlarga qaytish",
+      hModal: {
+        title: "ISSIQLIK UZATISH KOEFFITSIYENTINI H HISOBLASH",
+        calcType: "Hisoblash turi",
+        calcTypeDesc: "biz nimani hisoblaymiz: tashqariga yoki ichkariga uzatilgan issiqlik",
+        inside: "Ichkariga",
+        outside: "Tashqariga",
+        orientation: "Oriyentatsiya",
+        vertical: "Vertikal",
+        horizontal: "Gorizontal",
+        additionalSettings: "Qo'shimcha sozlamalar",
+        emissivity: "Nurlanish koeffitsiyenti (Yordamga qarang)",
+        continueBtn: "Davom etish",
+        cancelBtn: "Bekor qilish",
+      },
+    },
   },
   products: {
     title: "MAHSULOTLARIMIZ",
@@ -59,6 +164,15 @@ export default {
       all: "Barchasi",
     },
     viewAll: "barchasini ko'rish...",
+    hero: {
+      titlePart1: "Har qanday vazifa uchun samarali ",
+      titleHighlight: "issiqlik izolatsiyasi",
+      titlePart2: "",
+      description:
+        "Ventilyatsiya va shamollatish tizimlaridan tortib murakkab muhandislik tarmoqlarigacha - ROKACELL mahsulotlari issiqlik yo'qotishi, kondensat va shovqindan himoya qiladi. Vaqt va iqlim bilan tasdiqlangan sifat.",
+    },
+    description:
+      "ROKACELL materiallari ko'pirtirilgan sintetik kauchukdan (NBR/PVC) tayyorlanadi va xalqaro sifat va xavfsizlik standartlariga javob beradi.",
   },
   aboutVideo: {
     text: "Har bir mahsulotimiz ortida professionallar jamoasi va puxta o'ylangan jarayonlar turadi.",
@@ -75,11 +189,12 @@ export default {
     },
     moscow: {
       city: "MOSKVA, ROSSIYA FEDERATSIYASI",
-    }
+    },
   },
   calculateSavings: {
     title: "FOYDANIZNI HISOBLANG",
-    description: "Izolyatsiya uchun ideal yechimni tanlang va energiyadan qancha tejashingizni bilib oling. Kalkulyatorimiz bir daqiqada yordam beradi!",
+    description:
+      "Izolyatsiya uchun ideal yechimni tanlang va energiyadan qancha tejashingizni bilib oling. Kalkulyatorimiz bir daqiqada yordam beradi!",
     button: "HOZIROQ HISOBLASH",
   },
   news: {
@@ -91,12 +206,180 @@ export default {
     contacts: "Kontaktlar:",
     addressText: "Manzil:",
     socials: "Biz ijtimoiy tarmoqlarda:",
-    rights: "© 2026 ROKACELL. BARCHA HUQUQLAR HIMOYA QILINGAN."
+    rights: "© 2026 ROKACELL. BARCHA HUQUQLAR HIMOYA QILINGAN.",
   },
   common: {
     home: "Bosh sahifa",
     back: "Orqaga",
     next: "Oldinga",
     loading: "Yuklanmoqda...",
-  }
+  },
+  logistics: {
+    hero: {
+      title: "Kechikishlarsiz va muammosiz yetkazib berish",
+      description:
+        "Biz butun Markaziy Osiyo va undan tashqarida yetkazib berishni tashkillashtiramiz. Logistik qo'llab-quvvatlash",
+    },
+    categories: {
+      rolls: {
+        title: "ROKAFLEX RULONLAR",
+        description:
+          "RULONLAR LDPE PLYONKASIGA QADOQLANADI VA IKKITA KENGILIK VARIANTIDA MAVJUD — 100 CM VA 120 CM. TRANSPORTGA QARAB HAR XIL SIG'IM MUMKIN. SIG'IM HAQIDAGI MA'LUMOT QUYIDA KELTIRILGAN.",
+      },
+      tubes: {
+        title: "ROKAFLEX QUVURLAR",
+        description:
+          "QUVURLAR 320 × 390 × 2090 MM O'LCHAMDAGI KARTON QUTILARGA QADOQLANADI. BITA QUTINIG HAJMI 0.27 M³. TASHISH SIG'IMI QUYIDA KELTIRILGAN.",
+      },
+    },
+    transport: {
+      truck45: "YUK MASHINASI 45 M³",
+      truck88: "YUK MASHINASI 88 M³",
+      container40: "40HC KONTEYNER",
+    },
+    subtitles: {
+      compact: "Yilni tashish varianti",
+      increased: "Oshirilgan sig'im",
+      international: "Xalqaro yetkazib berish",
+    },
+    labels: {
+      rollWidth: "Rulon kengligi:",
+      rollVolume: "Rulon hajmi:",
+      boxVolume: "Quti hajmi:",
+      quantity: "Miqdori:",
+    },
+    units: {
+      pcs: "dona",
+      m3: "m³",
+    },
+  },
+  about: {
+    hero: {
+      title: "Biz issiqlik va energiyani saqlaymiz",
+      description:
+        "ROKACELL — Markaziy Osiyodagi elastomerik materiallardan tayyorlangan issiqlik izolatsiyasi bo'yicha yetakchi ishlab chiqaruvchidir. Biz binolarni, ishlab chiqarish obyektlarini va binolarning muhandislik tizimlarini yanada samarali va xavfsiz qiladigan yechimlarni yaratamiz.",
+    },
+    info: {
+      title: "KOMPANIYA HAQIDA",
+      p1_1: " — ",
+      p1_2: " brendi ostida sintetik kauchukdan texnik issiqlik izolyatsiyasini ishlab chiqarishga ixtisoslashgan dinamik rivojlanayotgan kompaniya. Mahsulotlarimiz HVAC (isitish, ventilyatsiya va havoni konditsionerlash) tizimlarida qo'llanilib, ishonchlilik va energiya samaradorligini ta'minlaydi.",
+      p2_1: "Kompaniya ",
+      p2_2: " 2021 yilda ",
+      p2_3: " (Istanbul, Turkiya) — izolyatsiya materiallari sohasida 20 yildan ortiq tajribaga ega yetakchi ishlab chiqaruvchi va ",
+      p2_4: " (Toshkent, O'zbekiston) — mamlakatdagi nufuzli qurilish kompaniyalaridan biri hamkorligi natijasida tashkil etilgan.",
+    },
+    factory: {
+      p1_1: "Toshkentda (O'zbekiston) joylashgan ",
+      p1_2: " kompaniyasi yiliga 3000 tonna ishlab chiqarish quvvatiga ega bo'lib, Markaziy Osiyoda elastomerik kauchuk izolyatsiyasini ishlab chiqaruvchi birinchi korxona hisoblanadi.",
+      p2_1: "",
+      p2_2: " turli loyihalarning ehtiyojlariga moslashtirilgan keng turdagi mahsulotlarni taklif etib, HVAC sektorida ishonchli hamkor sifatida faoliyat yuritadi.",
+      p3_1: "",
+      p3_2: " katta tajribaga ega bo'lgan yuqori malakali muhandislar jamoasi tomonidan ta'minlanadigan ishlab chiqarish sifatini yanada oshirish uchun tadqiqot va ishlanmalarga sarmoya kiritishga intiladi.",
+    },
+    policy: {
+      header: {
+        title: "SIYOSAT",
+        subtitle:
+          '"ROKACELL" MCHJ QK ning sifat, ekologiya, mehnatni\nmuhofaza qilish va xavfsizlik boyicha siyosati',
+      },
+      mission: {
+        title: "UMUMIY QOIDALAR",
+        p1_1: '"ROKACELL" MCHJ QK',
+        p1_2: ", Markaziy Osiyoda ko'pirtirilgan sintetik kauchuklar asosidagi elastomerik materiallardan issiqlik izolyatsiyasi mahsulotlarini ishlab chiqaruvchi yetakchi korxonalardan biri sifatida o'z oldiga quyidagi vazifalarni qo'yadi: ichki va tashqi bozorlarga turli xil issiqlik izolyatsiyasi mahsulotlarini ishlab chiqarish va yetkazib berish;",
+        p2: "iste'molchilar talablariga va me'yoriy-huquqiy hujjatlarga to'liq mos kelish; kerakli hajmdagi mahsulotlarni sotib olish bo'yicha buyurtmalarni bajarish.",
+        p3_1: "Sifat, ekologik tozalik, ishlab chiqarish xavfsizligi va mahsulotni o'z vaqtida yetkazib berish — bu ",
+        p3_2: '"ROKACELL" MCHJ QK',
+        p3_3: " menejmenti samaradorligini baholashning asosiy mezonlari bo'lib, ular iste'molchilarning manfaatlari va talablarini qondirishga imkon beradi.",
+      },
+      areas: {
+        title: "ASOSIY FAOLIYAT YO'NALISHLARI",
+        img_title_1: "Issiq biznesning",
+        img_title_2: "yuragi",
+        items: [
+          {
+            id: 1,
+            title: "Menejment tizimi",
+            content: {
+              p1: "Biz xalqaro ISO 9001, ISO 14001 va ISO 45001 standartlari talablariga javob beradigan integratsiyalashgan menejment tizimini joriy qildik va uni quyidagi maqsadlarda doimiy ravishda takomillashtiramiz:",
+              list: [
+                "mahsulot sifati va ekspluatatsion xususiyatlaridan iste'molchilarning qoniqishini oshirish;",
+                "ishlab chiqarishning atrof-muhitga (havo, yer, suv) ta'sirini minimallashtirish;",
+                "xodimlarning xavfsiz va sog'lom mehnat sharoitlarini ta'minlash, shikastlanish va kasb kasalliklarining oldini olish.",
+              ],
+            },
+          },
+          {
+            id: 2,
+            title: "Iste'molchiga e'tibor",
+            content: {
+              p1: "Biz har doim iste'molchilarga va manfaatdor tomonlarga va'da qilingan narsani taqdim etamiz hamda ularning ehtiyojlari va umidlarini oldindan ko'ra bilishga intilamiz.",
+            },
+          },
+          {
+            id: 3,
+            title: "Maqsad va vazifalar",
+            content: {
+              p1: "Biz muassislar bilan kelishilgan holda erishish mumkin bo'lgan, aniq, o'lchanadigan, barqaror va vaqt bilan chegaralangan maqsadlarni qo'yamiz hamda ularning bajarilishini ta'minlaymiz.",
+            },
+          },
+          {
+            id: 4,
+            title: "Kompaniya majburiyatlari",
+            content: {
+              p1: "Biz mahsulot sifati, ekologik tozalik va ishlab chiqarish xavfsizligi mezonlarini belgilab oldik va quyidagilar bo'yicha majburiyatlarni o'z zimmamizga olamiz:",
+              list: [
+                "issiqlik izolyatsiyasi mahsulotlarini ishlab chiqarish va sotish prognozlarini bajarish;",
+                "ilg'or, «yashil» va ergonomik texnologiyalarni, yangi uskunalar va tajribani xarid qilish hamda joriy etish;",
+                "ishlab chiqarishning ekologik xususiyatlarini yaxshilash va ifloslanishning oldini olish orqali atrof-muhitni muhofaza qilish;",
+                "xodimlar bilan sifat, ekologiya, mehnatni muhofaza qilish va xavfsizlik masalalari bo'yicha maslahatlashuvlar o'tkazish;",
+                "qo'yilgan maqsad va vazifalarga erishish uchun axborot va resurslar bilan ta'minlash;",
+                "sifat, ekologiya, mehnatni muhofaza qilish va xavfsizlik sohasidagi qonunchilik va huquqiy talablarni bajarish;",
+                "ishlab chiqarish jarohatlari, kasb kasalliklari, mehnatni muhofaza qilish, xavfsizlik texnikasi va tabiatni muhofaza qilish qonunchiligi talablarining buzilishiga yo'l qo'ymaslik;",
+                "mehnat va ishlab chiqarish intizomi qoidalariga rioya qilish;",
+                "uskunalar, mashinalar va mexanizmlarning avariyasiz ishlashini ta'minlash.",
+              ],
+            },
+          },
+          {
+            id: 5,
+            title: "Xodimlarni baholash va rivojlantirish",
+            content: {
+              p1: "Biz xodimlarni quyidagi mezonlar bo'yicha baholaymiz:",
+              list: ["mahsuldorlik;", "shaxsiy fazilatlar;", "motivatsiya;", "professionallik."],
+              p2: "Kompaniya har bir xodimda ushbu ko'rsatkichlar doimiy ravishda o'sishi uchun barcha imkoniyatlarni ishga soladi.",
+            },
+          },
+        ],
+      },
+      disclaimer:
+        'USHBU SIYOSAT "ROKACELL" MCHJ QK NING HAR BIR XODIMIGA YETKAZILGAN VA TUSHUNTIRILGAN HAMDA HAR YILI UNING RAHBARIYATI TOMONIDAN YAROQLILIGI VA DOLZARBLIGI BO\'YICHA TAHLIL QILINADI.',
+    },
+  },
+  documents: {
+    hero: {
+      title: "BIZGA ISHONISHADI, CHUNKI BIZ BILAN BARCHASI SHAFFOF",
+      description:
+        "BIZ MIJOZLAR ISHONCHINI QADRLAYMIZ, SHUNING UCHUN SERTIFIKATLARDAN TORTIB TEXNIK PASPORTLARGACHA TO'LIQ HUJJATLARNI TAQDIM ETAMIZ. BIZNING ISSIQLIK IZOLATSIYAMIZNING HAR BIR METRIGA ISHONCHINGIZ KOMIL BO'LISHI UCHUN BARCHA NARSANI QILDIK.",
+    },
+    passport: {
+      title: "TEXNIK PASPORT",
+    },
+    certificates: {
+      title: "SERTIFIKATLAR",
+    },
+    quality: {
+      text: "Har bir mahsulot partiyasi ishlab chiqarishning barcha bosqichlarida qat'iy nazoratdan o'tadi.",
+    },
+    data: {
+      download: "Yuklab olish",
+      passports: {
+        rolls: "RULONLAR UCHUN PASPORT",
+        tubes: "TRUBALAR UCHUN PASPORT",
+      },
+      certificates: {
+        conformityUz: "MUVOFIQLIK SERTIFIKATI. O'ZBEKISTON",
+        conformityRu: "MUVOFIQLIK SERTIFIKATI. ROSSIYA",
+      },
+    },
+  },
 };

@@ -1,45 +1,55 @@
 import Container from "@/components/layout/Container/Container";
 import AccordionItem from "@/components/ui/AccordionItem/AccordionItem";
 import { IMAGES } from "@/assets/images";
-import { ACCORDION_DATA } from "./constants";
 import styles from "./Policy.module.scss";
+import { Dictionary } from "@/lib/i18n";
 
-export default function Policy() {
+type PolicyProps = {
+  dict: Dictionary["about"];
+};
+
+export default function Policy({ dict }: PolicyProps) {
+  const policy = dict?.policy;
+
   return (
     <section className={styles.policy}>
       <Container>
         {/* Header */}
         <div className={styles.policy__header}>
-          <h2 className={styles.policy__title}>POLICY</h2>
+          <h2 className={styles.policy__title}>{policy?.header.title || "POLICY"}</h2>
           <p className={styles.policy__subtitle}>
-            Policy on quality, ecology, occupational health and safety
-            <br />
-            of JV, ROKACELL, LLC.
+            {policy?.header.subtitle.split("\n").map((line, i, arr) => (
+              <span key={i}>
+                {line}
+                {i < arr.length - 1 && <br />}
+              </span>
+            ))}
           </p>
         </div>
 
         {/* Vision & Mission */}
         <div className={styles.policy__mission}>
           <div className={styles.policy__mission_img}>
-            <img src={IMAGES.about.companyPolicy} alt="Rokacell company policy" width={805} height={493} />
+            <img
+              src={IMAGES.about.companyPolicy}
+              alt="Rokacell company policy"
+              width={805}
+              height={493}
+            />
           </div>
           <div className={styles.policy__mission_text}>
-            <h3 className={styles.policy__mission_title}>OUR VISIONS & MISSION</h3>
+            <h3 className={styles.policy__mission_title}>
+              {policy?.mission.title || "OUR VISIONS & MISSION"}
+            </h3>
             <p>
-              <span>JV „ ROKACELL „ LLC</span> , being one of the leading manufacturers of thermal
-              insulation products made from elastomeric materials based on foamed synthetic rubbers
-              in Central Asia, sets itself the task of: producing and ensuring the supply of various
-              types of thermal insulation products to the domestic and foreign markets;
+              <span>{policy?.mission.p1_1}</span>
+              {policy?.mission.p1_2}
             </p>
+            <p>{policy?.mission.p2}</p>
             <p>
-              fully complying with the requirements of consumers and regulatory legal documents;
-              fulfilling orders for the purchase of products in the required volumes.
-            </p>
-            <p>
-              Quality, environmental friendliness, production safety, and timeliness of product
-              shipment are the main criteria for assessing the effectiveness of the management of{" "}
-              <span>JV „ ROKACELL „ LLC</span>, which allow satisfying the interests and requests of
-              Consumers.
+              {policy?.mission.p3_1}
+              <span>{policy?.mission.p3_2}</span>
+              {policy?.mission.p3_3}
             </p>
           </div>
         </div>
@@ -47,16 +57,28 @@ export default function Policy() {
         {/* Main Areas of Activity */}
         <div className={styles.policy__areas}>
           <div className={styles.policy__areas_content}>
-            <h3 className={styles.policy__areas_title}>MAIN AREAS OF ACTIVITY</h3>
+            <h3 className={styles.policy__areas_title}>{policy?.areas.title}</h3>
             {/* Accordion (Left) */}
             <div className={styles.policy__activity}>
               <div className={styles.policy__accordion}>
-                {ACCORDION_DATA.map((item) => (
+                {policy?.areas.items.map((item) => (
                   <AccordionItem
                     key={item.id}
                     id={item.id}
                     title={item.title}
-                    content={item.content}
+                    content={
+                      <>
+                        <p>{item.content.p1}</p>
+                        {item.content.list && (
+                          <ul>
+                            {item.content.list.map((li, idx) => (
+                              <li key={idx}>{li}</li>
+                            ))}
+                          </ul>
+                        )}
+                        {item.content.p2 && <p>{item.content.p2}</p>}
+                      </>
+                    }
                     defaultOpen={item.id === 1}
                   />
                 ))}
@@ -64,9 +86,14 @@ export default function Policy() {
 
               {/* Image (Right) */}
               <div className={styles.policy__areas_img}>
-                <img src={IMAGES.about.warmBusiness} alt="The heart of a warm business" width={806} height={1008} />
+                <img
+                  src={IMAGES.about.warmBusiness}
+                  alt="The heart of a warm business"
+                  width={806}
+                  height={1008}
+                />
                 <h3>
-                  The heart <span>of a warm business</span>
+                  {policy?.areas.img_title_1} <span>{policy?.areas.img_title_2}</span>
                 </h3>
               </div>
             </div>
@@ -74,10 +101,7 @@ export default function Policy() {
         </div>
 
         {/* Footer Disclaimer */}
-        <p className={styles.policy__disclaimer}>
-          THIS POLICY HAS BEEN COMMUNICATED TO AND IS UNDERSTOOD BY EVERY EMPLOYEE OF JV, ROKACELL,
-          LLC AND IS ANNUALLY REVIEWED BY ITS MANAGEMENT FOR SUITABILITY AND RELEVANCE.
-        </p>
+        <p className={styles.policy__disclaimer}>{policy?.disclaimer}</p>
       </Container>
     </section>
   );

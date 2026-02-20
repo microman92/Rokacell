@@ -4,14 +4,17 @@ import styles from "./Certificates.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { CERTIFICATES_DATA } from "@/data/DocumentsData";
+import { Dictionary } from "@/lib/i18n";
 
+interface CertificatesProps {
+  dict?: Dictionary["documents"];
+}
 
-
-export default function Certificates() {
+export default function Certificates({ dict }: CertificatesProps) {
   return (
     <section className={styles.certificates}>
       <Container>
-        <h2 className={styles.certificates__title}>Certificates</h2>
+        <h2 className={styles.certificates__title}>{dict?.certificates?.title}</h2>
       </Container>
 
       <div className={styles.certificates__bg}>
@@ -37,14 +40,16 @@ export default function Certificates() {
           >
             {CERTIFICATES_DATA.map((item) => (
               <SwiperSlide key={item.id} className={styles.certificates__card}>
-                <h3 className={styles.certificates__card_title}>{item.title}</h3>
+                <h3 className={styles.certificates__card_title}>
+                  {dict?.data?.certificates?.[item.titleKey]}
+                </h3>
 
                 <div className={styles.certificates__card_preview}>
-                  <img src={item.preview} alt={item.title} />
+                  <img src={item.preview} alt={dict?.data?.certificates?.[item.titleKey] || ""} />
                 </div>
 
                 <a href={item.downloadUrl} download className={styles.certificates__card_download}>
-                  Download
+                  {dict?.data?.download}
                   <svg
                     width="24"
                     height="24"

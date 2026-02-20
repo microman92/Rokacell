@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 export interface AccessFormData {
   fullName: string;
@@ -9,34 +9,52 @@ export interface AccessFormData {
 
 interface ValidationResult {
   errors: Record<string, string>;
-  validate: (data: AccessFormData) => boolean;
+  validate: (
+    data: AccessFormData,
+    dict?: {
+      fullName?: string;
+      phone?: string;
+      emailReq?: string;
+      emailInv?: string;
+      company?: string;
+    }
+  ) => boolean;
   clearError: (fieldName: string) => void;
 }
 
 export const useAccessFormValidation = (): ValidationResult => {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const validate = (formData: AccessFormData): boolean => {
+  const validate = (
+    formData: AccessFormData,
+    dict?: {
+      fullName?: string;
+      phone?: string;
+      emailReq?: string;
+      emailInv?: string;
+      company?: string;
+    }
+  ): boolean => {
     const newErrors: Record<string, string> = {};
 
-    if (!formData.fullName.trim()) newErrors.fullName = 'Full Name is required';
+    if (!formData.fullName.trim()) newErrors.fullName = dict?.fullName || "Full Name is required";
 
-    if (!formData.phone.trim()) newErrors.phone = 'Phone is required';
+    if (!formData.phone.trim()) newErrors.phone = dict?.phone || "Phone is required";
 
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = dict?.emailReq || "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Invalid email format';
+      newErrors.email = dict?.emailInv || "Invalid email format";
     }
 
-    if (!formData.company.trim()) newErrors.company = 'Company is required';
+    if (!formData.company.trim()) newErrors.company = dict?.company || "Company is required";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const clearError = (fieldName: string) => {
-    setErrors(prev => {
+    setErrors((prev) => {
       if (!prev[fieldName]) return prev;
       const newErrors = { ...prev };
       delete newErrors[fieldName];

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface Props {
   onCalculate: () => void;
@@ -6,34 +6,41 @@ interface Props {
   onBack: () => void;
   styles: any;
   calculateLabel?: string;
+  helpLabel?: string;
+  backLabel?: string;
 }
 
-const CalculatorControls: React.FC<Props> = ({ onCalculate, onHelp, onBack, styles, calculateLabel = 'Calculate' }) => {
+const CalculatorControls: React.FC<Props> = ({
+  onCalculate,
+  onHelp,
+  onBack,
+  styles,
+  calculateLabel = "Calculate",
+  helpLabel = "Help",
+  backLabel = "← Back to Calculators",
+}) => {
   return (
     <div className={styles.heatLossCalculator__controls}>
-      <button 
-        onClick={onCalculate} 
-        className={`${styles.heatLossCalculator__button} ${styles['heatLossCalculator__button_primary']}`}
+      <button
+        onClick={onCalculate}
+        className={`${styles.heatLossCalculator__button} ${styles["heatLossCalculator__button_primary"]}`}
       >
         {calculateLabel}
       </button>
-      <button 
+      <button
         onClick={onHelp}
-        className={`${styles.heatLossCalculator__button} ${styles['heatLossCalculator__button_secondary']}`}
+        className={`${styles.heatLossCalculator__button} ${styles["heatLossCalculator__button_secondary"]}`}
       >
-        Help
+        {helpLabel}
       </button>
-      <button 
+      <button
         onClick={onBack}
-        className={`${styles.heatLossCalculator__button} ${styles['heatLossCalculator__button_secondary']}`}
+        className={`${styles.heatLossCalculator__button} ${styles["heatLossCalculator__button_secondary"]}`}
       >
-        ← Back to Calculators
+        {backLabel}
       </button>
     </div>
   );
 };
 
 export default CalculatorControls;
-
-
-

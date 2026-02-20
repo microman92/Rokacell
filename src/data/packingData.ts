@@ -2,144 +2,142 @@ import { IMAGES } from "@/assets/images";
 
 export interface SpecValue {
   dim?: string; // e.g. "100cm"
-  qty: string;  // e.g. "170–180 pcs" or just the value if no dimension
+  value: string; // e.g. "170–180"
+  unit?: "pcs" | "m3"; // if empty, don't append anything (e.g. for m³ if it's already in value, but we can do it properly)
 }
 
 export interface Spec {
-  label: string;
+  labelKey: string; // "rollWidth", "rollVolume", etc.
   values: SpecValue[];
 }
 
 export interface PackingItem {
   key: string; // unique key
-  title: string;
-  subtitle?: string; // e.g. "Compact transportation option"
+  titleKey: string; // "truck45", "truck88", "container40"
+  subtitleKey?: string; // "compact", "increased", "international"
   image: string;
   specs: Spec[];
 }
 
 export interface PackingCategory {
-  title: string;
-  description: string;
+  categoryKey: "rolls" | "tubes";
   items: PackingItem[];
 }
 
 export const PACKING_DATA: PackingCategory[] = [
   {
-    title: 'ROKAFLEX ROLLS',
-    description: 'ROLLS ARE PACKED IN LDPE FILM AND AVAILABLE IN TWO WIDTH OPTIONS — 100 CM AND 120 CM. DEPENDING ON THE TRANSPORT, DIFFERENT LOADING CAPACITIES ARE POSSIBLE. THE CAPACITY INFORMATION IS PROVIDED BELOW.',
+    categoryKey: "rolls",
     items: [
       {
-        key: 'rolls-truck-45',
-        title: 'FREIGHT TRUCK 45 M³',
-        subtitle: 'Compact transportation option',
+        key: "rolls-truck-45",
+        titleKey: "truck45",
+        subtitleKey: "compact",
         image: IMAGES.logistics.truck45m3,
         specs: [
           {
-            label: 'Roll width:',
+            labelKey: "rollWidth",
             values: [
-              { dim: '100cm', qty: '170–180 pcs' },
-              { dim: '120cm', qty: '140–150 pcs' }
-            ]
+              { dim: "100cm", value: "170–180", unit: "pcs" },
+              { dim: "120cm", value: "140–150", unit: "pcs" },
+            ],
           },
           {
-            label: 'Roll volume:',
-            values: [{ qty: '0.255–0.305m³' }]
-          }
-        ]
+            labelKey: "rollVolume",
+            values: [{ value: "0.255–0.305", unit: "m3" }],
+          },
+        ],
       },
       {
-        key: 'rolls-truck-88',
-        title: 'FREIGHT TRUCK 88 M³',
-        subtitle: 'Increased capacity',
+        key: "rolls-truck-88",
+        titleKey: "truck88",
+        subtitleKey: "increased",
         image: IMAGES.logistics.truck88m3,
         specs: [
           {
-            label: 'Roll width:',
+            labelKey: "rollWidth",
             values: [
-              { dim: '100cm', qty: '325–335 pcs' },
-              { dim: '120cm', qty: '270–280 pcs' }
-            ]
+              { dim: "100cm", value: "325–335", unit: "pcs" },
+              { dim: "120cm", value: "270–280", unit: "pcs" },
+            ],
           },
           {
-            label: 'Roll volume:',
-            values: [{ qty: '0.255–0.305m³' }]
-          }
-        ]
+            labelKey: "rollVolume",
+            values: [{ value: "0.255–0.305", unit: "m3" }],
+          },
+        ],
       },
       {
-        key: 'rolls-container-40',
-        title: '40HC CONTAINER',
-        subtitle: 'International Supplies',
+        key: "rolls-container-40",
+        titleKey: "container40",
+        subtitleKey: "international",
         image: IMAGES.logistics.container40hc,
         specs: [
           {
-            label: 'Roll width:',
+            labelKey: "rollWidth",
             values: [
-              { dim: '100cm', qty: '280–290 pcs' },
-              { dim: '120cm', qty: '230–240 pcs' }
-            ]
+              { dim: "100cm", value: "280–290", unit: "pcs" },
+              { dim: "120cm", value: "230–240", unit: "pcs" },
+            ],
           },
           {
-            label: 'Roll volume:',
-            values: [{ qty: '0.255–0.305m³' }]
-          }
-        ]
-      }
-    ]
+            labelKey: "rollVolume",
+            values: [{ value: "0.255–0.305", unit: "m3" }],
+          },
+        ],
+      },
+    ],
   },
   {
-    title: 'ROKAFLEX TUBES',
-    description: 'TUBES ARE PACKED IN CARDBOARD BOXES MEASURING 320 × 390 × 2090 MM. THE VOLUME OF ONE BOX IS 0.27 M³. THE TRANSPORT CAPACITY IS INDICATED BELOW.',
+    categoryKey: "tubes",
     items: [
       {
-        key: 'tubes-truck-45',
-        title: 'FREIGHT TRUCK 45 M³',
-        subtitle: 'Compact transportation option',
+        key: "tubes-truck-45",
+        titleKey: "truck45",
+        subtitleKey: "compact",
         image: IMAGES.logistics.truck45m3,
         specs: [
           {
-            label: 'Box volume:',
-            values: [{ qty: '0.27 m³' }]
+            labelKey: "boxVolume",
+            values: [{ value: "0.27", unit: "m3" }],
           },
           {
-            label: 'Quantity:',
-            values: [{ qty: '160–170 pcs' }]
-          }
-        ]
+            labelKey: "quantity",
+            values: [{ value: "160–170", unit: "pcs" }],
+          },
+        ],
       },
       {
-        key: 'tubes-truck-88',
-        title: 'FREIGHT TRUCK 88 M³',
-        subtitle: 'Increased capacity',
+        key: "tubes-truck-88",
+        titleKey: "truck88",
+        subtitleKey: "increased",
         image: IMAGES.logistics.truck88m3,
         specs: [
           {
-            label: 'Box volume:',
-            values: [{ qty: '0.27 m³' }]
+            labelKey: "boxVolume",
+            values: [{ value: "0.27", unit: "m3" }],
           },
           {
-            label: 'Quantity:',
-            values: [{ qty: '305–315 pcs.' }]
-          }
-        ]
+            labelKey: "quantity",
+            values: [{ value: "305–315", unit: "pcs" }],
+          },
+        ],
       },
       {
-        key: 'tubes-container-40',
-        title: '40HC CONTAINER',
-        subtitle: 'International Supplies',
+        key: "tubes-container-40",
+        titleKey: "container40",
+        subtitleKey: "international",
         image: IMAGES.logistics.container40hc,
         specs: [
           {
-            label: 'Box volume:',
-            values: [{ qty: '0.27 m³' }]
+            labelKey: "boxVolume",
+            values: [{ value: "0.27", unit: "m3" }],
           },
           {
-            label: 'Quantity:',
-            values: [{ qty: '275–285 pcs.' }]
-          }
-        ]
-      }
-    ]
-  }
+            labelKey: "quantity",
+            values: [{ value: "275–285", unit: "pcs" }],
+          },
+        ],
+      },
+    ],
+  },
 ];

@@ -1,11 +1,31 @@
+import { Dictionary } from "@/lib/i18n";
 import styles from "./AboutInfo.module.scss";
 
-export default function AboutInfo() {
+type AboutInfoProps = {
+  dict: Dictionary["about"];
+};
+
+export default function AboutInfo({ dict }: AboutInfoProps) {
+  const info = dict?.info;
+
   return (
     <div className={styles.about}>
-      <h2 className={styles.about__title}>About the company</h2>
-      <p className={styles.about__text}><span>ROKACELL</span> is a dynamically developing company specializing in the production of technical thermal insulation made from synthetic rubber under the <span>ROKAFLEX</span>  brand. Our products are used in HVAC (heating, ventilation, and air conditioning) systems, ensuring reliability and energy efficiency.</p>
-      <p className={styles.about__text}>The company <span>ROKACELL</span>  was founded in 2021 as a result of cooperation between <span>Roka Yalıtım A.Ş.</span> (Istanbul, Turkey) — a leading manufacturer with more than 20 years of experience in the field of insulation materials, and <span>Aysel Inshaat</span> (Tashkent, Uzbekistan) — one of the country's authoritative construction companies.</p>
+      <h2 className={styles.about__title}>{info?.title || "About the company"}</h2>
+      <p className={styles.about__text}>
+        <span>ROKACELL</span>
+        {info?.p1_1 || " "}
+        <span>ROKAFLEX</span>
+        {info?.p1_2 || ""}
+      </p>
+      <p className={styles.about__text}>
+        {info?.p2_1 || ""}
+        <span>ROKACELL</span>
+        {info?.p2_2 || ""}
+        <span>Roka Yalıtım A.Ş.</span>
+        {info?.p2_3 || ""}
+        <span>Aysel Inshaat</span>
+        {info?.p2_4 || ""}
+      </p>
     </div>
-  )
+  );
 }

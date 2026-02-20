@@ -1,7 +1,14 @@
-'use client';
+import HeatLossCalculator from "@/components/calculator/pipes/HeatLossCalculator";
+import { Locale } from "@/lib/locales";
+import { getDictionary } from "@/lib/i18n";
 
-import HeatLossCalculator from '@/components/calculator/pipes/HeatLossCalculator';
+export default async function PipeHeatLossPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  const dict = await getDictionary(locale);
 
-export default function PipeHeatLossPage() {
-  return <HeatLossCalculator />;
+  return <HeatLossCalculator dict={dict.calculator?.calc} />;
 }

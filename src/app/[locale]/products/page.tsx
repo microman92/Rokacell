@@ -1,23 +1,28 @@
 import PageHero from "@/components/common/pageHero/PageHero";
 import Products from "@/components/common/Products";
+import { Locale } from "@/lib/locales";
+import { getDictionary } from "@/lib/i18n";
 
-export default function ProductsPage() {
+export default async function ProductsPage({ params }: { params: Promise<{ locale: Locale }> }) {
+  const { locale } = await params;
+  const dict = await getDictionary(locale);
 
   const heroData = {
     title: (
       <>
-        Effective <span>thermal insulation </span>  for any task
+        {dict.products?.hero?.titlePart1}
+        <span>{dict.products?.hero?.titleHighlight}</span>
+        {dict.products?.hero?.titlePart2}
       </>
     ),
-    description:
-      "From ventilation and air conditioning systems to complex engineering networks — ROKACELL products protect against heat loss, condensation, and noise. Quality proven by time and climate.",
+    description: dict.products?.hero?.description || "",
   };
 
   return (
     <main className="main">
       <PageHero {...heroData} variant="products" />
-      <Products variant="page" defaultTab="rolls" />
-      <p className="products__text">ROKACELL materials are made from foamed synthetic rubber (NBR/PVC) and comply with international quality and safety standards.</p>
-    </main >
+      <Products variant="page" defaultTab="rolls" dict={dict.products} />
+      <p className="products__text">{dict.products?.description}</p>
+    </main>
   );
 }

@@ -4,20 +4,25 @@ import Passport from "@/components/sections/Documents/Passport/Passport";
 import Certificates from "@/components/sections/Documents/Certificates/Certificates";
 import Quality from "@/components/sections/Documents/Quality/Quality";
 
-export default function DocumentsPage() {
+import { Locale } from "@/lib/locales";
+import { getDictionary } from "@/lib/i18n";
+
+export default async function DocumentsPage({ params }: { params: Promise<{ locale: Locale }> }) {
+  const { locale } = await params;
+  const dict = await getDictionary(locale);
+
   const heroData = {
-    title: "They trust us because everything is transparent with us",
-    description:
-      "We value our clients' trust, so we provide complete documentation — from certificates to technical passports. Everything to ensure you are confident in every meter of our thermal insulation.",
+    title: dict.documents?.hero?.title || "",
+    description: dict.documents?.hero?.description || "",
     overlayImage: IMAGES.documents.documentsLogo,
   };
 
   return (
     <main className="main">
       <PageHero {...heroData} variant="documents" />
-      <Passport />
-      <Certificates />
-      <Quality />
+      <Passport dict={dict.documents} />
+      <Certificates dict={dict.documents} />
+      <Quality dict={dict.documents} />
     </main>
   );
 }
