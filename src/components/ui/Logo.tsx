@@ -13,8 +13,8 @@ export default function Logo({ locale }: LogoProps) {
       <img
         src={IMAGES.home.hero.logo}
         alt="Rokacell - Теплоизоляционные материалы"
-        width="120"
-        height="40"
+        width={218}
+        height={71}
       />
     </Link>
   );

@@ -9,10 +9,11 @@ import { cn } from "@/lib/utils";
 
 interface NavProps {
   locale: Locale;
+  navDict?: any; // Dictionary['nav'] passed from parent
   className?: string;
 }
 
-export default function Nav({ locale, className }: NavProps) {
+export default function Nav({ locale, navDict, className }: NavProps) {
   const links = getNavLinks(locale);
   const rawPathname = usePathname();
 
@@ -37,11 +38,12 @@ export default function Nav({ locale, className }: NavProps) {
                 )}
                 aria-current={isActive ? 'page' : undefined}
               >
-                {link.key}
+                {navDict?.[link.key] ?? link.key}
               </Link>
             </li>
           );
         })}
+
       </ul>
     </nav>
   );

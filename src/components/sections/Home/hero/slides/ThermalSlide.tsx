@@ -1,20 +1,25 @@
-
 import { IMAGES } from "@/assets/images";
 import styles from "../Hero.module.scss";
 import Container from "@/components/layout/Container/Container";
 import { Heading } from "@/components/ui/Heading/Heading";
 
+interface SlideProps {
+  dict?: { title: string; subtitle?: string };
+}
+
 /**
  * Слайд 1 — Efficient Thermal Insulation
  * Тёмный фон с продуктом, текст слева-сверху
  */
-export default function ThermalSlide() {
+export default function ThermalSlide({ dict }: SlideProps) {
   return (
     <>
       {/* Background */}
       <img
         src={IMAGES.home.hero.bg.insulation}
-        alt="Rokacell efficient thermal insulation"
+        alt={dict?.title || "Rokacell efficient thermal insulation"}
+        width={3840}
+        height={1998}
         style={{ position: 'absolute', width: '100%', height: '100%', inset: 0, objectFit: 'cover' }}
         className={styles.slide__bg}
         loading="eager"
@@ -22,9 +27,11 @@ export default function ThermalSlide() {
       />
 
       <Container className={`${styles.slide__content} ${styles.slide__content_leftTop}`}>
-        <Heading tag="h2" className={styles.slide__title}>EFFICIENT THERMAL INSULATION</Heading>
-        <p className={styles.slide__text}>ELASTOMERIC RUBBER FOAM PRODUCTS</p>
+        <Heading tag="h2" className={styles.slide__title}>{dict?.title || "EFFICIENT THERMAL INSULATION"}</Heading>
+        {dict?.subtitle && <p className={styles.slide__text}>{dict.subtitle}</p>}
+        {!dict?.subtitle && <p className={styles.slide__text}>ELASTOMERIC RUBBER FOAM PRODUCTS</p>}
       </Container>
     </>
   );
 }
+

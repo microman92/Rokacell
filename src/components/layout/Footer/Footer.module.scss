@@ -69,13 +69,9 @@
   }
 
   &__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    background: var(--txt-white);
     transition: 0.3s ease;
 
     &:hover {

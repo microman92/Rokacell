@@ -1,44 +1,11 @@
 "use client";
-
-import { IMAGES } from "@/assets/images";
 import Container from "@/components/layout/Container/Container";
 import styles from "./Certificates.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { CERTIFICATES_DATA } from "@/data/DocumentsData";
 
-interface CertificateItem {
-  id: number;
-  title: string;
-  preview: string;
-  downloadUrl: string;
-}
 
-const CERTIFICATES_DATA: CertificateItem[] = [
-  {
-    id: 1,
-    title: "Certificate of conformity. Uzbekistan",
-    preview: IMAGES.documents.certificates.conformityUzEng,
-    downloadUrl: "/docs/Сертификат ISO Узб.pdf",
-  },
-  {
-    id: 2,
-    title: "Certificate of conformity. Uzbekistan",
-    preview: IMAGES.documents.certificates.conformityUzRu,
-    downloadUrl: "/docs/Сертификат соответствие OzMSt узб.pdf",
-  },
-  {
-    id: 3,
-    title: "Certificate of conformity. Russia",
-    preview: IMAGES.documents.certificates.conformityRu2,
-    downloadUrl: "/docs/Сертификат  соответствия Россия.pdf",
-  },
-  {
-    id: 4,
-    title: "Certificate of conformity. Russia",
-    preview: IMAGES.documents.certificates.conformityRu,
-    downloadUrl: "/docs/Сертификат Россия.pdf",
-  },
-];
 
 export default function Certificates() {
   return (

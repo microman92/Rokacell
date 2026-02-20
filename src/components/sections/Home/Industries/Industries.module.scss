@@ -18,6 +18,10 @@
     max-width: 470px;
     width: 100%;
     display: flex;
+
+    @include media(1440) {
+        max-width: 411px;
+    }
 }
 
 .industries__image {

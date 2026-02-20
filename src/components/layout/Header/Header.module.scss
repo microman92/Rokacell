@@ -16,5 +16,9 @@
     display: flex;
     align-items: center;
     gap: 82px;
+
+    @include media(1440) {
+      gap: 50px;
+    }
   }
 }

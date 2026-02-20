@@ -14,6 +14,7 @@ import { NewsCard } from "@/components/ui/NewsCard/NewsCard";
 
 import { Locale } from "@/lib/locales";
 import Container from "@/components/layout/Container/Container";
+import { Dictionary } from "@/lib/i18n";
 
 export const NEWS_SLIDER_CONFIG = {
   autoplayInterval: 500000,
@@ -29,7 +30,7 @@ export const NEWS_SLIDER_CONFIG = {
       slidesPerView: 3.2,
     },
     1200: {
-      slidesPerView: 3,
+      slidesPerView: 2.5,
     },
     1440: {
       slidesPerView: 3.3,
@@ -40,16 +41,20 @@ export const NEWS_SLIDER_CONFIG = {
 interface NewsProps {
   locale?: Locale; // Optional if needed for localization later
   variant?: "home" | "about";
+  dict?: Dictionary['news'];
 }
 
-export const News = ({ variant }: NewsProps) => {
+export const News = ({ variant, dict }: NewsProps) => {
 
   const isAboutPage = variant === "about";
 
   return (
     <section className={styles.news}>
-
-      <Heading variant="black" tag="h2" className={styles.news__title}>WHATS NEW?</Heading>
+      <Container className={styles.news__container}>
+        <Heading variant="black" tag="h2" className={styles.news__title}>
+          {dict?.title || "WHATS NEW?"}
+        </Heading>
+      </Container>
 
       {!isAboutPage &&
         <div className={styles.news__swiper}>
@@ -81,6 +86,7 @@ export const News = ({ variant }: NewsProps) => {
         </div>
       }
       {isAboutPage &&
+
         <Container className={styles.news__wrapper}>
 
           {NEWS_DATA.map((item) => (
@@ -98,3 +104,4 @@ export const News = ({ variant }: NewsProps) => {
     </section>
   );
 };
+

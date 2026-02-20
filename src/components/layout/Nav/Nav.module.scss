@@ -6,8 +6,12 @@
     height: 100%;
     gap: 95px;
 
-    @media (max-width:1200px) {
-      gap: 53px;
+    @include media(1440) {
+      gap: 50px;
+    }
+
+    @include media(992) {
+      gap: 26px;
     }
   }
 

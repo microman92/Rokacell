@@ -67,13 +67,14 @@ export function switchLocale(pathname: string, nextLocale: Locale) {
  * Навигация (без локали)
  */
 export const NAV_LINKS = [
-  { key: 'About us', path: ROUTES.ABOUT },
-  { key: 'Documents', path: ROUTES.DOCUMENTS },
-  { key: 'Our Products', path: ROUTES.PRODUCTS },
-  { key: 'Calculator', path: ROUTES.CALCULATOR },
-  { key: 'Logistics', path: ROUTES.LOGISTICS },
-  { key: 'Contacts', path: ROUTES.CONTACTS },
+  { key: 'about', path: ROUTES.ABOUT },
+  { key: 'documents', path: ROUTES.DOCUMENTS },
+  { key: 'products', path: ROUTES.PRODUCTS },
+  { key: 'calculator', path: ROUTES.CALCULATOR },
+  { key: 'logistics', path: ROUTES.LOGISTICS },
+  { key: 'contacts', path: ROUTES.CONTACTS },
 ] as const;
+
 
 /**
  * Возвращает навигацию с учетом локали

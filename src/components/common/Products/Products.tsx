@@ -4,11 +4,12 @@ import { useState, useMemo, useCallback, type ComponentType } from 'react';
 import dynamic from 'next/dynamic';
 import Container from '@/components/layout/Container/Container';
 import { PRODUCTS, PRODUCT_TABS, type TabId, type Product } from '@/data/products';
-import ProductCard from './ProductCard';
+
 import ProductModal from './ProductModal';
 import type { ProductSwiperProps } from './ProductSwiper';
 import styles from './Products.module.scss';
 import { Heading } from '@/components/ui/Heading/Heading';
+import { Dictionary } from '@/lib/i18n';
 
 // Lazy-load Swiper only when needed (mobile only, heavy dependency)
 const ProductSwiper = dynamic<ProductSwiperProps>(
@@ -26,12 +27,14 @@ interface ProductsProps {
   defaultTab?: TabId;
   /** Whether to show the section title */
   showTitle?: boolean;
+  dict?: Dictionary['products'];
 }
 
 export default function Products({
   variant = 'home',
   defaultTab = 'rolls',
   showTitle = true,
+  dict,
 }: ProductsProps) {
   const [activeTab, setActiveTab] = useState<TabId>(defaultTab);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -59,7 +62,9 @@ export default function Products({
       <Container>
         <div className={styles.products__top}>
           {showTitle && (
-            <Heading variant="black" tag="h2" className={styles.products__title}>OUR PRODUCTS</Heading>
+            <Heading variant="black" tag="h2" className={styles.products__title}>
+              {dict?.title || "OUR PRODUCTS"}
+            </Heading>
           )}
 
           {/* Tabs */}
@@ -73,29 +78,13 @@ export default function Products({
                 className={`${styles.tabs__btn} ${activeTab === tab.id ? styles['tabs__btn--active'] : ''}`}
                 onClick={() => setActiveTab(tab.id)}
               >
-                {tab.label}
+                {dict?.tabs?.[tab.id] || tab.label}
               </button>
             ))}
           </nav>
         </div>
 
-        {/* Desktop: Grid Layout - Hidden on mobile via CSS */}
-        <div
-          id="products-grid"
-          role="tabpanel"
-          className={styles.products__grid}
-          aria-label={`${activeTab} products`}
-        >
-          {filteredProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onClick={handleProductClick}
-            />
-          ))}
-        </div>
-
-        {/* Mobile: Swiper — lazy-loaded, hidden on desktop via CSS */}
+        {/* Always display Swiper */}
         <div className={styles.products__swiperWrapper}>
           <ProductSwiper
             products={filteredProducts}

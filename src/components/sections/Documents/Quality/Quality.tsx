@@ -15,7 +15,7 @@ export default function Quality() {
           <p className={styles.quality__text}>Every batch of products undergoes strict control at all stages of production.</p>
         </div>
         <div className={styles.quality__img}>
-          <img src={IMAGES.documents.qualityControl} alt="" />
+          <img src={IMAGES.documents.qualityControl} alt="" width={669} height={377} />
         </div>
       </Container>
     </div>

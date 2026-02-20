@@ -8,7 +8,7 @@ export default function FactoryInfo() {
       <Container className={styles.factoryInfo__content}>
 
         <div className={styles.factoryInfo__img}>
-          <img src={IMAGES.about.plant} alt="" />
+          <img src={IMAGES.about.plant} alt="" width={941} height={529} />
         </div>
 
         <div className={styles.factoryInfo__description}>

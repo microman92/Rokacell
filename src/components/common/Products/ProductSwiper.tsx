@@ -16,8 +16,8 @@ export interface ProductSwiperProps {
   onProductClick: (product: Product) => void;
 }
 
-// Split products into groups for mobile slider
-function chunkProducts(products: Product[], size: number = 3): Product[][] {
+// Split products into groups for slider
+function chunkProducts(products: Product[], size: number): Product[][] {
   const chunks: Product[][] = [];
   for (let i = 0; i < products.length; i += size) {
     chunks.push(products.slice(i, i + size));
@@ -26,13 +26,13 @@ function chunkProducts(products: Product[], size: number = 3): Product[][] {
 }
 
 export default function ProductSwiper({ products, onProductClick }: ProductSwiperProps) {
-  const productChunks = useMemo(() => chunkProducts(products, 3), [products]);
+  const productChunks = useMemo(() => chunkProducts(products, 6), [products]);
 
   return (
     <Swiper
       modules={[Pagination]}
-      slidesPerView={1}
       spaceBetween={16}
+      slidesPerView={1}
       pagination={{ clickable: true }}
       className={styles.products__swiper}
     >

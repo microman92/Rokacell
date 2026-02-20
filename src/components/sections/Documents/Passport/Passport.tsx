@@ -1,28 +1,9 @@
-import { IMAGES } from "@/assets/images";
+
 import Container from "@/components/layout/Container/Container";
 import styles from "./Passport.module.scss";
+import { PASSPORT_DATA } from "@/data/DocumentsData";
 
-interface PassportItem {
-  id: number;
-  title: string;
-  icon: string;
-  downloadUrl: string;
-}
 
-const PASSPORT_DATA: PassportItem[] = [
-  {
-    id: 1,
-    title: "Passport for rolls",
-    icon: IMAGES.documents.rollPassport,
-    downloadUrl: "/docs/паспорт для рулонов.pdf",
-  },
-  {
-    id: 2,
-    title: "Passport for tubes",
-    icon: IMAGES.documents.tubePassport,
-    downloadUrl: "/docs/паспорт для трубок.pdf",
-  },
-];
 
 export default function Passport() {
   return (
@@ -34,7 +15,7 @@ export default function Passport() {
           {PASSPORT_DATA.map((item) => (
             <div key={item.id} className={styles.passport__card}>
               <div className={styles.passport__card_icon}>
-                <img src={item.icon} alt={item.title} />
+                <img src={item.icon} alt={item.title} width={210} height={210} />
               </div>
 
               <h3 className={styles.passport__card_title}>{item.title}</h3>

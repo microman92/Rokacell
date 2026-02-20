@@ -8,10 +8,15 @@
     // font styles moved to Heading
     color: var(--txt-black);
     margin-bottom: 60px;
-    margin-left: 150px;
 
     @include media(1440) {
       margin-left: 20px;
+    }
+  }
+
+  &__container {
+    & h2 {
+      margin-bottom: 64px;
     }
   }
 
@@ -38,6 +43,7 @@
   &__wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 563px;
     gap: 28px;
     width: 100%;
     margin: 0 auto;
@@ -55,7 +61,6 @@
   &__item {
     width: 100%;
     height: 100%;
-    min-height: 400px; // Чтобы карточки были +- одинаковой высоты
   }
 
   &__link {

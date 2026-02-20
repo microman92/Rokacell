@@ -68,6 +68,8 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
             <img
               src={product.image}
               alt={product.name}
+              width={205}
+              height={194}
               className={styles.modal__image}
             />
           </div>

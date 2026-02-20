@@ -5,7 +5,11 @@ import LangSwitcher from "../../ui/LangSwitcher/LangSwitcher";
 import styles from "./Header.module.scss";
 import { LocaleProps } from "@/types";
 
-export default function Header({ locale }: LocaleProps) {
+import { getDictionary } from "@/lib/i18n";
+
+export default async function Header({ locale }: LocaleProps) {
+  const dict = await getDictionary(locale);
+
   return (
     <header className={styles.header}>
       <Container>
@@ -13,7 +17,7 @@ export default function Header({ locale }: LocaleProps) {
           <Logo locale={locale} />
 
           <div className={styles.header__links}>
-            <Nav locale={locale} />
+            <Nav locale={locale} navDict={dict.nav} />
             <LangSwitcher />
           </div>
         </div>

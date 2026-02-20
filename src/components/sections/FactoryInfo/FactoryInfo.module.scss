@@ -38,12 +38,20 @@
   }
 
   &__img {
-    max-width: 625px;
+    max-width: 904px;
     width: 100%;
     display: flex;
 
+    @include media(1440) {
+      height: 325px;
+    }
+
     & img {
       width: 100%;
+
+      @include media(1440) {
+        height: 100%;
+      }
     }
   }
 }

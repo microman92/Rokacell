@@ -2,7 +2,6 @@ import { Locale } from '@/lib/locales';
 
 /**
  * Тип для словаря переводов
- * В будущем здесь будут храниться все переводы для каждого языка
  */
 export interface Dictionary {
   // Navigation
@@ -15,6 +14,97 @@ export interface Dictionary {
     contacts?: string;
   };
 
+  // Hero section
+  hero?: {
+    slides?: Array<{
+      title: string;
+      subtitle?: string;
+    }>;
+  };
+
+  // Features (running string)
+  features?: {
+    eco?: string;
+    durability?: string;
+    fireSafety?: string;
+    energyEfficiency?: string;
+  };
+
+  // Industries (ОБЛАСТИ ПРИМЕНЕНИЯ)
+  industries?: {
+    title?: string;
+    areas?: {
+      hotels?: string;
+      businessCenters?: string;
+      hospitals?: string;
+      construction?: string;
+      factories?: string;
+      shoppingMalls?: string;
+    };
+    applications?: {
+      ventilationDucts?: string;
+      airConditioningDucts?: string;
+      airConditioningPipelines?: string;
+      heatingPipelines?: string;
+    };
+  };
+
+  // Products
+  products?: {
+    title?: string;
+    tabs?: {
+      rolls?: string;
+      tubes?: string;
+      accessories?: string;
+      all?: string;
+    };
+    viewAll?: string;
+  };
+
+  // About Video
+  aboutVideo?: {
+    text?: string;
+  };
+
+  // Branches
+  branches?: {
+    title?: string;
+    tashkent?: {
+      city?: string;
+      address?: string;
+    };
+    almaty?: {
+      city?: string;
+      address?: string;
+    };
+    moscow?: {
+      city?: string;
+      address?: string;
+    };
+  };
+
+  // Calculate Savings
+  calculateSavings?: {
+    title?: string;
+    description?: string;
+    button?: string;
+  };
+
+  // News
+  news?: {
+    title?: string;
+  };
+
+  // Footer
+  footer?: {
+    operatingHours?: string;
+    workingDays?: string;
+    contacts?: string;
+    addressText?: string;
+    socials?: string;
+    rights?: string;
+  };
+
   // Common
   common?: {
     home?: string;
@@ -22,42 +112,21 @@ export interface Dictionary {
     next?: string;
     loading?: string;
   };
-
-  // Здесь будут добавляться новые секции переводов
 }
 
-/**
- * Функция-заглушка для получения словаря переводов
- * В будущем будет импортировать реальные переводы из файлов dictionaries/ru.ts, en.ts, uz.ts
- * 
- * Пример будущей реализации:
- * ```typescript
- * const dictionaries = {
- *   ru: () => import('./dictionaries/ru').then((module) => module.default),
- *   en: () => import('./dictionaries/en').then((module) => module.default),
- *   uz: () => import('./dictionaries/uz').then((module) => module.default),
- * };
- * 
- * export async function getDictionary(locale: Locale): Promise<Dictionary> {
- *   return dictionaries[locale]?.() ?? dictionaries.ru();
- * }
- * ```
- * 
- * ВАЖНО для SEO:
- * - Переводы должны содержать SEO-оптимизированные ключевые слова
- * - Заголовки и описания должны быть уникальными для каждого языка
- * - Использовать естественный язык, а не дословный перевод
- */
-export async function getDictionary(_locale: Locale): Promise<Dictionary> {
-  // Пока возвращаем пустой объект
-  // Когда будут готовы файлы переводов, раскомментировать код выше
-  return {};
-}
+const dictionaries = {
+  ru: () => import('./dictionaries/ru').then((module) => module.default),
+  en: () => import('./dictionaries/en').then((module) => module.default),
+  uz: () => import('./dictionaries/uz').then((module) => module.default),
+};
 
 /**
- * Типы для ключей переводов (для автокомплита в IDE)
- * Пример использования:
- * const t = await getDictionary(locale);
- * const title = t.nav?.about ?? 'About us';
+ * Получение словаря переводов (с фоллбэком на RU)
  */
+export async function getDictionary(locale: Locale): Promise<Dictionary> {
+  // Мы можем потом добавить логику получения с API:
+  // try { const apiDict = await fetchFromApi(); return merge({}, dict, apiDict) } catch {}
+  return dictionaries[locale]?.() ?? dictionaries.ru();
+}
+
 export type TranslationKey = keyof Dictionary;

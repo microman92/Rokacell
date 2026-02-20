@@ -34,6 +34,13 @@
   }
 }
 
+.slide__content .slide__title,
+.slide__international .slide__title {
+  color: var(--txt-white);
+  font-size: 64px;
+}
+
+
 .slide {
   position: relative;
   width: 100%;
@@ -82,15 +89,6 @@
 
   }
 
-  &__title {
-    // font styles moved to Heading component
-    color: var(--txt-white); // Override default black
-
-    @include media(1440) {
-      // font-size handled by Heading component
-    }
-  }
-
   &__logo {
     max-width: 500px;
 
@@ -98,8 +96,6 @@
       width: 100%;
     }
   }
-
-
 
   &__international {
     position: relative;
@@ -173,10 +169,7 @@
       justify-content: center;
     }
   }
-
 }
-
-
 
 .slide__text {
   font-family: var(--second-family);
@@ -227,17 +220,7 @@
   position: relative;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Slide 4 — Exhibition (overlay)
-// ─────────────────────────────────────────────────────────────────────────────
 
-.slide__overlay {
-  // Голубая полоса по центру
-}
-
-.slide__overlayContent {
-  // Контент внутри полосы
-}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Pagination — стилизация стандартной Swiper пагинации

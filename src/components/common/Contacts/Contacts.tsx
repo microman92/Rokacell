@@ -4,17 +4,13 @@ import styles from './Contacts.module.scss';
 
 interface ContactsProps {
   data: Branch;
-  variant?: string
 }
 
-export default function Contacts({ data, variant }: ContactsProps) {
+export default function Contacts({ data }: ContactsProps) {
   const isPhotoVariant = data.variant === 'photo';
 
   return (
-    <div className={cn(
-      styles.contacts,
-      variant === 'ContactsPage' && styles['contacts__page']
-    )}>
+    <div className={styles.contacts}>
 
       {/* Если фото-вариант: фоновая картинка завода */}
       {isPhotoVariant && (

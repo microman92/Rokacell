@@ -13,7 +13,7 @@ export default function ContactsPage() {
         <div className={styles.contacts__branches}>
           {
             BRANCHES.map((branch) => (
-              <Contacts key={branch.id} data={branch} variant='ContactsPage' />
+              <Contacts key={branch.id} data={branch} />
             ))
           }
         </div>

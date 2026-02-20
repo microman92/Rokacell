@@ -25,7 +25,7 @@ export default function AccordionItem({ id, title, content, defaultOpen = false 
           {id}. {title}
         </span>
         <span className={`${styles.accordion__icon} ${isOpen ? styles.accordion__icon_active : ""}`}>
-          <img src={IMAGES.about.downArrow} alt="toggle arrow" />
+          <img src={IMAGES.about.downArrow} alt="toggle arrow" width={12} height={7} />
         </span>
       </button>
 

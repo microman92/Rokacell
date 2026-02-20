@@ -25,6 +25,8 @@ const ProductCard = memo(function ProductCard({ product, onClick }: ProductCardP
         <img
           src={product.image}
           alt={product.name}
+          width={205}
+          height={194}
           className={styles.card__image}
           loading="lazy"
         />

@@ -1,3 +1,9 @@
+import { Locale } from '@/lib/locales';
+
+export interface LocaleProps {
+    locale: Locale;
+}
+
 // Interface for air properties at different temperatures
 export interface AirProperties {
     kinematicViscosity: number; // Kinematic viscosity, m²/s

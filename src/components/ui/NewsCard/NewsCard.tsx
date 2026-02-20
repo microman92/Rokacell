@@ -1,5 +1,5 @@
 import styles from "./NewsCard.module.scss";
-import { NewsItem } from "@/types";
+import type { NewsItem } from "@/types";
 
 interface NewsCardProps {
   item: NewsItem;
@@ -9,7 +9,7 @@ export const NewsCard = ({ item }: NewsCardProps) => {
   return (
     <div className={styles.card}>
       <div className={styles.imageContainer}>
-        <img src={item.image} alt={item.title} className={styles.image} loading="lazy" />
+        <img src={item.image} alt={item.title} className={styles.image} width={515} height={564} loading="lazy" />
       </div>
       <div className={styles.content}>
         <h3 className={styles.title}>{item.title}</h3>

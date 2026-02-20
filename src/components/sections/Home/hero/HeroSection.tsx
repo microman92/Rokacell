@@ -14,6 +14,7 @@ import ThermalSlide from "./slides/ThermalSlide";
 import QualitySlide from "./slides/QualitySlide";
 import CooperationSlide from "./slides/CooperationSlide";
 import ExhibitionSlide from "./slides/ExhibitionSlide";
+import { Dictionary } from "@/lib/i18n";
 
 export const HERO_SLIDER_CONFIG = {
   autoplayInterval: 6000000, // 6 секунд между слайдами
@@ -24,11 +25,17 @@ export const HERO_SLIDER_CONFIG = {
   loop: true,
 };
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  dict?: Dictionary['hero'];
+}
+
+export default function HeroSection({ dict }: HeroSectionProps) {
+  const slides = dict?.slides || [];
+
   return (
     <section className={styles.hero}>
       <Heading tag="h1" className="visuallyHidden">
-        Rokacell - Эффективная теплоизоляция, ИЗДЕЛИЯ ИЗ ВСПЕНЕННОГО ЭЛАСТОМЕРНОГО КАУЧУКА
+        Rokacell - {slides[0]?.title || "Эффективная теплоизоляция"}, {slides[0]?.subtitle || "ИЗДЕЛИЯ ИЗ ВСПЕНЕННОГО ЭЛАСТОМЕРНОГО КАУЧУКА"}
       </Heading>
 
       <Swiper
@@ -48,19 +55,19 @@ export default function HeroSection() {
         className={styles.swiper}
       >
         <SwiperSlide className={styles.slide}>
-          <ThermalSlide />
+          <ThermalSlide dict={slides[0]} />
         </SwiperSlide>
 
         <SwiperSlide className={styles.slide}>
-          <QualitySlide />
+          <QualitySlide dict={slides[1]} />
         </SwiperSlide>
 
         <SwiperSlide className={styles.slide}>
-          <CooperationSlide />
+          <CooperationSlide dict={slides[2]} />
         </SwiperSlide>
 
         <SwiperSlide className={styles.slide}>
-          <ExhibitionSlide />
+          <ExhibitionSlide dict={slides[3]} />
         </SwiperSlide>
       </Swiper>
     </section>

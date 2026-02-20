@@ -102,6 +102,16 @@
     z-index: 0;
     height: 100%;
 
+    @include media(1440) {
+      max-width: 900px;
+    }
+
+    & img {
+      @include media(1440) {
+        object-fit: fill;
+      }
+    }
+
   }
 }
 
@@ -118,10 +128,18 @@
     align-items: center;
     justify-content: space-between;
     gap: 40px;
+
+    @include media(1440) {
+      gap: 0;
+    }
   }
 
   .hero__desc {
     max-width: 808px;
+
+    @include media(1440) {
+      max-width: 670px;
+    }
   }
 
 

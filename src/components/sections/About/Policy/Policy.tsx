@@ -21,7 +21,7 @@ export default function Policy() {
         {/* Vision & Mission */}
         <div className={styles.policy__mission}>
           <div className={styles.policy__mission_img}>
-            <img src={IMAGES.about.companyPolicy} alt="Rokacell company policy" />
+            <img src={IMAGES.about.companyPolicy} alt="Rokacell company policy" width={805} height={493} />
           </div>
           <div className={styles.policy__mission_text}>
             <h3 className={styles.policy__mission_title}>OUR VISIONS & MISSION</h3>
@@ -64,7 +64,7 @@ export default function Policy() {
 
               {/* Image (Right) */}
               <div className={styles.policy__areas_img}>
-                <img src={IMAGES.about.warmBusiness} alt="The heart of a warm business" />
+                <img src={IMAGES.about.warmBusiness} alt="The heart of a warm business" width={806} height={1008} />
                 <h3>
                   The heart <span>of a warm business</span>
                 </h3>

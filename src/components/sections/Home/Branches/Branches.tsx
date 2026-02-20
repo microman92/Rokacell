@@ -8,15 +8,19 @@ import Container from "@/components/layout/Container/Container";
 import { BRANCHES } from "@/data/branches.data";
 import Contacts from "@/components/common/Contacts/Contacts";
 import { Heading } from "@/components/ui/Heading/Heading";
+import { Dictionary } from "@/lib/i18n";
 
+interface BranchesProps {
+  dict?: Dictionary['branches'];
+}
 
-
-
-export default function Branches() {
+export default function Branches({ dict }: BranchesProps) {
   return (
     <section className={styles.branches}>
       <Container>
-        <Heading variant="black" tag="h2" className={styles.branches__title}>Our branches</Heading>
+        <Heading variant="black" tag="h2" className={styles.branches__title}>
+          {dict?.title || "НАШИ ФИЛИАЛЫ"}
+        </Heading>
 
         <Swiper
           className={styles.branches__swiper}
@@ -24,13 +28,22 @@ export default function Branches() {
           autoplay={{ delay: 50000000 }}
           pagination={{ clickable: true }}
         >
-          {BRANCHES.map((branch) => (
+          {BRANCHES.map((branch) => {
+            const translatedBranch = { ...branch };
+            // Подменяем данные на переведенные, если они есть
+            const t = dict?.[branch.id as keyof Omit<NonNullable<Dictionary['branches']>, 'title'>];
 
+            if (t) {
+              if (t.city) translatedBranch.city = t.city;
+              if (t.address !== undefined) translatedBranch.address = t.address;
+            }
 
-            <SwiperSlide key={branch.city}>
-              <Contacts data={branch as never} />
-            </SwiperSlide>
-          ))}
+            return (
+              <SwiperSlide key={branch.id}>
+                <Contacts data={translatedBranch as never} />
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       </Container>
     </section>
@@ -38,3 +51,4 @@ export default function Branches() {
 }
 
 export { BRANCHES };
+
