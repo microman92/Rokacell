@@ -8,6 +8,10 @@
     gap: 16px;
     max-width: 428px;
     margin-bottom: 64px;
+
+    @include media(1200) {
+      margin-bottom: 30px;
+    }
   }
 
   &__title {
@@ -32,12 +36,20 @@
     align-items: center;
     gap: 15px;
 
+    @include media(1200) {
+      flex-direction: column;
+    }
+
     &_img {
       max-width: 806px;
       width: 100%;
 
       @include media(1440) {
         max-width: 572px;
+      }
+
+      @include media(1200) {
+        max-width: 800px;
       }
 
       & img {
@@ -52,6 +64,10 @@
 
       @include media(1440) {
         max-width: 600px;
+      }
+
+      @include media(1200) {
+        max-width: 800px;
       }
 
       & p {
@@ -109,9 +125,16 @@
         width: 100%;
       }
 
+      @include media(1200) {
+        max-width: 800px;
+        width: 100%;
+        height: 650px;
+      }
+
 
       img {
         width: 100%;
+        height: 100%;
         object-fit: cover;
       }
 
@@ -146,6 +169,13 @@
   &__activity {
     display: flex;
     gap: 15px;
+
+
+    @include media(1200) {
+      gap: 50px;
+      flex-direction: column-reverse;
+      align-items: center;
+    }
   }
 
   // Accordion
@@ -153,6 +183,26 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+
+    @include media(1200) {
+      max-width: 800px;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin: 10px 0;
+
+      li {
+        margin-bottom: 8px;
+        font-family: var(--font-family);
+        line-height: 1.5;
+
+        &::marker {
+          color: var(--txt-black);
+        }
+      }
+    }
   }
 
 

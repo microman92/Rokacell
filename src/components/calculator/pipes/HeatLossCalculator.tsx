@@ -17,8 +17,15 @@ import {
   getAvailableThicknesses
 } from '@/utils/heatLoss';
 import { computeH } from '@/hooks/useHeatTransferCoefficient';
+import { Dictionary } from '@/lib/i18n';
 
-const HeatLossCalculator: React.FC = () => {
+type CalculatorDict = NonNullable<Dictionary['calculator']>['calc'];
+
+interface HeatLossCalculatorProps {
+  dict?: CalculatorDict;
+}
+
+const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
   const router = useRouter();
   const locale = useCurrentLocale();
   // Using shared store for common parameters
@@ -273,17 +280,17 @@ const HeatLossCalculator: React.FC = () => {
     <div className={styles.heatLossCalculator}>
       <div className={styles.heatLossCalculator__container}>
         <div className={styles.heatLossCalculator__header}>
-          <h1 className={styles.heatLossCalculator__header_title}>Heat Loss Calculation for Pipes</h1>
+          <h1 className={styles.heatLossCalculator__header_title}>{dict?.pipesHeatLossTitle || "Heat Loss Calculation for Pipes"}</h1>
         </div>
 
         <div className={styles.heatLossCalculator__content}>
           {/* Parameters Section */}
           <div className={styles.heatLossCalculator__section}>
-            <h2 className={styles.heatLossCalculator__section_title}>Parameters</h2>
+            <h2 className={styles.heatLossCalculator__section_title}>{dict?.parameters || "Parameters"}</h2>
             <div className={styles.heatLossCalculator__grid}>
               <div className={styles.heatLossCalculator__field}>
-                <label className={styles.heatLossCalculator__field_label}>ambient temperature</label>
-                <span className={styles.helpText}>air around insulation, °C</span>
+                <label className={styles.heatLossCalculator__field_label}>{dict?.ambientTemp || "ambient temperature"}</label>
+                <span className={styles.helpText}>{dict?.ambientTempDesc || "air around insulation, °C"}</span>
                 <input
                   type="number"
                   value={ambientTemp}
@@ -293,8 +300,8 @@ const HeatLossCalculator: React.FC = () => {
                 <span className={styles.heatLossCalculator__field_unit}>°C</span>
               </div>
               <div className={styles.heatLossCalculator__field}>
-                <label className={styles.heatLossCalculator__field_label}>medium temperature</label>
-                <span className={styles.helpText}>heat carrier inside pipe, °C</span>
+                <label className={styles.heatLossCalculator__field_label}>{dict?.mediumTemp || "medium temperature"}</label>
+                <span className={styles.helpText}>{dict?.mediumTempDesc || "heat carrier inside pipe, °C"}</span>
                 <input
                   type="number"
                   value={mediumTemp}
@@ -304,8 +311,8 @@ const HeatLossCalculator: React.FC = () => {
                 <span className={styles.heatLossCalculator__field_unit}>°C</span>
               </div>
               <div className={styles.heatLossCalculator__field}>
-                <label className={styles.heatLossCalculator__field_label}>pipe diameter</label>
-                <span className={styles.helpText}>outer diameter, mm (Cu/St equivalents shown)</span>
+                <label className={styles.heatLossCalculator__field_label}>{dict?.pipeDiameter || "pipe diameter"}</label>
+                <span className={styles.helpText}>{dict?.pipeDiameterDesc || "outer diameter, mm (Cu/St equivalents shown)"}</span>
                 <select
                   value={tubeDiameter}
                   onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setTubeDiameter(+e.target.value)}
@@ -320,8 +327,8 @@ const HeatLossCalculator: React.FC = () => {
                 <span className={styles.heatLossCalculator__field_unit}>mm</span>
               </div>
               <div className={styles.heatLossCalculator__field}>
-                <label className={styles.heatLossCalculator__field_label}>insulation thickness</label>
-                <span className={styles.helpText}>thermal insulation layer thickness, mm</span>
+                <label className={styles.heatLossCalculator__field_label}>{dict?.insulationThickness || "insulation thickness"}</label>
+                <span className={styles.helpText}>{dict?.insulationThicknessDesc || "thermal insulation layer thickness, mm"}</span>
                 <select
                   value={localParams.insulationThickness}
                   onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setLocalParams({ ...localParams, insulationThickness: +e.target.value })}
@@ -334,8 +341,8 @@ const HeatLossCalculator: React.FC = () => {
                 <span className={styles.heatLossCalculator__field_unit}>mm</span>
               </div>
               <div className={styles.heatLossCalculator__field}>
-                <label className={styles.heatLossCalculator__field_label}>pipe length</label>
-                <span className={styles.helpText}>calculation section, m</span>
+                <label className={styles.heatLossCalculator__field_label}>{dict?.pipeLength || "pipe length"}</label>
+                <span className={styles.helpText}>{dict?.pipeLengthDesc || "calculation section, m"}</span>
                 <input
                   type="number"
                   value={localParams.pipeLength}
@@ -347,8 +354,8 @@ const HeatLossCalculator: React.FC = () => {
                 <span className={styles.heatLossCalculator__field_unit}>m</span>
               </div>
               <div className={styles.heatLossCalculator__field}>
-                <label className={styles.heatLossCalculator__field_label}>thermal insulation material</label>
-                <span className={styles.helpText}>sets thermal conductivity λ(T)</span>
+                <label className={styles.heatLossCalculator__field_label}>{dict?.insulationMaterial || "thermal insulation material"}</label>
+                <span className={styles.helpText}>{dict?.insulationMaterialDesc || "sets thermal conductivity λ(T)"}</span>
                 <select
                   value={material}
                   onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setMaterial(e.target.value as AnyMaterialKey)}
@@ -360,8 +367,8 @@ const HeatLossCalculator: React.FC = () => {
                 </select>
               </div>
               <div className={styles.heatLossCalculator__field}>
-                <label className={styles.heatLossCalculator__field_label}>heat transfer coefficient h</label>
-                <span className={styles.helpText}>convection + surface radiation; can be calculated</span>
+                <label className={styles.heatLossCalculator__field_label}>{dict?.hCoefficient || "heat transfer coefficient h"}</label>
+                <span className={styles.helpText}>{dict?.hCoefficientDesc || "convection + surface radiation; can be calculated"}</span>
                 <div className={styles.heatLossCalculator__field_group}>
                   <input
                     type="number"
@@ -374,14 +381,14 @@ const HeatLossCalculator: React.FC = () => {
                     onClick={handleCalculateH}
                     className={`${styles.heatLossCalculator__button} ${styles['heatLossCalculator__button_success']}`}
                   >
-                    calculate h
+                    {dict?.calcHBtn || "calculate h"}
                   </button>
                 </div>
                 <span className={styles.heatLossCalculator__field_unit}>W/(m²·K)</span>
               </div>
               <div className={styles.heatLossCalculator__field}>
-                <label className={styles.heatLossCalculator__field_label}>energy cost</label>
-                <span className={styles.helpText}>tariff, currency/kWh</span>
+                <label className={styles.heatLossCalculator__field_label}>{dict?.energyCost || "energy cost"}</label>
+                <span className={styles.helpText}>{dict?.energyCostDesc || "tariff, currency/kWh"}</span>
                 <input
                   type="number"
                   value={localParams.costPerKWh}
@@ -398,11 +405,11 @@ const HeatLossCalculator: React.FC = () => {
           {/* Results Section */}
           {hasCalculated && (
             <div className={styles.heatLossCalculator__section}>
-              <h2 className={styles.heatLossCalculator__section_title}>Calculation Results</h2>
+              <h2 className={styles.heatLossCalculator__section_title}>{dict?.results || "Calculation Results"}</h2>
               <div className={styles.heatLossCalculator__grid}>
                 <div className={styles.heatLossCalculator__field}>
-                  <label className={styles.heatLossCalculator__field_label}>mean thermal conductivity λ</label>
-                  <span className={styles.helpText}>thermal conductivity of insulation material at mean temperature</span>
+                  <label className={styles.heatLossCalculator__field_label}>{dict?.meanLambda || "mean thermal conductivity λ"}</label>
+                  <span className={styles.helpText}>{dict?.meanLambdaDesc || "thermal conductivity of insulation material at mean temperature"}</span>
                   <input
                     type="text"
                     value={results.meanLambda.toFixed(4)}
@@ -412,8 +419,8 @@ const HeatLossCalculator: React.FC = () => {
                   <span className={styles.heatLossCalculator__field_unit}>W/m·K</span>
                 </div>
                 <div className={styles.heatLossCalculator__field}>
-                  <label className={styles.heatLossCalculator__field_label}>insulation thermal transmittance</label>
-                  <span className={styles.helpText}>overall heat transfer coefficient through insulation</span>
+                  <label className={styles.heatLossCalculator__field_label}>{dict?.thermalTransmittance || "insulation thermal transmittance"}</label>
+                  <span className={styles.helpText}>{dict?.thermalTransmittanceDesc || "overall heat transfer coefficient through insulation"}</span>
                   <input
                     type="text"
                     value={results.thermalTransmittance.toFixed(4)}
@@ -423,8 +430,8 @@ const HeatLossCalculator: React.FC = () => {
                   <span className={styles.heatLossCalculator__field_unit}>W/(m·K)</span>
                 </div>
                 <div className={styles.heatLossCalculator__field}>
-                  <label className={styles.heatLossCalculator__field_label}>heat loss</label>
-                  <span className={styles.helpText}>потеря тепла в зависимости от длины трубы</span>
+                  <label className={styles.heatLossCalculator__field_label}>{dict?.heatLoss || "heat loss"}</label>
+                  <span className={styles.helpText}>{dict?.heatLossDesc || "heat loss depending on pipe length"}</span>
                   <input
                     type="text"
                     value={results.heatLoss.toFixed(2)}
@@ -434,8 +441,8 @@ const HeatLossCalculator: React.FC = () => {
                   <span className={styles.heatLossCalculator__field_unit}>W</span>
                 </div>
                 <div className={styles.heatLossCalculator__field}>
-                  <label className={styles.heatLossCalculator__field_label}>heat loss reduction</label>
-                  <span className={styles.helpText}>insulation efficiency relative to uninsulated pipe</span>
+                  <label className={styles.heatLossCalculator__field_label}>{dict?.heatLossReduction || "heat loss reduction"}</label>
+                  <span className={styles.helpText}>{dict?.heatLossReductionDesc || "insulation efficiency relative to uninsulated pipe"}</span>
                   <input
                     type="text"
                     value={results.decrease.toFixed(1)}
@@ -445,8 +452,8 @@ const HeatLossCalculator: React.FC = () => {
                   <span className={styles.heatLossCalculator__field_unit}>%</span>
                 </div>
                 <div className={styles.heatLossCalculator__field}>
-                  <label className={styles.heatLossCalculator__field_label}>cost per hour</label>
-                  <span className={styles.helpText}>costs to compensate for losses at given tariff</span>
+                  <label className={styles.heatLossCalculator__field_label}>{dict?.costPerHour || "cost per hour"}</label>
+                  <span className={styles.helpText}>{dict?.costPerHourDesc || "costs to compensate for losses at given tariff"}</span>
                   <input
                     type="text"
                     value={results.costPerHour.toFixed(3)}
@@ -465,7 +472,9 @@ const HeatLossCalculator: React.FC = () => {
             onHelp={handleOpenHelp}
             onBack={handleBack}
             styles={styles}
-            calculateLabel="Calculate"
+            calculateLabel={dict?.calculateBtn || "Calculate"}
+            helpLabel={dict?.helpBtn || "Help"}
+            backLabel={dict?.backBtn || "← Back to Calculators"}
           />
         </div>
       </div>
@@ -475,16 +484,16 @@ const HeatLossCalculator: React.FC = () => {
         <div className={modalStyles.modal}>
           <div className={modalStyles.modal__container}>
             <div className={modalStyles.modal__header}>
-              <h1 className={modalStyles.modal__header_title}>Calculation of Heat Transfer Coefficient h</h1>
+              <h1 className={modalStyles.modal__header_title}>{dict?.hModal?.title || "Calculation of Heat Transfer Coefficient h"}</h1>
             </div>
 
             <div className={modalStyles.modal__content}>
               {/* Calculation Type Section */}
               <div className={modalStyles.modal__section}>
-                <h2 className={modalStyles.modal__section_title}>Calculation Type</h2>
+                <h2 className={modalStyles.modal__section_title}>{dict?.hModal?.calcType || "Calculation Type"}</h2>
                 <div className={modalStyles.modal__grid}>
                   <div className={modalStyles.modal__field}>
-                    <label className={modalStyles.modal__field_label}>Calculation Type</label>
+                    <label className={modalStyles.modal__field_label}>{dict?.hModal?.calcType || "Calculation Type"}</label>
                     <div className={modalStyles.modal__field_radioGroup}>
                       <label className={modalStyles.modal__field_radio}>
                         <input
@@ -495,7 +504,7 @@ const HeatLossCalculator: React.FC = () => {
                           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setModalParams({ ...modalParams, calculationType: e.target.value as 'inside' | 'outside' })}
                           className={modalStyles.modal__field_radio_input}
                         />
-                        <span className={modalStyles.modal__field_radio_label}>inside</span>
+                        <span className={modalStyles.modal__field_radio_label}>{dict?.hModal?.inside || "Inside"}</span>
                       </label>
                       <label className={modalStyles.modal__field_radio}>
                         <input
@@ -506,13 +515,13 @@ const HeatLossCalculator: React.FC = () => {
                           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setModalParams({ ...modalParams, calculationType: e.target.value as 'inside' | 'outside' })}
                           className={modalStyles.modal__field_radio_input}
                         />
-                        <span className={modalStyles.modal__field_radio_label}>outside</span>
+                        <span className={modalStyles.modal__field_radio_label}>{dict?.hModal?.outside || "Outside"}</span>
                       </label>
                     </div>
-                    <span className={modalStyles.helpTextTop}>what we calculate: heat released outward or inward</span>
+                    <span className={modalStyles.helpTextTop}>{dict?.hModal?.calcTypeDesc || "what we calculate: heat released outward or inward"}</span>
                   </div>
                   <div className={modalStyles.modal__field}>
-                    <label className={modalStyles.modal__field_label}>Orientation</label>
+                    <label className={modalStyles.modal__field_label}>{dict?.hModal?.orientation || "Orientation"}</label>
                     <div className={modalStyles.modal__field_radioGroup}>
                       <label className={modalStyles.modal__field_radio}>
                         <input
@@ -523,7 +532,7 @@ const HeatLossCalculator: React.FC = () => {
                           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setModalParams({ ...modalParams, orientation: e.target.value as 'horizontal' | 'vertical' })}
                           className={modalStyles.modal__field_radio_input}
                         />
-                        <span className={modalStyles.modal__field_radio_label}>vertical</span>
+                        <span className={modalStyles.modal__field_radio_label}>{dict?.hModal?.vertical || "Vertical"}</span>
                       </label>
                       <label className={modalStyles.modal__field_radio}>
                         <input
@@ -534,7 +543,7 @@ const HeatLossCalculator: React.FC = () => {
                           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setModalParams({ ...modalParams, orientation: e.target.value as 'horizontal' | 'vertical' })}
                           className={modalStyles.modal__field_radio_input}
                         />
-                        <span className={modalStyles.modal__field_radio_label}>horizontal</span>
+                        <span className={modalStyles.modal__field_radio_label}>{dict?.hModal?.horizontal || "Horizontal"}</span>
                       </label>
                     </div>
                   </div>
@@ -543,11 +552,11 @@ const HeatLossCalculator: React.FC = () => {
 
               {/* Parameters Section */}
               <div className={modalStyles.modal__section}>
-                <h2 className={modalStyles.modal__section_title}>Parameters</h2>
+                <h2 className={modalStyles.modal__section_title}>{dict?.parameters || "Parameters"}</h2>
                 <div className={modalStyles.modal__grid}>
                   <div className={modalStyles.modal__field}>
-                    <label className={modalStyles.modal__field_label}>ambient temperature</label>
-                    <span className={modalStyles.helpText}>air around insulation, °C</span>
+                    <label className={modalStyles.modal__field_label}>{dict?.ambientTemp || "ambient temperature"}</label>
+                    <span className={modalStyles.helpText}>{dict?.ambientTempDesc || "air around insulation, °C"}</span>
                     <input
                       type="number"
                       value={ambientTemp}
@@ -557,8 +566,8 @@ const HeatLossCalculator: React.FC = () => {
                     <span className={modalStyles.modal__field_unit}>°C</span>
                   </div>
                   <div className={modalStyles.modal__field}>
-                    <label className={modalStyles.modal__field_label}>medium temperature</label>
-                    <span className={modalStyles.helpText}>heat carrier inside pipe, °C</span>
+                    <label className={modalStyles.modal__field_label}>{dict?.mediumTemp || "medium temperature"}</label>
+                    <span className={modalStyles.helpText}>{dict?.mediumTempDesc || "heat carrier inside pipe, °C"}</span>
                     <input
                       type="number"
                       value={mediumTemp}
@@ -568,8 +577,8 @@ const HeatLossCalculator: React.FC = () => {
                     <span className={modalStyles.modal__field_unit}>°C</span>
                   </div>
                   <div className={modalStyles.modal__field}>
-                    <label className={modalStyles.modal__field_label}>pipe diameter</label>
-                    <span className={modalStyles.helpText}>outer diameter, mm</span>
+                    <label className={modalStyles.modal__field_label}>{dict?.pipeDiameter || "pipe diameter"}</label>
+                    <span className={modalStyles.helpText}>{dict?.pipeDiameterDescH || "outer diameter, mm"}</span>
                     <input
                       type="number"
                       value={tubeDiameter}
@@ -579,8 +588,8 @@ const HeatLossCalculator: React.FC = () => {
                     <span className={modalStyles.modal__field_unit}>mm</span>
                   </div>
                   <div className={modalStyles.modal__field}>
-                    <label className={modalStyles.modal__field_label}>insulation material</label>
-                    <span className={modalStyles.helpText}>sets thermal conductivity λ(T)</span>
+                    <label className={modalStyles.modal__field_label}>{dict?.insulationMaterial || "insulation material"}</label>
+                    <span className={modalStyles.helpText}>{dict?.insulationMaterialDesc || "sets thermal conductivity λ(T)"}</span>
                     <input
                       type="text"
                       value={material}
@@ -593,10 +602,10 @@ const HeatLossCalculator: React.FC = () => {
 
               {/* Additional Settings Section */}
               <div className={modalStyles.modal__section}>
-                <h2 className={modalStyles.modal__section_title}>Additional Settings</h2>
+                <h2 className={modalStyles.modal__section_title}>{dict?.hModal?.additionalSettings || "Additional Settings"}</h2>
                 <div className={modalStyles.modal__grid}>
                   <div className={modalStyles.modal__field}>
-                    <label className={modalStyles.modal__field_label}>emissivity coefficient (see help)</label>
+                    <label className={modalStyles.modal__field_label}>{dict?.hModal?.emissivity || "emissivity coefficient (see help)"}</label>
                     <input
                       type="number"
                       value={modalParams.emissivity}
@@ -616,13 +625,13 @@ const HeatLossCalculator: React.FC = () => {
                   onClick={calculateH}
                   className={`${modalStyles.modal__button} ${modalStyles['modal__button_primary']}`}
                 >
-                  Continue
+                  {dict?.hModal?.continueBtn || "Continue"}
                 </button>
                 <button
                   onClick={() => setIsModalOpen(false)}
                   className={`${modalStyles.modal__button} ${modalStyles['modal__button_secondary']}`}
                 >
-                  Cancel
+                  {dict?.hModal?.cancelBtn || "Cancel"}
                 </button>
               </div>
             </div>
@@ -635,45 +644,41 @@ const HeatLossCalculator: React.FC = () => {
         <div className={modalStyles.modal}>
           <div className={modalStyles.modal__container}>
             <div className={modalStyles.modal__header}>
-              <h1 className={modalStyles.modal__header_title}>Help</h1>
+              <h1 className={modalStyles.modal__header_title}>{dict?.helpModalHeatLoss?.title || "Help"}</h1>
             </div>
 
             <div className={modalStyles.modal__content}>
               <div className={modalStyles.modal__section}>
                 <p style={{ marginBottom: '16px', lineHeight: '1.6' }}>
-                  The calculator calculates heat losses of insulated pipes based on physical laws of heat transfer.
+                  {dict?.helpModalHeatLoss?.p1 || "The calculator calculates heat losses of insulated pipes based on physical laws of heat transfer."}
                 </p>
                 <p style={{ marginBottom: '16px', lineHeight: '1.6' }}>
-                  Enter system parameters: temperatures, pipe dimensions, insulation thickness and material.
+                  {dict?.helpModalHeatLoss?.p2 || "Enter system parameters: temperatures, pipe dimensions, insulation thickness and material."}
                 </p>
                 <p style={{ marginBottom: '16px', lineHeight: '1.6' }}>
-                  The heat transfer coefficient h is calculated automatically taking into account convective and radiative heat transfer. All calculations are performed according to ISO 12241 standard for thermal insulation.
+                  {dict?.helpModalHeatLoss?.p3 || "The heat transfer coefficient h is calculated automatically taking into account convective and radiative heat transfer. All calculations are performed according to ISO 12241 standard for thermal insulation."}
                 </p>
                 <p style={{ lineHeight: '1.6' }}>
-                  The result shows heat losses, their reduction compared to an uninsulated pipe, and economic effect.
+                  {dict?.helpModalHeatLoss?.p4 || "The result shows heat losses, their reduction compared to an uninsulated pipe, and economic effect."}
                 </p>
                 <div style={{ marginTop: '20px' }}>
-                  <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '8px' }}>Field Explanations</h3>
+                  <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '8px' }}>{dict?.helpModalHeatLoss?.fieldsTitle || "Field Explanations"}</h3>
                   <ul style={{ paddingLeft: '18px', lineHeight: 1.6, margin: 0 }}>
-                    <li><strong>Ambient temperature</strong> — air outside the insulation, °C.</li>
-                    <li><strong>Medium temperature</strong> — heat carrier temperature inside the pipe, °C.</li>
-                    <li><strong>Pipe diameter</strong> — outer diameter, mm. The list shows equivalents: Cu — copper, St — steel.</li>
-                    <li><strong>Insulation thickness</strong> — selected thermal insulation layer thickness, mm; calculation is performed with this value.</li>
-                    <li><strong>Pipe wall thickness</strong> — pipe metal thickness, mm; affects heat transfer through the wall.</li>
-                    <li><strong>Pipe length</strong> — calculation section, m; affects total losses and cost per hour.</li>
-                    <li><strong>Thermal insulation material</strong> — sets thermal conductivity λ(T) for calculation.</li>
-                    <li><strong>Heat transfer coefficient h</strong> — takes into account convection and radiation from the surface; can be calculated using the "calculate h" button. Calculations are performed according to ISO 12241 standard.</li>
-                    <li><strong>Energy cost</strong> — tariff, J, for cost estimation.</li>
-                    <li><strong>Calculation Type</strong> — select "inside" to calculate heat released outward, or "outside" to calculate heat released inward.</li>
-                    <li><strong>Orientation</strong> — pipe orientation: "vertical" for vertical pipes, "horizontal" for horizontal pipes. Affects convective heat transfer.</li>
-                    <li><strong>Emissivity coefficient</strong> — surface emissivity (0…1), typically 0.93 for most insulation materials. Affects radiative heat transfer.</li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fAmbient || "Ambient temperature — air outside the insulation, °C." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fMedium || "Medium temperature — heat carrier temperature inside the pipe, °C." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fDiameter || "Pipe diameter — outer diameter, mm. The list shows equivalents: Cu — copper, St — steel." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fThickness || "Insulation thickness — selected thermal insulation layer thickness, mm; calculation is performed with this value." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fWall || "Pipe wall thickness — pipe metal thickness, mm; affects heat transfer through the wall." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fLength || "Pipe length — calculation section, m; affects total losses and cost per hour." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fMaterial || "Thermal insulation material — sets thermal conductivity λ(T) for calculation." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fHeatTransfer || "Heat transfer coefficient h — takes into account convection and radiation from the surface; can be calculated using the \"calculate h\" button. Calculations are performed according to ISO 12241 standard." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fEnergyCost || "Energy cost — tariff, J, for cost estimation." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fCalcType || "Calculation Type — select \"inside\" to calculate heat released outward, or \"outside\" to calculate heat released inward." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fOrientation || "Orientation — pipe orientation: \"vertical\" for vertical pipes, \"horizontal\" for horizontal pipes. Affects convective heat transfer." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fEmissivity || "Emissivity coefficient — surface emissivity (0…1), typically 0.93 for most insulation materials. Affects radiative heat transfer." }} /></li>
                   </ul>
-                  <p style={{ marginTop: '12px', lineHeight: 1.6 }}>
-                    <strong>Results:</strong> heat losses (W), reduction (%), cost per hour (J), insulation thermal transmittance (W/(m·K)).
-                  </p>
-                  <p style={{ marginTop: '8px', lineHeight: 1.6 }}>
-                    <strong>Units:</strong> mm — millimeters, m — meters, W/m — watts per meter, W/(m·K) — watts per m·K (thermal transmittance per unit length), J — joules.
-                  </p>
+                  <p style={{ marginTop: '12px', lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.results || "<strong>Results:</strong> heat losses (W), reduction (%), cost per hour (J), insulation thermal transmittance (W/(m·K))." }} />
+                  <p style={{ marginTop: '8px', lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.units || "<strong>Units:</strong> mm — millimeters, m — meters, W/m — watts per meter, W/(m·K) — watts per m·K (thermal transmittance per unit length), J — joules." }} />
                 </div>
               </div>
 
@@ -682,7 +687,7 @@ const HeatLossCalculator: React.FC = () => {
                   onClick={() => setIsHelpModalOpen(false)}
                   className={`${modalStyles.modal__button} ${modalStyles['modal__button_primary']}`}
                 >
-                  Close
+                  {dict?.helpModalHeatLoss?.closeBtn || "Close"}
                 </button>
               </div>
             </div>

@@ -17,6 +17,7 @@ export default async function Footer({ locale }: LocaleProps) {
         <div className={styles.footer__inner}>
           {/* Контакты */}
           <div className={styles.footer__contacts}>
+            
             <div className={styles.footer__block}>
               <span className={styles.footer__label}>{dict.footer?.operatingHours || "Operating hours:"}</span>
               <p className={styles.footer__value}>{dict.footer?.workingDays || "MON-FRI FROM 9:00 TO 18:00"}</p>
@@ -43,6 +44,7 @@ export default async function Footer({ locale }: LocaleProps) {
                 {dict.branches?.tashkent?.address || "17 OBIHAET STREET, SERGELI DISTRICT"}
               </a>
             </div>
+
           </div>
 
           {/* Навигация */}

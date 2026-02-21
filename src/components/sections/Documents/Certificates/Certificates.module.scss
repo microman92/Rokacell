@@ -21,6 +21,10 @@
         display: flex;
         flex-direction: column;
 
+        @include media(1200) {
+            padding: 20px;
+        }
+
         &_title {
             font-family: var(--second-family);
             font-weight: 500;
@@ -28,6 +32,10 @@
             text-transform: uppercase;
             color: #050505;
             margin-bottom: 10px;
+
+            @include media(1200) {
+                font-size: 19px;
+            }
         }
 
         &_preview {

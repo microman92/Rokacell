@@ -6,6 +6,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @include media(1440) {
+      flex-direction: column;
+      gap: 40px;
+    }
   }
 
   &__video {

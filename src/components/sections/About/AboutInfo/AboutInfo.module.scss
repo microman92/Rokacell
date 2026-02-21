@@ -6,6 +6,10 @@
   text-align: center;
   gap: 24px;
 
+  @include media(1200) {
+    padding: 0 20px;
+  }
+
   &__title {
     font-family: var(--second-family);
     font-weight: 500;
@@ -21,6 +25,10 @@
     font-size: 24px;
     text-align: center;
     color: var(--txt-black);
+
+    @include media(1200) {
+      font-size: 20px;
+    }
 
     & span {
       color: var(--yellow);

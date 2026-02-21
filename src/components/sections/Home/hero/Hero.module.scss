@@ -65,6 +65,10 @@
     gap: 24px;
     position: relative;
 
+    @include media(1200) {
+      text-align: center;
+    }
+
     &_desc {
       max-width: 646px;
       display: flex;

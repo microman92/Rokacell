@@ -25,6 +25,14 @@
       font-size: 54px;
     }
 
+    @include media(1200) {
+      font-size: 48px;
+
+      & span {
+        font-size: 48px;
+      }
+    }
+
     @include media(768) {
       font-size: 40px;
     }

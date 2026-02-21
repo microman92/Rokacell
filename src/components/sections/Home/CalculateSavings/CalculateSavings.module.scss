@@ -8,6 +8,10 @@
     height: 715px;
   }
 
+  @include media(1200) {
+    height: 512px;
+  }
+
   &__bg {
     position: absolute;
     top: 0;
@@ -60,6 +64,10 @@
 
     @include media(1440) {
       font-size: 24px;
+    }
+
+    @include media(1200) {
+      font-size: 21px;
     }
   }
 }

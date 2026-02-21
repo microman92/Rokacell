@@ -53,6 +53,10 @@
       justify-content: center;
     }
 
+    @include media(1200) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
     @include media(768) {
       grid-template-columns: 1fr;
     }

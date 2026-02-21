@@ -7,6 +7,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @include media(1200) {
+      flex-direction: column;
+      gap: 32px;
+      text-align: center;
+    }
   }
 
   &__description {

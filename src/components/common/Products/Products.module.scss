@@ -168,8 +168,8 @@
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-  @include media(1440px) {
-    padding: 10px;
+  @include media(1440) {
+    padding: 24px;
   }
 
   &:hover {
@@ -188,6 +188,10 @@
 
     @include media(1440) {
       max-width: 160px;
+    }
+
+    @include media(1440) {
+      max-width: 99px;
     }
   }
 
@@ -224,6 +228,14 @@
     // Truncate text
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    @include media(1200) {
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+    }
   }
 
   &__moreBtn {
@@ -280,13 +292,16 @@
   border-radius: 5px;
   max-width: 1400px;
   width: 100%;
-  max-height: 90vh;
+  height: 60vh;
   overflow-y: auto;
-  padding: 120px 60px;
+  padding: 0 120px;
   animation: slideUp 0.3s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   @include media(1440) {
-    padding: 60px;
+    padding: 0px 60px;
     height: 70vh;
   }
 
@@ -317,11 +332,6 @@
     align-items: flex-start;
     overflow-y: scroll;
 
-    @include media(1400) {
-      max-height: initial;
-      height: 100%;
-
-    }
   }
 
   &__imageWrapper {

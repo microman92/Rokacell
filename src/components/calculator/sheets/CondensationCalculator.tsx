@@ -13,8 +13,15 @@ import HelpModal from '../pipes/HelpModal';
 import LabeledField from '@/components/calculator/shared/LabeledField';
 import LabeledSelect from '@/components/calculator/shared/LabeledSelect';
 import CalculatorControls from '@/components/calculator/shared/CalculatorControls';
+import { Dictionary } from '@/lib/i18n';
 
-const SheetsCondensationCalculator: React.FC = () => {
+type CalculatorDict = NonNullable<Dictionary['calculator']>['calc'];
+
+interface SheetsCondensationCalculatorProps {
+  dict?: CalculatorDict;
+}
+
+const SheetsCondensationCalculator: React.FC<SheetsCondensationCalculatorProps> = ({ dict }) => {
   const router = useRouter();
   const locale = useCurrentLocale();
   const [ambientTemp, setAmbientTemp] = useState<number>(25);
@@ -107,45 +114,45 @@ const SheetsCondensationCalculator: React.FC = () => {
     <div className={styles.heatLossCalculator}>
       <div className={styles.heatLossCalculator__container}>
         <div className={styles.heatLossCalculator__header}>
-          <h1 className={styles.heatLossCalculator__header_title}>Condensation Prevention for Sheets</h1>
+          <h1 className={styles.heatLossCalculator__header_title}>{dict?.sheetsCondensationTitle || "Condensation Prevention for Sheets"}</h1>
         </div>
 
         <div className={styles.heatLossCalculator__content}>
           <div className={styles.heatLossCalculator__section}>
-            <h2 className={styles.heatLossCalculator__section_title}>Parameters</h2>
+            <h2 className={styles.heatLossCalculator__section_title}>{dict?.parameters || "Parameters"}</h2>
 
             <div className={styles.heatLossCalculator__fields}>
-              <LabeledField label="ambient temperature" helpText="air around insulation" unit="°C" value={ambientTemp} onChange={setAmbientTemp} styles={fieldStyles} />
-              <LabeledField label="medium temperature" helpText="surface/medium temperature" unit="°C" value={mediumTemp} onChange={setMediumTemp} styles={fieldStyles} />
-              <LabeledSelect label="insulation material" helpText="sets thermal conductivity λ(T)" value={material} onChange={(v) => setMaterial(String(v))} options={materialsList.map(m => ({ value: m, label: m }))} styles={fieldStyles} />
+              <LabeledField label={dict?.ambientTemp || "ambient temperature"} helpText={dict?.ambientTempDesc || "air around insulation"} unit="°C" value={ambientTemp} onChange={setAmbientTemp} styles={fieldStyles} />
+              <LabeledField label={dict?.mediumTemp || "medium temperature"} helpText={dict?.mediumTempSheetDesc || "surface/medium temperature"} unit="°C" value={mediumTemp} onChange={setMediumTemp} styles={fieldStyles} />
+              <LabeledSelect label={dict?.insulationMaterial || "insulation material"} helpText={dict?.insulationMaterialDesc || "sets thermal conductivity λ(T)"} value={material} onChange={(v) => setMaterial(String(v))} options={materialsList.map(m => ({ value: m, label: m }))} styles={fieldStyles} />
 
               <div className={styles.heatLossCalculator__field}>
-                <label className={styles.heatLossCalculator__field_label}>heat transfer coefficient h</label>
-                <span className={styles.helpText} style={{ height: 'auto' }}>convection + surface radiation; can be calculated</span>
+                <label className={styles.heatLossCalculator__field_label}>{dict?.heatTransferCoefficient || "heat transfer coefficient h"}</label>
+                <span className={styles.helpText} style={{ height: 'auto' }}>{dict?.heatTransferCoefficientDesc || "convection + surface radiation; can be calculated"}</span>
                 <div className={styles.heatLossCalculator__field_group}>
                   <input type="number" value={h} readOnly className={`${styles.heatLossCalculator__field_input} ${styles['heatLossCalculator__field_input_readonly']}`} step="0.001" />
-                  <button onClick={() => setHModalOpen(true)} className={`${styles.heatLossCalculator__button} ${styles['heatLossCalculator__button_success']}`}>calculate h</button>
+                  <button onClick={() => setHModalOpen(true)} className={`${styles.heatLossCalculator__button} ${styles['heatLossCalculator__button_success']}`}>{dict?.calculateHBtn || "calculate h"}</button>
                 </div>
                 <span className={styles.heatLossCalculator__field_unit} style={{ height: 'auto' }}>W/m²K</span>
               </div>
 
-              <LabeledField label="relative humidity (30%-95%)" helpText="for dew point calculation, %" unit="%" value={relativeHumidity} onChange={setRelativeHumidity} styles={fieldStyles} inputProps={{ min: 30, max: 95, step: 0.1 }} />
+              <LabeledField label={dict?.relativeHumidity || "relative humidity (30%-95%)"} helpText={dict?.relativeHumidityDesc || "for dew point calculation, %"} unit="%" value={relativeHumidity} onChange={setRelativeHumidity} styles={fieldStyles} inputProps={{ min: 30, max: 95, step: 0.1 }} />
             </div>
           </div>
 
           {results && (
             <div className={styles.heatLossCalculator__section}>
-              <h2 className={styles.heatLossCalculator__section_title}>Results</h2>
+              <h2 className={styles.heatLossCalculator__section_title}>{dict?.results || "Results"}</h2>
               <div className={styles.heatLossCalculator__grid}>
                 <div className={styles.heatLossCalculator__field}>
-                  <label className={styles.heatLossCalculator__field_label}>dew point</label>
-                  <span className={styles.helpText} style={{ height: 'auto' }}>condensation start temperature at current humidity</span>
+                  <label className={styles.heatLossCalculator__field_label}>{dict?.dewPoint || "dew point"}</label>
+                  <span className={styles.helpText} style={{ height: 'auto' }}>{dict?.dewPointDesc || "condensation start temperature at current humidity"}</span>
                   <input type="text" value={results.dewpointTemperature.toFixed(2)} readOnly className={`${styles.heatLossCalculator__fieldInput} ${styles.heatLossCalculator__fieldInput}--readonly`} />
                   <span className={styles.heatLossCalculator__field_unit}>°C</span>
                 </div>
                 <div className={styles.heatLossCalculator__field}>
-                  <label className={styles.heatLossCalculator__field_label}>minimum insulation thickness</label>
-                  <span className={styles.helpText} style={{ height: 'auto' }}>thickness to prevent condensation (Tsurf ≥ Tdew)</span>
+                  <label className={styles.heatLossCalculator__field_label}>{dict?.minInsThickness || "minimum insulation thickness"}</label>
+                  <span className={styles.helpText} style={{ height: 'auto' }}>{dict?.minInsThicknessDesc || "thickness to prevent condensation (Tsurf ≥ Tdew)"}</span>
                   <input
                     type="text"
                     value={results.minimumThickness.toFixed(1)}
@@ -155,8 +162,8 @@ const SheetsCondensationCalculator: React.FC = () => {
                   <span className={styles.heatLossCalculator__field_unit}>mm</span>
                 </div>
                 <div className={styles.heatLossCalculator__field}>
-                  <label className={styles.heatLossCalculator__field_label}>nominal thickness</label>
-                  <span className={styles.helpText} style={{ height: 'auto' }}>nearest available thickness from series</span>
+                  <label className={styles.heatLossCalculator__field_label}>{dict?.nominalThickness || "nominal thickness"}</label>
+                  <span className={styles.helpText} style={{ height: 'auto' }}>{dict?.nominalThicknessDesc || "nearest available thickness from series"}</span>
                   <input
                     type="text"
                     value={isMinThicknessExceeded ? '-' : `${results.nominalThickness} mm`}
@@ -169,14 +176,14 @@ const SheetsCondensationCalculator: React.FC = () => {
               {isMinThicknessExceeded && (
                 <div style={{ marginTop: 12 }}>
                   <span className={styles.helpText} style={{ height: 'auto', color: 'red', fontWeight: 700 }}>
-                    Обратитесь к нашей технической службе.
+                    {dict?.contactSupport || "Обратитесь к нашей технической службе."}
                   </span>
                 </div>
               )}
             </div>
           )}
 
-          <CalculatorControls onCalculate={handleCalculate} onHelp={() => setIsHelpModalOpen(true)} onBack={handleBack} styles={styles} calculateLabel="Calculate" />
+          <CalculatorControls onCalculate={handleCalculate} onHelp={() => setIsHelpModalOpen(true)} onBack={handleBack} styles={styles} calculateLabel={dict?.calculateBtn || "Calculate"} helpLabel={dict?.helpBtn || "Help"} backLabel={dict?.backBtn || "← Back to Calculators"} />
         </div>
       </div>
 
@@ -196,9 +203,10 @@ const SheetsCondensationCalculator: React.FC = () => {
         useAdvancedSheetsAlgorithm={useAdvancedSheetsAlgorithm}
         setUseAdvancedSheetsAlgorithm={undefined}
         relativeHumidity={relativeHumidity}
+        dict={dict}
       />
 
-      <HelpModal isOpen={isHelpModalOpen} onClose={() => setIsHelpModalOpen(false)} />
+      <HelpModal isOpen={isHelpModalOpen} onClose={() => setIsHelpModalOpen(false)} dict={dict} />
     </div>
   );
 };

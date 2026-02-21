@@ -106,6 +106,10 @@
       max-width: 900px;
     }
 
+    @include media(1200) {
+      max-width: 800px;
+    }
+
     & img {
       @include media(1440) {
         object-fit: fill;
@@ -132,6 +136,10 @@
     @include media(1440) {
       gap: 0;
     }
+
+    @include media(1200) {
+      gap: 100px;
+    }
   }
 
   .hero__desc {
@@ -150,6 +158,14 @@
 
   &__title {
     color: var(--txt-black);
+  }
+
+  .hero__description {
+    font-size: 20px;
+  }
+
+  .hero__desc {
+    max-width: 500px;
   }
 }
 
@@ -172,6 +188,7 @@
     max-width: 922px;
     gap: 24px;
   }
+  
 
 }
 
@@ -195,6 +212,16 @@
     text-align: center;
     color: var(--txt-black);
     max-width: 950px;
+
+    @include media(1200) {
+      font-size: 48px;
+    }
+
+    & span {
+      @include media(1200) {
+        font-size: 48px;
+      }
+    }
   }
 
   .hero__description {
@@ -210,6 +237,10 @@
 // ===========================
 .logistics {
   height: 885px;
+
+  @include media(1200) {
+    height: 800px;
+  }
 
   .hero__content {
     display: flex;

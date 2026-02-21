@@ -9,7 +9,6 @@
 
     &__swiper {
 
-
         // Pagination styles (same as Hero)
         :global(.swiper-pagination) {
             position: absolute;
@@ -20,6 +19,11 @@
             display: flex;
             gap: 10px;
             align-items: center;
+
+            @include media(1200) {
+                bottom: 20px !important;
+                right: 30px !important;
+            }
         }
 
         :global(.swiper-pagination-bullet) {
@@ -36,6 +40,10 @@
                 transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             transform-origin: center;
 
+            @include media(1200) {
+                width: 35px;
+            }
+
             &:hover {
                 background: rgba(255, 255, 255, 0.6);
                 transform: scaleX(1.08);
@@ -50,6 +58,10 @@
             width: 60px;
             background: #f5a623;
             animation: bulletPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+            @include media(1200) {
+                width: 50px;
+            }
         }
     }
 

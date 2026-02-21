@@ -12,8 +12,15 @@ import CalculateHModal from './CalculateHModal';
 import LabeledField from '@/components/calculator/shared/LabeledField';
 import LabeledSelect from '@/components/calculator/shared/LabeledSelect';
 import CalculatorControls from '@/components/calculator/shared/CalculatorControls';
+import { Dictionary } from '@/lib/i18n';
 
-const SheetsHeatLossCalculator: React.FC = () => {
+type CalculatorDict = NonNullable<Dictionary['calculator']>['calc'];
+
+interface HeatLossCalculatorProps {
+  dict?: CalculatorDict;
+}
+
+const SheetsHeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
   const router = useRouter();
   const locale = useCurrentLocale();
   const [ambientTemp, setAmbientTemp] = useState<number>(25);
@@ -121,22 +128,22 @@ const SheetsHeatLossCalculator: React.FC = () => {
     <div className={styles.heatLossCalculator}>
       <div className={styles.heatLossCalculator__container}>
         <div className={styles.heatLossCalculator__header}>
-          <h1 className={styles.heatLossCalculator__header_title}>Heat Loss Calculation for Sheets</h1>
+          <h1 className={styles.heatLossCalculator__header_title}>{dict?.sheetsHeatLossTitle || "Heat Loss Calculation for Sheets"}</h1>
         </div>
 
         <div className={styles.heatLossCalculator__content}>
           <div className={styles.heatLossCalculator__section}>
-            <h2 className={styles.heatLossCalculator__section_title}>Parameters</h2>
+            <h2 className={styles.heatLossCalculator__section_title}>{dict?.parameters || "Parameters"}</h2>
 
             <div className={styles.heatLossCalculator__fields}>
-              <LabeledField label="ambient temperature" helpText="air around insulation" unit="°C" value={ambientTemp} onChange={setAmbientTemp} styles={fieldStyles} />
-              <LabeledField label="medium temperature" helpText="surface/medium temperature" unit="°C" value={mediumTemp} onChange={setMediumTemp} styles={fieldStyles} />
-              <LabeledField label="insulation thickness" helpText="thermal insulation layer thickness" unit="mm" value={thickness} onChange={setThickness} styles={fieldStyles} inputProps={{ min: 1, step: 1 }} />
-              <LabeledField label="surface area" helpText="calculated heat exchange area" unit="m²" value={area} onChange={setArea} styles={fieldStyles} inputProps={{ min: 0.01, step: 0.01 }} />
-              <LabeledSelect label="insulation material" helpText="sets thermal conductivity λ(T)" value={material} onChange={(v) => setMaterial(String(v))} options={materialsList.map(m => ({ value: m, label: m }))} styles={fieldStyles} />
+              <LabeledField label={dict?.ambientTemp || "ambient temperature"} helpText={dict?.ambientTempDesc || "air around insulation"} unit="°C" value={ambientTemp} onChange={setAmbientTemp} styles={fieldStyles} />
+              <LabeledField label={dict?.mediumTemp || "medium temperature"} helpText={dict?.mediumTempSheetDesc || "surface/medium temperature"} unit="°C" value={mediumTemp} onChange={setMediumTemp} styles={fieldStyles} />
+              <LabeledField label={dict?.insulationThickness || "insulation thickness"} helpText={dict?.insulationThicknessDesc || "thermal insulation layer thickness"} unit="mm" value={thickness} onChange={setThickness} styles={fieldStyles} inputProps={{ min: 1, step: 1 }} />
+              <LabeledField label={dict?.surfaceArea || "surface area"} helpText={dict?.surfaceAreaDesc || "calculated heat exchange area"} unit="m²" value={area} onChange={setArea} styles={fieldStyles} inputProps={{ min: 0.01, step: 0.01 }} />
+              <LabeledSelect label={dict?.insulationMaterial || "insulation material"} helpText={dict?.insulationMaterialDesc || "sets thermal conductivity λ(T)"} value={material} onChange={(v) => setMaterial(String(v))} options={materialsList.map(m => ({ value: m, label: m }))} styles={fieldStyles} />
               <div className={styles.heatLossCalculator__field}>
-                <label className={styles.heatLossCalculator__field_label}>heat transfer coefficient h</label>
-                <span className={styles.helpText} style={{ height: 'auto' }}>convection + surface radiation; can be calculated</span>
+                <label className={styles.heatLossCalculator__field_label}>{dict?.hCoefficient || "heat transfer coefficient h"}</label>
+                <span className={styles.helpText} style={{ height: 'auto' }}>{dict?.hCoefficientDesc || "convection + surface radiation; can be calculated"}</span>
                 <div className={styles.heatLossCalculator__field_group}>
                   <input
                     type="number"
@@ -149,23 +156,23 @@ const SheetsHeatLossCalculator: React.FC = () => {
                     onClick={() => setHModalOpen(true)}
                     className={`${styles.heatLossCalculator__button} ${styles['heatLossCalculator__button_success']}`}
                   >
-                    calculate h
+                    {dict?.calcHBtn || "calculate h"}
                   </button>
                 </div>
                 <span className={styles.heatLossCalculator__field_unit} style={{ height: 'auto' }}>W/m²K</span>
               </div>
-              <LabeledField label="cost per kWh" helpText="tariff, currency/kWh" unit="currency/kWh" value={cost} onChange={setCost} styles={fieldStyles} inputProps={{ min: 0, step: 0.01 }} />
+              <LabeledField label={dict?.energyCost || "cost per kWh"} helpText={dict?.energyCostDesc || "tariff, currency/kWh"} unit="currency/kWh" value={cost} onChange={setCost} styles={fieldStyles} inputProps={{ min: 0, step: 0.01 }} />
             </div>
 
           </div>
 
           {results && (
             <div className={styles.heatLossCalculator__section}>
-              <h2 className={styles.heatLossCalculator__section_title}>Calculation Results</h2>
+              <h2 className={styles.heatLossCalculator__section_title}>{dict?.results || "Calculation Results"}</h2>
               <div className={styles.heatLossCalculator__grid}>
                 <div className={styles.heatLossCalculator__field}>
-                  <label className={styles.heatLossCalculator__field_label}>mean thermal conductivity λ</label>
-                  <span className={styles.helpText} style={{ height: 'auto' }}>thermal conductivity of insulation material at mean temperature</span>
+                  <label className={styles.heatLossCalculator__field_label}>{dict?.meanLambda || "mean thermal conductivity λ"}</label>
+                  <span className={styles.helpText} style={{ height: 'auto' }}>{dict?.meanLambdaDesc || "thermal conductivity of insulation material at mean temperature"}</span>
                   <input
                     type="text"
                     value={results.meanLambda.toFixed(4)}
@@ -175,8 +182,8 @@ const SheetsHeatLossCalculator: React.FC = () => {
                   <span className={styles.heatLossCalculator__field_unit} style={{ height: 'auto' }}>W/m·K</span>
                 </div>
                 <div className={styles.heatLossCalculator__field}>
-                  <label className={styles.heatLossCalculator__field_label}>insulation thermal transmittance</label>
-                  <span className={styles.helpText} style={{ height: 'auto' }}>overall heat transfer coefficient through insulation</span>
+                  <label className={styles.heatLossCalculator__field_label}>{dict?.thermalTransmittance || "insulation thermal transmittance"}</label>
+                  <span className={styles.helpText} style={{ height: 'auto' }}>{dict?.thermalTransmittanceDesc || "overall heat transfer coefficient through insulation"}</span>
                   <input
                     type="text"
                     value={results.U.toFixed(4)}
@@ -186,8 +193,8 @@ const SheetsHeatLossCalculator: React.FC = () => {
                   <span className={styles.heatLossCalculator__field_unit} style={{ height: 'auto' }}>W/m²K</span>
                 </div>
                 <div className={styles.heatLossCalculator__field}>
-                  <label className={styles.heatLossCalculator__field_label}>heat loss</label>
-                  <span className={styles.helpText} style={{ height: 'auto' }}>heat loss through sheet surface</span>
+                  <label className={styles.heatLossCalculator__field_label}>{dict?.heatLoss || "heat loss"}</label>
+                  <span className={styles.helpText} style={{ height: 'auto' }}>{dict?.heatLossSheetDesc || "heat loss through sheet surface"}</span>
                   <input
                     type="text"
                     value={results.Q.toFixed(2)}
@@ -197,8 +204,8 @@ const SheetsHeatLossCalculator: React.FC = () => {
                   <span className={styles.heatLossCalculator__field_unit} style={{ height: 'auto' }}>W</span>
                 </div>
                 <div className={styles.heatLossCalculator__field}>
-                  <label className={styles.heatLossCalculator__field_label}>heat loss reduction</label>
-                  <span className={styles.helpText} style={{ height: 'auto' }}>efficiency relative to uninsulated surface</span>
+                  <label className={styles.heatLossCalculator__field_label}>{dict?.heatLossReduction || "heat loss reduction"}</label>
+                  <span className={styles.helpText} style={{ height: 'auto' }}>{dict?.heatLossReductionSheetDesc || "efficiency relative to uninsulated surface"}</span>
                   <input
                     type="text"
                     value={results.decrease.toFixed(1)}
@@ -208,8 +215,8 @@ const SheetsHeatLossCalculator: React.FC = () => {
                   <span className={styles.heatLossCalculator__field_unit} style={{ height: 'auto' }}>%</span>
                 </div>
                 <div className={styles.heatLossCalculator__field}>
-                  <label className={styles.heatLossCalculator__field_label}>cost per hour</label>
-                  <span className={styles.helpText} style={{ height: 'auto' }}>costs to compensate for losses at given tariff</span>
+                  <label className={styles.heatLossCalculator__field_label}>{dict?.costPerHour || "cost per hour"}</label>
+                  <span className={styles.helpText} style={{ height: 'auto' }}>{dict?.costPerHourDesc || "costs to compensate for losses at given tariff"}</span>
                   <input
                     type="text"
                     value={results.costPerHour.toFixed(3)}
@@ -227,7 +234,9 @@ const SheetsHeatLossCalculator: React.FC = () => {
             onHelp={() => setIsHelpModalOpen(true)}
             onBack={handleBack}
             styles={styles}
-            calculateLabel="Calculate"
+            calculateLabel={dict?.calculateBtn || "Calculate"}
+            helpLabel={dict?.helpBtn || "Help"}
+            backLabel={dict?.backBtn || "← Back to Calculators"}
           />
         </div>
       </div>
@@ -245,51 +254,46 @@ const SheetsHeatLossCalculator: React.FC = () => {
         setApplySafetyFactor={undefined}
         useAdvancedAlgorithm={useAdvancedAlgorithm}
         setUseAdvancedAlgorithm={undefined}
+        dict={dict}
       />
 
       {isHelpModalOpen && (
         <div className={modalStyles.modal}>
           <div className={modalStyles.modal__container}>
             <div className={modalStyles.modal__header}>
-              <h1 className={modalStyles.modal__header_title}>Help</h1>
+              <h1 className={modalStyles.modal__header_title}>{dict?.helpModalHeatLoss?.title || "Help"}</h1>
             </div>
 
             <div className={modalStyles.modal__content}>
               <div className={modalStyles.modal__section}>
                 <p style={{ marginBottom: '16px', lineHeight: '1.6' }}>
-                  The calculator calculates heat losses of insulated sheets based on physical laws of heat transfer.
+                  {dict?.helpModalHeatLoss?.p1 || "The calculator calculates heat losses of insulated sheets based on physical laws of heat transfer."}
                 </p>
                 <p style={{ marginBottom: '16px', lineHeight: '1.6' }}>
-                  Enter system parameters: temperatures, sheet dimensions, insulation thickness and material.
+                  {dict?.helpModalHeatLoss?.p2 || "Enter system parameters: temperatures, sheet dimensions, insulation thickness and material."}
                 </p>
                 <p style={{ marginBottom: '16px', lineHeight: '1.6' }}>
-                  The heat transfer coefficient h is calculated automatically taking into account convective and radiative heat transfer. All calculations are performed according to ISO 12241 standard for thermal insulation.
+                  {dict?.helpModalHeatLoss?.p3 || "The heat transfer coefficient h is calculated automatically taking into account convective and radiative heat transfer. All calculations are performed according to ISO 12241 standard for thermal insulation."}
                 </p>
                 <p style={{ lineHeight: '1.6' }}>
-                  The result shows heat losses, their reduction compared to an uninsulated surface, and economic effect.
+                  {dict?.helpModalHeatLoss?.p4 || "The result shows heat losses, their reduction compared to an uninsulated surface, and economic effect."}
                 </p>
                 <div style={{ marginTop: '20px' }}>
-                  <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '8px' }}>Field Explanations</h3>
+                  <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '8px' }}>{dict?.helpModalHeatLoss?.fieldsTitle || "Field Explanations"}</h3>
                   <ul style={{ paddingLeft: '18px', lineHeight: 1.6, margin: 0 }}>
-                    <li><strong>Ambient temperature</strong> — air outside the insulation, °C.</li>
-                    <li><strong>Medium temperature</strong> — surface/medium temperature, °C.</li>
-                    <li><strong>Insulation thickness</strong> — selected thermal insulation layer thickness, mm; calculation is performed with this value.</li>
-                    <li><strong>Surface area</strong> — calculated heat exchange area, m².</li>
-                    <li><strong>Thermal insulation material</strong> — sets thermal conductivity λ(T) for calculation.</li>
-                    <li><strong>Heat transfer coefficient h</strong> — takes into account convection and radiation from the surface; can be calculated using the "calculate h" button. Calculations are performed according to ISO 12241 standard.</li>
-                    <li><strong>Energy cost</strong> — tariff, J/kWh, for cost estimation.</li>
-                    <li><strong>Calculation Type</strong> — select "inside" to calculate heat released outward, or "outside" to calculate heat released inward.</li>
-                    <li><strong>Orientation</strong> — sheet orientation: "vertical" for vertical sheets, "horizontal" for horizontal sheets. Affects convective heat transfer.</li>
-                    <li><strong>Emissivity coefficient</strong> — surface emissivity (0…1), typically 0.93 for most insulation materials. Affects radiative heat transfer.</li>
-                    <li><strong>Sheet height</strong> — characteristic dimension for heat transfer calculation, m.</li>
-                    <li><strong>Type of cladding</strong> — optional cladding type that affects surface properties.</li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fAmbient || "Ambient temperature — air outside the insulation, °C." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fMedium || "Medium temperature — surface/medium temperature, °C." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fThickness || "Insulation thickness — selected thermal insulation layer thickness, mm; calculation is performed with this value." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.surfaceArea ? `<strong>${dict?.surfaceArea}</strong> — ${dict?.surfaceAreaDesc}, m².` : "<strong>Surface area</strong> — calculated heat exchange area, m²." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fMaterial || "Thermal insulation material — sets thermal conductivity λ(T) for calculation." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fHeatTransfer || "Heat transfer coefficient h — takes into account convection and radiation from the surface; can be calculated using the \"calculate h\" button. Calculations are performed according to ISO 12241 standard." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fEnergyCost || "Energy cost — tariff, J/kWh, for cost estimation." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fCalcType || "Calculation Type — select \"inside\" to calculate heat released outward, or \"outside\" to calculate heat released inward." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fOrientation || "Orientation — sheet orientation: \"vertical\" for vertical sheets, \"horizontal\" for horizontal sheets. Affects convective heat transfer." }} /></li>
+                    <li><strong dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.fEmissivity || "Emissivity coefficient — surface emissivity (0…1), typically 0.93 for most insulation materials. Affects radiative heat transfer." }} /></li>
                   </ul>
-                  <p style={{ marginTop: '12px', lineHeight: 1.6 }}>
-                    <strong>Results:</strong> heat losses (W), reduction (%), cost per hour (J), insulation thermal transmittance (W/(m²·K)),
-                  </p>
-                  <p style={{ marginTop: '8px', lineHeight: 1.6 }}>
-                    <strong>Units:</strong> mm — millimeters, m — meters, m² — square meters, W — watts, W/(m²·K) — watts per m²·K, J — joules.
-                  </p>
+                  <p style={{ marginTop: '12px', lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.results || "<strong>Results:</strong> heat losses (W), reduction (%), cost per hour (J), insulation thermal transmittance (W/(m²·K))." }} />
+                  <p style={{ marginTop: '8px', lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: dict?.helpModalHeatLoss?.units || "<strong>Units:</strong> mm — millimeters, m — meters, m² — square meters, W — watts, W/(m²·K) — watts per m²·K, J — joules." }} />
                 </div>
               </div>
 
@@ -298,7 +302,7 @@ const SheetsHeatLossCalculator: React.FC = () => {
                   onClick={() => setIsHelpModalOpen(false)}
                   className={`${modalStyles.modal__button} ${modalStyles['modal__button_primary']}`}
                 >
-                  Close
+                  {dict?.helpModalHeatLoss?.closeBtn || "Close"}
                 </button>
               </div>
             </div>

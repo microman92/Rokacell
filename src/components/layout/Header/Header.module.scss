@@ -20,5 +20,17 @@
     @include media(1440) {
       gap: 50px;
     }
+
+    @include media(1200) {
+      gap: 26px;
+    }
+  }
+}
+
+.logo {
+
+
+  & img {
+    max-width: 150px;
   }
 }

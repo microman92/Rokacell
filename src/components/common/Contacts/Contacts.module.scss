@@ -8,6 +8,12 @@
   // justify-content: space-between;
   position: relative;
 
+  @include media(1200) {
+    height: 476px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
   // Левая часть (Визуал)
   &__visual {
     width: 100%;
@@ -21,6 +27,12 @@
       background: #035779;
       padding: 40px;
       gap: 68px;
+
+      & img {
+        @include media(1200) {
+          max-width: 350px;
+        }
+      }
     }
 
   }
@@ -49,6 +61,12 @@
       position: absolute;
       top: 100px;
       left: 100px;
+
+      @include media(1200) {
+        top: 40px;
+        left: 40px;
+        max-width: 320px;
+      }
     }
   }
 
@@ -67,6 +85,11 @@
     @include media(1440) {
       padding: 40px 50px;
       max-width: 490px;
+    }
+
+    @include media(1200) {
+      padding: 30px;
+      max-width: 440px;
     }
 
     @include media(768) {
@@ -91,6 +114,11 @@
       font-size: 36px;
       margin-bottom: 40px;
     }
+
+    @include media(1200) {
+      font-size: 28px;
+      margin-bottom: 24px;
+    }
   }
 
   &__address {
@@ -103,6 +131,11 @@
     @include media(1440) {
       font-size: 24px;
       margin-bottom: 40px;
+    }
+
+    @include media(1200) {
+      font-size: 16px;
+      margin-bottom: 24px;
     }
   }
 
@@ -117,6 +150,11 @@
       font-size: 24px;
       margin-bottom: 24px;
     }
+
+    @include media(1200) {
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
   }
 
   &__phones {
@@ -127,6 +165,10 @@
 
     @include media(1440) {
       font-size: 24px;
+    }
+
+    @include media(1200) {
+      font-size: 16px;
     }
   }
 

@@ -41,6 +41,10 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   z-index: 2;
   border-radius: 5px;
+
+  @include media(1200) {
+    max-width: 600px;
+  }
 }
 
 .accessForm__form {
@@ -62,6 +66,10 @@
   border-bottom: 1px solid #535353;
   width: 100%;
   padding: 8px 0;
+
+  @include media(1200) {
+    font-size: 20px;
+  }
 
   &::placeholder {
     color: #aaa;

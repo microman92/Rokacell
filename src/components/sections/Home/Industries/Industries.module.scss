@@ -62,22 +62,15 @@
 
 .industries__imgItem {
     max-width: 730px;
+    width: 100%;
     height: auto;
     border-radius: 8px;
+    object-fit: cover;
 
-    @media (max-width: 1440px) {
-        max-width: 550px;
+    @include media(1440) {
+        max-width: 476px;
+        height: 286px;
     }
 
-    @media (max-width: 1024px) {
-        max-width: 500px;
-    }
 
-    @media (max-width: 768px) {
-        max-width: 400px;
-    }
-
-    @media (max-width: 480px) {
-        max-width: 300px;
-    }
 }

@@ -98,6 +98,15 @@
     width: 100%;
     gap: 4px;
 
+    &:nth-child(7),
+    &:nth-child(5) {
+      max-width: 390px;
+    }
+
+    @include media(1200) {
+      max-width: 390px;
+    }
+
     &--wide {
       flex: 1 1 100%;
       min-width: 100%;
@@ -238,9 +247,6 @@
 }
 
 
-// .heatLossCalculator__field:nth-child(4) {
-//   max-width: 360px;
-// }
 
 // Helpers
 .helpText,
@@ -250,6 +256,7 @@
   font-size: 11px;
   color: #6b7280;
   margin-bottom: 6px;
+  height: 25px !important;
 }
 
 .helpTextTop {

@@ -12,12 +12,17 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
+
+    @include media(1200) {
+      max-width: 270px;
+    }
   }
 
   &__block {
     display: flex;
     flex-direction: column;
     gap: 16px;
+
   }
 
   &__label {

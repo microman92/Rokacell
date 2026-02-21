@@ -1,5 +1,8 @@
 import React from 'react';
 import modalStyles from '../Modal.module.scss';
+import { Dictionary } from '@/lib/i18n';
+
+type CalculatorDict = NonNullable<Dictionary['calculator']>['calc'];
 
 type ModalParams = {
   calculationType: 'inside' | 'outside';
@@ -21,6 +24,7 @@ type CalculateHModalProps = {
   setApplySafetyFactor?: (value: boolean) => void;
   useAdvancedAlgorithm?: boolean;
   setUseAdvancedAlgorithm?: (value: boolean) => void;
+  dict?: CalculatorDict;
 };
 
 const CalculateHModal: React.FC<CalculateHModalProps> = ({
@@ -33,6 +37,7 @@ const CalculateHModal: React.FC<CalculateHModalProps> = ({
   modalParams,
   setModalParams,
   onCalculate,
+  dict,
 }) => {
   if (!isOpen) return null;
 
@@ -40,15 +45,15 @@ const CalculateHModal: React.FC<CalculateHModalProps> = ({
     <div className={modalStyles.modal}>
       <div className={modalStyles.modal__container}>
         <div className={modalStyles.modal__header}>
-          <h1 className={modalStyles.modal__header_title}>Calculation of Heat Transfer Coefficient h</h1>
+          <h1 className={modalStyles.modal__header_title}>{dict?.hModal?.title || "Calculation of Heat Transfer Coefficient h"}</h1>
         </div>
 
         <div className={modalStyles.modal__content}>
           <div className={modalStyles.modal__section}>
-            <h2 className={modalStyles.modal__section_title}>Calculation Type</h2>
+            <h2 className={modalStyles.modal__section_title}>{dict?.hModal?.calcType || "Calculation Type"}</h2>
             <div className={modalStyles.modal__grid}>
               <div className={modalStyles.modal__field}>
-                <label className={modalStyles.modal__field_label}>Calculation Type</label>
+                <label className={modalStyles.modal__field_label}>{dict?.hModal?.calcType || "Calculation Type"}</label>
                 <div className={modalStyles.modal__field_radioGroup}>
                   <label className={modalStyles.modal__field_radio}>
                     <input
@@ -59,7 +64,7 @@ const CalculateHModal: React.FC<CalculateHModalProps> = ({
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => setModalParams({ ...modalParams, calculationType: e.target.value as 'inside' | 'outside' })}
                       className={modalStyles.modal__field_radio_input}
                     />
-                    <span className={modalStyles.modal__field_radio_label}>inside</span>
+                    <span className={modalStyles.modal__field_radio_label}>{dict?.hModal?.inside || "inside"}</span>
                   </label>
                   <label className={modalStyles.modal__field_radio}>
                     <input
@@ -70,13 +75,13 @@ const CalculateHModal: React.FC<CalculateHModalProps> = ({
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => setModalParams({ ...modalParams, calculationType: e.target.value as 'inside' | 'outside' })}
                       className={modalStyles.modal__field_radio_input}
                     />
-                    <span className={modalStyles.modal__field_radio_label}>outside</span>
+                    <span className={modalStyles.modal__field_radio_label}>{dict?.hModal?.outside || "outside"}</span>
                   </label>
                 </div>
-                <span className={modalStyles.helpTextTop}>what we calculate: heat released outward or inward</span>
+                <span className={modalStyles.helpTextTop}>{dict?.hModal?.calcTypeDesc || "what we calculate: heat released outward or inward"}</span>
               </div>
               <div className={modalStyles.modal__field}>
-                <label className={modalStyles.modal__field_label}>Orientation</label>
+                <label className={modalStyles.modal__field_label}>{dict?.hModal?.orientation || "Orientation"}</label>
                 <div className={modalStyles.modal__field_radioGroup}>
                   <label className={modalStyles.modal__field_radio}>
                     <input
@@ -87,7 +92,7 @@ const CalculateHModal: React.FC<CalculateHModalProps> = ({
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => setModalParams({ ...modalParams, orientation: e.target.value as 'horizontal' | 'vertical' })}
                       className={modalStyles.modal__field_radio_input}
                     />
-                    <span className={modalStyles.modal__field_radio_label}>vertical</span>
+                    <span className={modalStyles.modal__field_radio_label}>{dict?.hModal?.vertical || "vertical"}</span>
                   </label>
                   <label className={modalStyles.modal__field_radio}>
                     <input
@@ -98,7 +103,7 @@ const CalculateHModal: React.FC<CalculateHModalProps> = ({
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => setModalParams({ ...modalParams, orientation: e.target.value as 'horizontal' | 'vertical' })}
                       className={modalStyles.modal__field_radio_input}
                     />
-                    <span className={modalStyles.modal__field_radio_label}>horizontal</span>
+                    <span className={modalStyles.modal__field_radio_label}>{dict?.hModal?.horizontal || "horizontal"}</span>
                   </label>
                 </div>
               </div>
@@ -106,11 +111,11 @@ const CalculateHModal: React.FC<CalculateHModalProps> = ({
           </div>
 
           <div className={modalStyles.modal__section}>
-            <h2 className={modalStyles.modal__section_title}>Parameters</h2>
+            <h2 className={modalStyles.modal__section_title}>{dict?.parameters || "Parameters"}</h2>
             <div className={modalStyles.modal__grid}>
               <div className={modalStyles.modal__field}>
-                <label className={modalStyles.modal__field_label}>ambient temperature</label>
-                <span className={modalStyles.helpText}>air around insulation, °C</span>
+                <label className={modalStyles.modal__field_label}>{dict?.ambientTemp || "ambient temperature"}</label>
+                <span className={modalStyles.helpText}>{dict?.ambientTempDesc || "air around insulation, °C"}</span>
                 <input
                   type="number"
                   value={ambientTemp}
@@ -120,8 +125,8 @@ const CalculateHModal: React.FC<CalculateHModalProps> = ({
                 <span className={modalStyles.modal__field_unit}>°C</span>
               </div>
               <div className={modalStyles.modal__field}>
-                <label className={modalStyles.modal__field_label}>medium temperature</label>
-                <span className={modalStyles.helpText}>heat carrier inside pipe, °C</span>
+                <label className={modalStyles.modal__field_label}>{dict?.mediumTemp || "medium temperature"}</label>
+                <span className={modalStyles.helpText}>{dict?.mediumTempDesc || "heat carrier inside pipe, °C"}</span>
                 <input
                   type="number"
                   value={mediumTemp}
@@ -131,8 +136,8 @@ const CalculateHModal: React.FC<CalculateHModalProps> = ({
                 <span className={modalStyles.modal__field_unit}>°C</span>
               </div>
               <div className={modalStyles.modal__field}>
-                <label className={modalStyles.modal__field_label}>pipe diameter</label>
-                <span className={modalStyles.helpText}>outer diameter, mm</span>
+                <label className={modalStyles.modal__field_label}>{dict?.pipeDiameter || "pipe diameter"}</label>
+                <span className={modalStyles.helpText}>{dict?.pipeDiameterDescH || "outer diameter, mm"}</span>
                 <input
                   type="number"
                   value={tubeDiameter}
@@ -142,8 +147,8 @@ const CalculateHModal: React.FC<CalculateHModalProps> = ({
                 <span className={modalStyles.modal__field_unit}>mm</span>
               </div>
               <div className={modalStyles.modal__field}>
-                <label className={modalStyles.modal__field_label}>insulation material</label>
-                <span className={modalStyles.helpText}>sets thermal conductivity λ(T)</span>
+                <label className={modalStyles.modal__field_label}>{dict?.insulationMaterial || "insulation material"}</label>
+                <span className={modalStyles.helpText}>{dict?.insulationMaterialDesc || "sets thermal conductivity λ(T)"}</span>
                 <input
                   type="text"
                   value={material}
@@ -152,8 +157,8 @@ const CalculateHModal: React.FC<CalculateHModalProps> = ({
                 />
               </div>
               <div className={modalStyles.modal__field}>
-                <label className={modalStyles.modal__field_label}>emissivity coefficient (see help)</label>
-                <span className={modalStyles.helpText}>surface emissivity (0…1)</span>
+                <label className={modalStyles.modal__field_label}>{dict?.hModal?.emissivity || "emissivity coefficient (see help)"}</label>
+                <span className={modalStyles.helpText}>{dict?.hModal?.emissivityDesc || "surface emissivity (0…1)"}</span>
                 <input
                   type="number"
                   value={modalParams.emissivity}
@@ -172,13 +177,13 @@ const CalculateHModal: React.FC<CalculateHModalProps> = ({
               onClick={onCalculate}
               className={`${modalStyles.modal__button} ${modalStyles['modal__button_primary']}`}
             >
-              Continue
+              {dict?.hModal?.continueBtn || "Continue"}
             </button>
             <button
               onClick={onClose}
               className={`${modalStyles.modal__button} ${modalStyles['modal__button_secondary']}`}
             >
-              Cancel
+              {dict?.hModal?.cancelBtn || "Cancel"}
             </button>
           </div>
         </div>

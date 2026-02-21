@@ -92,14 +92,20 @@ export interface Dictionary {
     };
     calc?: {
       pipesHeatLossTitle?: string;
+      sheetsHeatLossTitle?: string;
+      pipesCondensationTitle?: string;
+      sheetsCondensationTitle?: string;
       parameters?: string;
       ambientTemp?: string;
       ambientTempDesc?: string;
       mediumTemp?: string;
       mediumTempDesc?: string;
+      mediumTempSheetDesc?: string;
       pipeDiameter?: string;
       pipeDiameterDesc?: string;
       pipeDiameterDescH?: string;
+      surfaceArea?: string;
+      surfaceAreaDesc?: string;
       insulationThickness?: string;
       insulationThicknessDesc?: string;
       pipeLength?: string;
@@ -118,13 +124,27 @@ export interface Dictionary {
       thermalTransmittanceDesc?: string;
       heatLoss?: string;
       heatLossDesc?: string;
+      heatLossSheetDesc?: string;
       heatLossReduction?: string;
       heatLossReductionDesc?: string;
+      heatLossReductionSheetDesc?: string;
       costPerHour?: string;
       costPerHourDesc?: string;
       calculateBtn?: string;
       helpBtn?: string;
       backBtn?: string;
+      relativeHumidity?: string;
+      relativeHumidityDesc?: string;
+      dewPoint?: string;
+      dewPointDesc?: string;
+      minInsThickness?: string;
+      minInsThicknessDesc?: string;
+      heatTransferCoefficient?: string;
+      heatTransferCoefficientDesc?: string;
+      calculateHBtn?: string;
+      nominalThickness?: string;
+      nominalThicknessDesc?: string;
+      contactSupport?: string;
       hModal?: {
         title?: string;
         calcType?: string;
@@ -136,8 +156,58 @@ export interface Dictionary {
         horizontal?: string;
         additionalSettings?: string;
         emissivity?: string;
+        emissivityDesc?: string;
+        sheetHeightM?: string;
+        typeOfCladding?: string;
+        relHumidity?: string;
+        select?: string;
         continueBtn?: string;
         cancelBtn?: string;
+      };
+      helpModalHeatLoss?: {
+        title?: string;
+        p1?: string;
+        p2?: string;
+        p3?: string;
+        p4?: string;
+        fieldsTitle?: string;
+        fAmbient?: string;
+        fMedium?: string;
+        fDiameter?: string;
+        fThickness?: string;
+        fWall?: string;
+        fLength?: string;
+        fMaterial?: string;
+        fHeatTransfer?: string;
+        fEnergyCost?: string;
+        fCalcType?: string;
+        fOrientation?: string;
+        fEmissivity?: string;
+        results?: string;
+        units?: string;
+        closeBtn?: string;
+      };
+      helpModalCondensation?: {
+        title?: string;
+        p1?: string;
+        p2?: string;
+        p3?: string;
+        p4?: string;
+        fieldsTitle?: string;
+        fAmbient?: string;
+        fMedium?: string;
+        fDiameter?: string;
+        fMaterial?: string;
+        fHeatTransfer?: string;
+        fRelHumidity?: string;
+        fCalcType?: string;
+        fOrientation?: string;
+        fEmissivity?: string;
+        fSheetHeight?: string;
+        fCladding?: string;
+        results?: string;
+        units?: string;
+        closeBtn?: string;
       };
     };
   };
@@ -194,6 +264,8 @@ export interface Dictionary {
   news?: {
     title?: string;
   };
+
+
 
   // Footer
   footer?: {

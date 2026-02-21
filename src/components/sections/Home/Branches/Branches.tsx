@@ -17,7 +17,7 @@ interface BranchesProps {
 export default function Branches({ dict }: BranchesProps) {
   return (
     <section className={styles.branches}>
-      <Container>
+      <Container className={styles.branches__inner}>
         <Heading variant="black" tag="h2" className={styles.branches__title}>
           {dict?.title || "НАШИ ФИЛИАЛЫ"}
         </Heading>
