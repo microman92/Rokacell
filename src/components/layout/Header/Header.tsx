@@ -17,7 +17,7 @@ export default async function Header({ locale }: LocaleProps) {
           <Logo locale={locale} />
 
           <div className={styles.header__links}>
-            <Nav locale={locale} navDict={dict.nav} />
+            <Nav locale={locale} navDict={dict.nav} isHeader />
             <LangSwitcher />
           </div>
         </div>

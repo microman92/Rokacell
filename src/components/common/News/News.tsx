@@ -26,8 +26,9 @@ export const NEWS_SLIDER_CONFIG = {
     640: {
       slidesPerView: 2.2,
     },
-    1024: {
-      slidesPerView: 3.2,
+    992: {
+      slidesPerView: 2,
+      spaceBetween: 20,
     },
     1200: {
       slidesPerView: 2.5,

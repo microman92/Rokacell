@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useMemo } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
-import type { Product } from '@/data/products';
-import ProductCard from './ProductCard';
-import styles from './Products.module.scss';
+import { useMemo, useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import type { Product } from "@/data/products";
+import ProductCard from "./ProductCard";
+import styles from "./Products.module.scss";
 
 // Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/pagination";
 
 export interface ProductSwiperProps {
   products: Product[];
@@ -26,7 +26,20 @@ function chunkProducts(products: Product[], size: number): Product[][] {
 }
 
 export default function ProductSwiper({ products, onProductClick }: ProductSwiperProps) {
-  const productChunks = useMemo(() => chunkProducts(products, 6), [products]);
+  const [chunkSize, setChunkSize] = useState(
+    typeof window !== "undefined" && window.innerWidth <= 768 ? 4 : 6
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setChunkSize(window.innerWidth <= 768 ? 4 : 6);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const productChunks = useMemo(() => chunkProducts(products, chunkSize), [products, chunkSize]);
 
   return (
     <Swiper
@@ -40,11 +53,7 @@ export default function ProductSwiper({ products, onProductClick }: ProductSwipe
         <SwiperSlide key={chunkIndex} className={styles.products__slide}>
           <div className={styles.products__slideGrid}>
             {chunk.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onClick={onProductClick}
-              />
+              <ProductCard key={product.id} product={product} onClick={onProductClick} />
             ))}
           </div>
         </SwiperSlide>

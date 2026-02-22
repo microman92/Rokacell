@@ -21,19 +21,13 @@ export default function Certificates({ dict }: CertificatesProps) {
         <Container>
           <Swiper
             spaceBetween={10}
-            slidesPerView={1.2}
+            slidesPerView={4}
             breakpoints={{
-              576: {
-                slidesPerView: 1.2,
-              },
               768: {
-                slidesPerView: 2.2,
+                slidesPerView: 2,
               },
-              992: {
-                slidesPerView: 3.2,
-              },
-              1440: {
-                slidesPerView: 4,
+              1200: {
+                slidesPerView: 3.5,
               },
             }}
             className={styles.certificates__grid}

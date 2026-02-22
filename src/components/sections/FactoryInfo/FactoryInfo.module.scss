@@ -48,6 +48,10 @@
     @include media(1440) {
       font-size: 22px;
     }
+
+    @include media(992) {
+      font-size: 20px;
+    }
   }
 
   &__img {

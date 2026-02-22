@@ -43,6 +43,10 @@
     @include media(1440) {
       max-width: 545px;
     }
+
+    @include media(992) {
+      max-width: 450px;
+    }
   }
 
   &__title {

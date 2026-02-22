@@ -5,6 +5,10 @@
         // font styles moved to Heading
         color: #000;
         margin-bottom: 64px;
+
+        @include media(992) {
+            margin-bottom: 40px;
+        }
     }
 
     &__swiper {

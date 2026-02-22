@@ -17,6 +17,10 @@
         justify-content: center;
         gap: 148px;
         margin-top: 100px;
+
+        @include media(992) {
+            gap: 40px;
+        }
     }
 
     &__card {
@@ -28,7 +32,10 @@
         border-radius: 5px;
         text-align: center;
 
-        &_icon {}
+        @include media(992) {
+            max-width: 290px;
+            padding: 25px;
+        }
 
         &_title {
             font-family: var(--second-family);

@@ -45,6 +45,10 @@
   font-weight: 400;
   font-size: 21px;
   color: var(--txt-white);
+
+  @include media(992) {
+    font-size: 18px;
+  }
 }
 
 .description {
@@ -52,6 +56,10 @@
   font-weight: 400;
   font-size: 16px;
   color: var(--txt-white);
+
+  @include media(992) {
+    font-size: 13px;
+  }
 }
 
 .more {

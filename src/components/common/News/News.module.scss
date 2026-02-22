@@ -18,6 +18,10 @@
     & h2 {
       margin-bottom: 64px;
     }
+
+    @include media(992) {
+      margin-bottom: 40px;
+    }
   }
 
   &__swiper {
@@ -58,7 +62,7 @@
     }
 
     @include media(768) {
-      grid-template-columns: 1fr;
+      grid-template-columns: 450px;
     }
   }
 

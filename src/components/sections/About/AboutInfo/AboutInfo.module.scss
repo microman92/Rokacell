@@ -17,6 +17,10 @@
     text-transform: uppercase;
     text-align: center;
     color: var(--txt-black);
+
+    @include media(992) {
+      font-size: 36px;
+    }
   }
 
   &__text {
@@ -28,6 +32,10 @@
 
     @include media(1200) {
       font-size: 20px;
+    }
+
+    @include media(992) {
+      font-size: 18px;
     }
 
     & span {

@@ -41,6 +41,10 @@
     @include media(1200) {
       max-width: 350px;
     }
+
+    @include media(992) {
+      max-width: 250px;
+    }
   }
 
   &:disabled {

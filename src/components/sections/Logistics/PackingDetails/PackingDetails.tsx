@@ -45,7 +45,7 @@ const PackingCard = ({ item, dict }: { item: PackingItem; dict?: Dictionary["log
 
       {/* Image */}
       <div className={styles.card__imageWrapper}>
-        <Image src={item.image} alt={title} width={600} height={400} quality={90} />
+        <Image src={item.image} alt={title} width={600} height={570} quality={90} />
       </div>
     </div>
   );

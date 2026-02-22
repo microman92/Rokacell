@@ -6,6 +6,16 @@
     // font styles moved to Heading
     color: var(--txt-black);
     margin-bottom: 64px;
+
+    @include media(1200) {
+        font-size: 48px;
+        margin-bottom: 40px;
+    }
+
+    @include media(768) {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
 }
 
 .industries__grid {
@@ -20,7 +30,7 @@
     display: flex;
 
     @include media(1440) {
-        max-width: 411px;
+        max-width: 476px;
     }
 }
 
@@ -50,6 +60,10 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
+
+    @include media(992) {
+        gap: 15px;
+    }
 }
 
 .industries__imgBlock {
@@ -58,6 +72,11 @@
     padding: 48px 0;
     background: var(--blue);
     justify-content: center;
+
+    @include media(992) {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .industries__imgItem {

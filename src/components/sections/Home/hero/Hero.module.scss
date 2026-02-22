@@ -38,6 +38,11 @@
 .slide__international .slide__title {
   color: var(--txt-white);
   font-size: 64px;
+
+  @include media(1200) {
+    font-size: 48px;
+  }
+
 }
 
 

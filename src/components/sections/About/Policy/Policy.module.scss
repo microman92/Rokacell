@@ -21,6 +21,10 @@
     text-transform: uppercase;
     color: var(--txt-black);
 
+    @include media(992) {
+      font-size: 36px;
+    }
+
   }
 
   &__subtitle {
@@ -108,10 +112,14 @@
 
     &_title {
       font-family: var(--font-family);
-      font-weight: 400;
+      font-weight: 700;
       font-size: 36px;
       color: var(--txt-black);
       margin-bottom: 24px;
+
+      @include media(992) {
+        font-size: 26px;
+      }
     }
 
 

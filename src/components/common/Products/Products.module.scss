@@ -15,6 +15,12 @@
     align-items: flex-end;
     justify-content: space-between;
     margin-bottom: 64px;
+
+    @include media(992) {
+      margin-bottom: 40px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 
   &__title {
@@ -94,6 +100,7 @@
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
       gap: 12px;
+      padding-bottom: 10px;
     }
   }
 }
@@ -305,6 +312,12 @@
     height: 70vh;
   }
 
+  @include media(992) {
+    padding: 40px 32px;
+    height: auto;
+    max-height: 90vh;
+  }
+
   &__closeBtn {
     position: absolute;
     top: 16px;
@@ -332,6 +345,9 @@
     align-items: flex-start;
     overflow-y: scroll;
 
+    @include media(992) {
+      gap: 24px;
+    }
   }
 
   &__imageWrapper {
@@ -340,6 +356,12 @@
     max-width: 400px;
     width: 100%;
     height: 400px;
+
+    @include media(992) {
+      max-width: 250px;
+      height: 250px;
+      flex-shrink: 0;
+    }
 
     & img {
       width: 100%;
@@ -354,6 +376,10 @@
     max-height: 400px;
     overflow-y: auto;
     padding-right: 16px;
+
+    @include media(992) {
+      max-height: 250px;
+    }
 
     // Custom scrollbar - Webkit (Chrome, Safari, Edge)
     &::-webkit-scrollbar {
@@ -387,6 +413,11 @@
     line-height: 1.3;
     color: var(--txt-white);
     margin-bottom: 36px;
+
+    @include media(992) {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
   }
 
   &__description {
@@ -396,6 +427,10 @@
     color: var(--txt-white);
     line-height: 1.6;
     white-space: pre-line; // Preserve line breaks from text
+
+    @include media(992) {
+      font-size: 16px;
+    }
   }
 }
 
