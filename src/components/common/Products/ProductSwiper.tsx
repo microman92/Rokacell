@@ -4,6 +4,7 @@ import { useMemo, useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import type { Product } from "@/data/products";
+import { motion } from "framer-motion";
 import ProductCard from "./ProductCard";
 import styles from "./Products.module.scss";
 
@@ -52,8 +53,16 @@ export default function ProductSwiper({ products, onProductClick }: ProductSwipe
       {productChunks.map((chunk, chunkIndex) => (
         <SwiperSlide key={chunkIndex} className={styles.products__slide}>
           <div className={styles.products__slideGrid}>
-            {chunk.map((product) => (
-              <ProductCard key={product.id} product={product} onClick={onProductClick} />
+            {chunk.map((product, index) => (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+              >
+                <ProductCard product={product} onClick={onProductClick} />
+              </motion.div>
             ))}
           </div>
         </SwiperSlide>

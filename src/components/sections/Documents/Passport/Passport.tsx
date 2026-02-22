@@ -1,4 +1,7 @@
+"use client";
+
 import Container from "@/components/layout/Container/Container";
+import { motion } from "framer-motion";
 import styles from "./Passport.module.scss";
 import { PASSPORT_DATA } from "@/data/DocumentsData";
 import { Dictionary } from "@/lib/i18n";
@@ -14,8 +17,15 @@ export default function Passport({ dict }: PassportProps) {
         <h2 className={styles.passport__title}>{dict?.passport?.title}</h2>
 
         <div className={styles.passport__grid}>
-          {PASSPORT_DATA.map((item) => (
-            <div key={item.id} className={styles.passport__card}>
+          {PASSPORT_DATA.map((item, index) => (
+            <motion.div
+              key={item.id}
+              className={styles.passport__card}
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+            >
               <div className={styles.passport__card_icon}>
                 <img
                   src={item.icon}
@@ -44,7 +54,7 @@ export default function Passport({ dict }: PassportProps) {
                   />
                 </svg>
               </a>
-            </div>
+            </motion.div>
           ))}
         </div>
       </Container>

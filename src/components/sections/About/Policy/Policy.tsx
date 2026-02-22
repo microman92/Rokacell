@@ -1,5 +1,8 @@
+"use client";
+
 import Container from "@/components/layout/Container/Container";
 import AccordionItem from "@/components/ui/AccordionItem/AccordionItem";
+import { motion } from "framer-motion";
 import { IMAGES } from "@/assets/images";
 import styles from "./Policy.module.scss";
 import { Dictionary } from "@/lib/i18n";
@@ -15,7 +18,13 @@ export default function Policy({ dict }: PolicyProps) {
     <section className={styles.policy}>
       <Container>
         {/* Header */}
-        <div className={styles.policy__header}>
+        <motion.div
+          className={styles.policy__header}
+          initial={{ opacity: 0, y: -50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
+        >
           <h2 className={styles.policy__title}>{policy?.header.title || "POLICY"}</h2>
           <p className={styles.policy__subtitle}>
             {policy?.header.subtitle.split("\n").map((line, i, arr) => (
@@ -25,19 +34,31 @@ export default function Policy({ dict }: PolicyProps) {
               </span>
             ))}
           </p>
-        </div>
+        </motion.div>
 
         {/* Vision & Mission */}
         <div className={styles.policy__mission}>
-          <div className={styles.policy__mission_img}>
+          <motion.div
+            className={styles.policy__mission_img}
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+          >
             <img
               src={IMAGES.about.companyPolicy}
               alt="Rokacell company policy"
               width={805}
               height={493}
             />
-          </div>
-          <div className={styles.policy__mission_text}>
+          </motion.div>
+          <motion.div
+            className={styles.policy__mission_text}
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+          >
             <h3 className={styles.policy__mission_title}>
               {policy?.mission.title || "OUR VISIONS & MISSION"}
             </h3>
@@ -51,7 +72,7 @@ export default function Policy({ dict }: PolicyProps) {
               <span>{policy?.mission.p3_2}</span>
               {policy?.mission.p3_3}
             </p>
-          </div>
+          </motion.div>
         </div>
 
         {/* Main Areas of Activity */}
@@ -60,7 +81,13 @@ export default function Policy({ dict }: PolicyProps) {
             <h3 className={styles.policy__areas_title}>{policy?.areas.title}</h3>
             {/* Accordion (Left) */}
             <div className={styles.policy__activity}>
-              <div className={styles.policy__accordion}>
+              <motion.div
+                className={styles.policy__accordion}
+                initial={{ opacity: 0, x: -100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6 }}
+              >
                 {policy?.areas.items.map((item) => (
                   <AccordionItem
                     key={item.id}
@@ -82,10 +109,16 @@ export default function Policy({ dict }: PolicyProps) {
                     defaultOpen={item.id === 1}
                   />
                 ))}
-              </div>
+              </motion.div>
 
               {/* Image (Right) */}
-              <div className={styles.policy__areas_img}>
+              <motion.div
+                className={styles.policy__areas_img}
+                initial={{ opacity: 0, x: 100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6 }}
+              >
                 <img
                   src={IMAGES.about.warmBusiness}
                   alt="The heart of a warm business"
@@ -95,13 +128,21 @@ export default function Policy({ dict }: PolicyProps) {
                 <h3>
                   {policy?.areas.img_title_1} <span>{policy?.areas.img_title_2}</span>
                 </h3>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
 
         {/* Footer Disclaimer */}
-        <p className={styles.policy__disclaimer}>{policy?.disclaimer}</p>
+        <motion.p
+          className={styles.policy__disclaimer}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
+        >
+          {policy?.disclaimer}
+        </motion.p>
       </Container>
     </section>
   );

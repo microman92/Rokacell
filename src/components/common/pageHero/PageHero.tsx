@@ -1,8 +1,11 @@
+"use client";
+
 import { ReactNode } from "react";
 import Container from "@/components/layout/Container/Container";
 import styles from "./PageHero.module.scss";
 import { Heading } from "@/components/ui/Heading/Heading";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 interface PageHeroProps {
   title: ReactNode;
@@ -32,9 +35,15 @@ export default function PageHero({
   const isAbsoluteOverlay = variant === "about" || variant === "logistics";
 
   const overlayElement = overlayImage && (
-    <div className={styles.hero__overlay}>
+    <motion.div
+      initial={{ opacity: 0, x: 100 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.7 }}
+      className={styles.hero__overlay}
+    >
       <img src={overlayImage} alt="" />
-    </div>
+    </motion.div>
   );
 
   return (
@@ -50,10 +59,22 @@ export default function PageHero({
       {isAbsoluteOverlay && overlayElement}
 
       <Container className={styles.hero__content}>
-        <div className={styles.hero__desc}>
-          <Heading variant={variant === 'logistics' ? 'white' : 'black'} tag="h1" className={styles.hero__title}>{title}</Heading>
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.7 }}
+          className={styles.hero__desc}
+        >
+          <Heading
+            variant={variant === "logistics" ? "white" : "black"}
+            tag="h1"
+            className={styles.hero__title}
+          >
+            {title}
+          </Heading>
           {description && <p className={styles.hero__description}>{description}</p>}
-        </div>
+        </motion.div>
 
         {/* Overlay — в потоке (Documents и др.) */}
         {!isAbsoluteOverlay && overlayElement}

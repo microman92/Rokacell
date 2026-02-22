@@ -1,4 +1,7 @@
+"use client";
+
 import Container from "@/components/layout/Container/Container";
+import { motion } from "framer-motion";
 import styles from "./FactoryInfo.module.scss";
 import { IMAGES } from "@/assets/images";
 import { Dictionary } from "@/lib/i18n";
@@ -13,11 +16,23 @@ export default function FactoryInfo({ dict }: FactoryInfoProps) {
   return (
     <div className={styles.factoryInfo}>
       <Container className={styles.factoryInfo__content}>
-        <div className={styles.factoryInfo__img}>
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7 }}
+          className={styles.factoryInfo__img}
+        >
           <img src={IMAGES.about.plant} alt="" width={941} height={529} />
-        </div>
+        </motion.div>
 
-        <div className={styles.factoryInfo__description}>
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7 }}
+          className={styles.factoryInfo__description}
+        >
           <p className={styles.factoryInfo__text}>
             {factory?.p1_1 || ""}
             <span>Rokacell</span>
@@ -33,7 +48,7 @@ export default function FactoryInfo({ dict }: FactoryInfoProps) {
             <span>Rokacell</span>
             {factory?.p3_2 || ""}
           </p>
-        </div>
+        </motion.div>
       </Container>
     </div>
   );

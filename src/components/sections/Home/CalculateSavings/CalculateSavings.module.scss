@@ -88,4 +88,28 @@
       font-size: 21px;
     }
   }
+
+  &__buttonWrapper {
+    width: 100%;
+    max-width: 550px;
+    display: flex;
+    justify-content: flex-end;
+
+    @include media(1440) {
+      max-width: 450px;
+    }
+
+    @include media(1200) {
+      max-width: 350px;
+    }
+
+    @include media(992) {
+      max-width: 250px;
+    }
+
+    @include media(768) {
+      max-width: 100%;
+      justify-content: center;
+    }
+  }
 }

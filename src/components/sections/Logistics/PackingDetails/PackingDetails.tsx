@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import styles from "./PackingDetails.module.scss";
 import Container from "@/components/layout/Container/Container";
 import { PACKING_DATA, PackingItem } from "@/data/packingData";
@@ -15,7 +18,13 @@ const PackingCard = ({ item, dict }: { item: PackingItem; dict?: Dictionary["log
   return (
     <div className={styles.card}>
       {/* Text Content */}
-      <div className={styles.card__content}>
+      <motion.div
+        className={styles.card__content}
+        initial={{ opacity: 0, x: -100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6 }}
+      >
         <h3 className={styles.card__title}>{title}</h3>
         {subtitle && <p className={styles.card__subtitle}>{subtitle}</p>}
 
@@ -41,12 +50,18 @@ const PackingCard = ({ item, dict }: { item: PackingItem; dict?: Dictionary["log
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Image */}
-      <div className={styles.card__imageWrapper}>
+      <motion.div
+        className={styles.card__imageWrapper}
+        initial={{ opacity: 0, x: 100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6 }}
+      >
         <Image src={item.image} alt={title} width={600} height={570} quality={90} />
-      </div>
+      </motion.div>
     </div>
   );
 };
@@ -61,12 +76,18 @@ export default function PackingDetails({ dict }: { dict?: Dictionary["logistics"
           return (
             <div key={catIndex} className={styles.category}>
               {/* Header */}
-              <div className={styles.category__header}>
+              <motion.div
+                className={styles.category__header}
+                initial={{ opacity: 0, y: -50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5 }}
+              >
                 <h2 className={styles.category__title}>
                   {categoryTrans?.title || category.categoryKey}
                 </h2>
                 <p className={styles.category__desc}>{categoryTrans?.description}</p>
-              </div>
+              </motion.div>
 
               {/* Cards */}
               <div className={styles.category__items}>

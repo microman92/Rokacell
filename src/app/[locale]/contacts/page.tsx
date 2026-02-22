@@ -18,7 +18,7 @@ export default async function ContactsPage({ params }: { params: Promise<{ local
           {branchesDict?.title || "НАШИ ФИЛИАЛЫ"}
         </Heading>
         <div className={styles.contacts__branches}>
-          {BRANCHES.map((branch) => {
+          {BRANCHES.map((branch, index) => {
             const translatedBranch = { ...branch };
             // Подменяем данные на переведенные, если они есть
             const t =
@@ -29,7 +29,7 @@ export default async function ContactsPage({ params }: { params: Promise<{ local
               if (t.address !== undefined) translatedBranch.address = t.address;
             }
 
-            return <Contacts key={branch.id} data={translatedBranch as never} />;
+            return <Contacts key={branch.id} index={index} data={translatedBranch as never} />;
           })}
         </div>
       </Container>

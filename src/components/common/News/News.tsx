@@ -2,6 +2,7 @@
 
 import styles from "./News.module.scss";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import Heading from "@/components/ui/Heading/Heading";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -25,7 +26,7 @@ export const NEWS_SLIDER_CONFIG = {
   breakpoints: {
     375: {
       slidesPerView: 1,
-      },
+    },
     992: {
       slidesPerView: 2,
       spaceBetween: 20,
@@ -74,11 +75,18 @@ export const News = ({ variant, dict }: NewsProps) => {
             breakpoints={NEWS_SLIDER_CONFIG.breakpoints}
             className={styles.swiper}
           >
-            {NEWS_DATA.map((item) => (
+            {NEWS_DATA.map((item, index) => (
               <SwiperSlide key={item.id} className={styles.slide}>
-                <Link href={`/news/${item.slug}`} className={styles.slide__link}>
-                  <NewsCard item={item} />
-                </Link>
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.5, delay: index * 0.15 }}
+                >
+                  <Link href={`/news/${item.slug}`} className={styles.slide__link}>
+                    <NewsCard item={item} />
+                  </Link>
+                </motion.div>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -86,12 +94,19 @@ export const News = ({ variant, dict }: NewsProps) => {
       )}
       {isAboutPage && (
         <Container className={styles.news__wrapper}>
-          {NEWS_DATA.map((item) => (
-            <div key={item.id} className={styles.news__item}>
+          {NEWS_DATA.map((item, index) => (
+            <motion.div
+              key={item.id}
+              className={styles.news__item}
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+            >
               <Link href={`/news/${item.slug}`} className={styles.news__link}>
                 <NewsCard item={item} />
               </Link>
-            </div>
+            </motion.div>
           ))}
         </Container>
       )}
