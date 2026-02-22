@@ -80,6 +80,11 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  border-bottom: 1px solid var(--yellow);
+
+  @include media(576) {
+    height: 60dvh;
+  }
 
   &.active {
     transform: translateY(0);
@@ -136,6 +141,11 @@
     margin: 0;
     width: 100%;
     max-width: 600px;
+
+    @include media(576) {
+      grid-template-columns: 1fr;
+      justify-content: center;
+    }
   }
 
   &__link {

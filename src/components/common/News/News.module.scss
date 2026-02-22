@@ -31,6 +31,11 @@
     @include media(1440) {
       margin-left: 20px;
     }
+
+    @include media(768) {
+      margin-left: 0;
+      padding: 0 20px;
+    }
   }
 
   &__slide {

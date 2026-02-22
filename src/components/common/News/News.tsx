@@ -23,9 +23,9 @@ export const NEWS_SLIDER_CONFIG = {
   spaceBetween: 28,
   loop: true,
   breakpoints: {
-    640: {
-      slidesPerView: 2.2,
-    },
+    375: {
+      slidesPerView: 1,
+      },
     992: {
       slidesPerView: 2,
       spaceBetween: 20,
@@ -42,11 +42,10 @@ export const NEWS_SLIDER_CONFIG = {
 interface NewsProps {
   locale?: Locale; // Optional if needed for localization later
   variant?: "home" | "about";
-  dict?: Dictionary['news'];
+  dict?: Dictionary["news"];
 }
 
 export const News = ({ variant, dict }: NewsProps) => {
-
   const isAboutPage = variant === "about";
 
   return (
@@ -57,7 +56,7 @@ export const News = ({ variant, dict }: NewsProps) => {
         </Heading>
       </Container>
 
-      {!isAboutPage &&
+      {!isAboutPage && (
         <div className={styles.news__swiper}>
           <Swiper
             modules={[Autoplay]}
@@ -83,13 +82,10 @@ export const News = ({ variant, dict }: NewsProps) => {
               </SwiperSlide>
             ))}
           </Swiper>
-
         </div>
-      }
-      {isAboutPage &&
-
+      )}
+      {isAboutPage && (
         <Container className={styles.news__wrapper}>
-
           {NEWS_DATA.map((item) => (
             <div key={item.id} className={styles.news__item}>
               <Link href={`/news/${item.slug}`} className={styles.news__link}>
@@ -97,12 +93,8 @@ export const News = ({ variant, dict }: NewsProps) => {
               </Link>
             </div>
           ))}
-
         </Container>
-      }
-
-
+      )}
     </section>
   );
 };
-

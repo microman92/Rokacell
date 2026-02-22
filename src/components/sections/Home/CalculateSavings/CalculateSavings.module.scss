@@ -27,12 +27,26 @@
     padding: 50px 0;
     background: rgba(33, 89, 123, 0.8);
     width: 100%;
+
+    @include media(768) {
+      padding: 0;
+      height: 100%;
+    }
   }
 
   &__container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @include media(768) {
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+      gap: 50px;
+      justify-content: center;
+      height: 100%;
+    }
   }
 
   &__text {

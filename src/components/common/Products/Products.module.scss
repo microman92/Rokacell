@@ -256,24 +256,7 @@
   }
 }
 
-// Responsive adjustments
-@media (max-width: 576px) {
-  .products {
-    padding: 40px 0;
 
-    &__title {
-      font-size: 24px;
-    }
-  }
-
-  .tabs {
-    gap: 16px;
-
-    &__btn {
-      font-size: 14px;
-    }
-  }
-}
 
 // ==========================================
 // MODAL STYLES

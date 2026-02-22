@@ -9,6 +9,10 @@
     height: 780px;
   }
 
+  @include media(576) {
+    height: 680px;
+  }
+
   &__content {
     background: #1d1d1d;
     height: 100%;
@@ -41,6 +45,10 @@
 
   @include media(1200) {
     font-size: 48px;
+  }
+
+  @include media(576) {
+    font-size: 36px;
   }
 
 }
@@ -83,6 +91,10 @@
       @include media(1440) {
         max-width: 550px;
       }
+
+      @include media(992) {
+        margin: 0 auto;
+      }
     }
 
 
@@ -94,6 +106,10 @@
       align-items: center;
       justify-content: space-between;
       height: 660px;
+
+      @include media(768) {
+        height: 570px;
+      }
     }
 
   }
@@ -103,6 +119,10 @@
 
     & img {
       width: 100%;
+    }
+
+    @include media(992) {
+      display: none;
     }
   }
 
@@ -176,6 +196,20 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
+      & h2 {
+        @include media(576) {
+          font-size: 28px;
+        }
+      }
+
+      & p {
+        @include media(576) {
+          font-size: 18px;
+          line-height: 150%;
+          max-width: 340px;
+        }
+      }
     }
   }
 }
@@ -200,6 +234,11 @@
     max-width: 250px;
     height: 250px;
   }
+
+  @include media(1200) {
+    max-width: 200px;
+    height: 200px;
+  }
 }
 
 .productRoll:nth-child(1) {
@@ -214,6 +253,10 @@
   @include media(1440) {
     left: 230px;
   }
+
+  @include media(1200) {
+    left: 185px;
+  }
 }
 
 .productRoll:nth-child(3) {
@@ -221,6 +264,14 @@
 
   @include media(1440) {
     left: 460px;
+  }
+
+  @include media(1440) {
+    left: 370px;
+  }
+
+  @include media(390) {
+    display: none;
   }
 }
 

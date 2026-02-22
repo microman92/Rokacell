@@ -2,10 +2,23 @@
   background: var(--blue);
   padding: 90px 0;
 
+
+  @include media(768) {
+    padding: 32px 0;
+  }
+
   &__inner {
     display: flex;
     justify-content: space-between;
     margin-bottom: 50px;
+
+    @include media(768) {
+      flex-wrap: wrap;
+      justify-content: center;
+      row-gap: 60px;
+      column-gap: 30px;
+      margin-top: 20px;
+    }
   }
 
   &__contacts {
