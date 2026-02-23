@@ -5,6 +5,9 @@ import { BRANCHES } from "@/data/branches.data";
 import styles from "./contacts.module.scss";
 import { getDictionary, Dictionary } from "@/lib/i18n";
 import { Locale } from "@/lib/locales";
+import { createPageMetadata } from "@/lib/seo";
+
+export const generateMetadata = createPageMetadata("contacts", "/contacts");
 
 export default async function ContactsPage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;

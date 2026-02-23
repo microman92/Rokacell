@@ -25,7 +25,8 @@ export default function Branches({ dict }: BranchesProps) {
         <Swiper
           className={styles.branches__swiper}
           modules={[Autoplay, Pagination]}
-          autoplay={{ delay: 50000000 }}
+          autoplay={{ delay: 4500 }}
+          speed={1000}
           pagination={{ clickable: true }}
         >
           {BRANCHES.map((branch) => {

@@ -4,7 +4,8 @@ import { useState, useMemo, useCallback, type ComponentType } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import Container from "@/components/layout/Container/Container";
-import { PRODUCTS, PRODUCT_TABS, type TabId, type Product } from "@/data/products";
+import { PRODUCTS, PRODUCT_TABS, type Product } from "@/data/products";
+import { type Category } from "@/services/categories";
 
 import ProductModal from "./ProductModal";
 import type { ProductSwiperProps } from "./ProductSwiper";
@@ -25,10 +26,14 @@ interface ProductsProps {
   /** Controls visual variant: 'home' shows as a section, 'page' as full-page content */
   variant?: "home" | "page";
   /** Default active tab on mount */
-  defaultTab?: TabId;
+  defaultTab?: string;
   /** Whether to show the section title */
   showTitle?: boolean;
   dict?: Dictionary["products"];
+
+  // Добавлены пропсы для данных из API
+  products?: Product[];
+  categories?: Category[];
 }
 
 export default function Products({
@@ -36,14 +41,18 @@ export default function Products({
   defaultTab = "rolls",
   showTitle = true,
   dict,
+  products = PRODUCTS,
+  categories = PRODUCT_TABS as unknown as Category[], // Каст, так как PRODUCT_TABS read-only
 }: ProductsProps) {
-  const [activeTab, setActiveTab] = useState<TabId>(defaultTab);
+  // Инициализируем активную вкладку первой категорией из массива API или переданным defaultTab
+  const initialTab = defaultTab === "rolls" ? (categories?.[0]?.id || "rolls") : defaultTab;
+  const [activeTab, setActiveTab] = useState<string>(initialTab);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const filteredProducts = useMemo(() => {
-    if (activeTab === "all") return PRODUCTS;
-    return PRODUCTS.filter((product) => product.category === activeTab);
-  }, [activeTab]);
+    if (activeTab === "all") return products;
+    return products.filter((product) => product.category === activeTab);
+  }, [activeTab, products]);
 
   // Stable callback — passed to memoized ProductCard without creating new refs per item
   const handleProductClick = useCallback((product: Product) => {
@@ -75,7 +84,7 @@ export default function Products({
 
           {/* Tabs */}
           <nav className={styles.tabs} role="tablist" aria-label="Product categories">
-            {PRODUCT_TABS.map((tab) => (
+            {categories.map((tab) => (
               <button
                 key={tab.id}
                 role="tab"
@@ -84,7 +93,7 @@ export default function Products({
                 className={`${styles.tabs__btn} ${activeTab === tab.id ? styles["tabs__btn--active"] : ""}`}
                 onClick={() => setActiveTab(tab.id)}
               >
-                {dict?.tabs?.[tab.id] || tab.label}
+                {dict?.tabs?.[tab.id as keyof typeof dict.tabs] || tab.label}
               </button>
             ))}
           </nav>

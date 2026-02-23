@@ -3,9 +3,11 @@ import PageHero from "@/components/common/pageHero/PageHero";
 import Passport from "@/components/sections/Documents/Passport/Passport";
 import Certificates from "@/components/sections/Documents/Certificates/Certificates";
 import Quality from "@/components/sections/Documents/Quality/Quality";
-
 import { Locale } from "@/lib/locales";
 import { getDictionary } from "@/lib/i18n";
+import { createPageMetadata } from "@/lib/seo";
+
+export const generateMetadata = createPageMetadata("documents", "/documents");
 
 export default async function DocumentsPage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;

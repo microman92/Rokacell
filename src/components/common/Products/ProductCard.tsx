@@ -35,8 +35,8 @@ const ProductCard = memo(function ProductCard({ product, onClick }: ProductCardP
         <h3 className={styles.card__title}>{product.name}</h3>
         <p className={styles.card__description}>
           {product.description}
-          <span className={styles.card__moreBtn}>more...</span>
         </p>
+        <span className={styles.card__moreBtn}> читать далее...</span>
       </div>
     </article>
   );

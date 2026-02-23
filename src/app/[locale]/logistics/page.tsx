@@ -3,6 +3,9 @@ import { getDictionary } from "@/lib/i18n";
 import { IMAGES } from "@/assets/images";
 import PageHero from "@/components/common/pageHero/PageHero";
 import PackingDetails from "@/components/sections/Logistics/PackingDetails/PackingDetails";
+import { createPageMetadata } from "@/lib/seo";
+
+export const generateMetadata = createPageMetadata("logistics", "/logistics");
 
 export default async function LogisticsPage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;

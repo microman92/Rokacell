@@ -44,9 +44,10 @@ interface NewsProps {
   locale?: Locale; // Optional if needed for localization later
   variant?: "home" | "about";
   dict?: Dictionary["news"];
+  news?: typeof NEWS_DATA;
 }
 
-export const News = ({ variant, dict }: NewsProps) => {
+export const News = ({ variant, dict, news = NEWS_DATA }: NewsProps) => {
   const isAboutPage = variant === "about";
 
   return (
@@ -75,7 +76,7 @@ export const News = ({ variant, dict }: NewsProps) => {
             breakpoints={NEWS_SLIDER_CONFIG.breakpoints}
             className={styles.swiper}
           >
-            {NEWS_DATA.map((item, index) => (
+            {news.map((item, index) => (
               <SwiperSlide key={item.id} className={styles.slide}>
                 <motion.div
                   initial={{ opacity: 0, x: -50 }}
@@ -94,7 +95,7 @@ export const News = ({ variant, dict }: NewsProps) => {
       )}
       {isAboutPage && (
         <Container className={styles.news__wrapper}>
-          {NEWS_DATA.map((item, index) => (
+          {news.map((item, index) => (
             <motion.div
               key={item.id}
               className={styles.news__item}

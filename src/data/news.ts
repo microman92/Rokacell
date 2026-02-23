@@ -1,5 +1,16 @@
-import { NewsItem } from '@/types';
 import { IMAGES } from '@/assets/images';
+
+export interface NewsItem {
+  id: string;
+  title: string;
+  description?: string;
+  excerpt?: string;
+  content?: string;
+  image?: any;
+  slug: string;
+  date: string;
+  category?: string;
+}
 
 export const NEWS_DATA: NewsItem[] = [
   {
@@ -37,14 +48,5 @@ export const NEWS_DATA: NewsItem[] = [
     image: IMAGES.news.tashkent,
     slug: 'aquatherm-tashkent-2025',
     date: '2025-10-01',
-  },
-  {
-    id: '5',
-    title: 'New Insulation Technologies 2026',
-    description:
-      'Discover the latest advancements in thermal insulation technology that ROKACELL is bringing to the market next year with improved efficiency.',
-    image: IMAGES.news.tashkent,
-    slug: 'new-technologies-2026',
-    date: '2026-01-15',
   },
 ];
