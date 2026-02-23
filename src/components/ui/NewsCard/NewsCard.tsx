@@ -1,5 +1,5 @@
 import styles from "./NewsCard.module.scss";
-import type { NewsItem } from "@/types";
+import type { NewsItem } from "@/data/news";
 
 interface NewsCardProps {
   item: NewsItem;

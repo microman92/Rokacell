@@ -3,7 +3,7 @@ import { openSans, robotoCondensed, inter } from '@/lib/fonts';
 import "@/styles/globals.scss";
 import Header from "@/components/layout/Header/Header";
 import Footer from "@/components/layout/Footer/Footer";
-import { Locale } from "@/lib/locales";
+import { Locale, getValidLocale } from "@/lib/locales";
 
 const BASE_URL = "https://rokacell.com";
 
@@ -34,9 +34,10 @@ const META: Record<Locale, { title: string; description: string; keywords: strin
 export async function generateMetadata({
   params
 }: {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  const { locale } = await params;
+  const { locale: rawLocale } = await params;
+  const locale = getValidLocale(rawLocale);
   const m = META[locale] ?? META.ru;
 
   return {
@@ -100,9 +101,10 @@ export default async function LocalizedLayout({
   params
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }>) {
-  const { locale } = await params;
+  const { locale: rawLocale } = await params;
+  const locale = getValidLocale(rawLocale);
   return (
     <html lang={locale}>
       <body className={`${openSans.variable} ${robotoCondensed.variable} ${inter.variable}`}>
