@@ -7,7 +7,7 @@ import Container from "@/components/layout/Container/Container";
 import { PACKING_DATA, PackingItem } from "@/data/packingData";
 import { Dictionary } from "@/lib/i18n";
 
-// --- Components ---
+
 
 const PackingCard = ({ item, dict }: { item: PackingItem; dict?: Dictionary["logistics"] }) => {
   const title = dict?.transport?.[item.titleKey as keyof typeof dict.transport] || item.titleKey;
@@ -17,7 +17,7 @@ const PackingCard = ({ item, dict }: { item: PackingItem; dict?: Dictionary["log
 
   return (
     <div className={styles.card}>
-      {/* Text Content */}
+      {}
       <motion.div
         className={styles.card__content}
         initial={{ opacity: 0, x: -100 }}
@@ -52,7 +52,7 @@ const PackingCard = ({ item, dict }: { item: PackingItem; dict?: Dictionary["log
         </div>
       </motion.div>
 
-      {/* Image */}
+      {}
       <motion.div
         className={styles.card__imageWrapper}
         initial={{ opacity: 0, x: 100 }}
@@ -75,7 +75,7 @@ export default function PackingDetails({ dict }: { dict?: Dictionary["logistics"
             dict?.categories?.[category.categoryKey as keyof typeof dict.categories];
           return (
             <div key={catIndex} className={styles.category}>
-              {/* Header */}
+              {}
               <motion.div
                 className={styles.category__header}
                 initial={{ opacity: 0, y: -50 }}
@@ -89,7 +89,7 @@ export default function PackingDetails({ dict }: { dict?: Dictionary["logistics"
                 <p className={styles.category__desc}>{categoryTrans?.description}</p>
               </motion.div>
 
-              {/* Cards */}
+              {}
               <div className={styles.category__items}>
                 {category.items.map((item) => (
                   <PackingCard key={item.key} item={item} dict={dict} />

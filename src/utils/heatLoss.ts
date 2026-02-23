@@ -1,26 +1,11 @@
 import { interpolateLambda } from './thermal';
 import { ALL_TUBE_SIZES } from './constants';
 
-/**
- * Расчёт теплопотерь для изолированной и неизолированной трубы согласно ISO 12241
- * 
- * Формула: q = |ΔT| / R' [Вт/м]
- * где:
- *   q - тепловой поток на единицу длины [Вт/м]
- *   ΔT - разность температур [К]
- *   R' - термическое сопротивление на единицу длины [м·К/Вт]
- * 
- * @param deltaT Разность температур, K
- * @param R_total Термическое сопротивление изолированной трубы на единицу длины, m·K/W
- * @param R_total_uninsulated Термическое сопротивление неизолированной трубы на единицу длины, m·K/W
- * @returns Результаты расчёта: теплопотери и снижение потерь
- */
 export const calculateHeatLosses = (
   deltaT: number,
   R_total: number,
   R_total_uninsulated: number
 ): { heatLoss: number; heatLossUninsulated: number; decrease: number } => {
-  // Валидация входных параметров
   if (R_total <= 0) {
     throw new Error('Термическое сопротивление изолированной трубы должно быть положительным');
   }
@@ -28,10 +13,6 @@ export const calculateHeatLosses = (
     throw new Error('Термическое сопротивление неизолированной трубы должно быть положительным');
   }
 
-  // Предупреждение: обычно изоляция увеличивает термическое сопротивление
-  // (R_total > R_total_uninsulated), что снижает теплопотери
-  // Однако при очень тонкой изоляции или малых диаметрах может наблюдаться
-  // эффект "критического диаметра", когда изоляция неэффективна
   if (R_total <= R_total_uninsulated) {
     console.warn(
       `Внимание: Термическое сопротивление изолированной трубы (${R_total.toFixed(4)} м·К/Вт) ` +
@@ -40,13 +21,10 @@ export const calculateHeatLosses = (
     );
   }
 
-  // Тепловой поток на единицу длины для изолированной трубы [Вт/м]
   const heatLoss = Math.abs(deltaT) / R_total;
 
-  // Тепловой поток на единицу длины для неизолированной трубы [Вт/м]
   const heatLossUninsulated = Math.abs(deltaT) / R_total_uninsulated;
 
-  // Снижение теплопотерь [%]
   const decrease = ((heatLossUninsulated - heatLoss) / heatLossUninsulated) * 100;
 
   return { heatLoss, heatLossUninsulated, decrease };
@@ -94,20 +72,6 @@ export const getAvailableThicknesses = (diameter: number): number[] => {
   return Object.keys(tubeSize.wallThicknesses).map(Number).sort((a, b) => a - b);
 };
 
-/**
- * Расчёт рекомендуемой толщины изоляции согласно ISO 12241
- * 
- * Подбирает минимальную толщину из доступных размеров, при которой
- * теплопотери не превышают 15 Вт/м (целевое значение)
- * 
- * @param ambientTemp Температура окружающей среды, °C
- * @param mediumTemp Температура среды в трубе, °C
- * @param tubeDiameter Диаметр трубы, mm
- * @param pipeWallThickness Толщина стенки трубы, mm
- * @param material Материал изоляции
- * @param h Коэффициент теплопередачи, W/(m²·K)
- * @returns Рекомендуемая толщина изоляции, mm
- */
 export const getRecommendedThickness = (
   ambientTemp: number,
   mediumTemp: number,
@@ -118,45 +82,30 @@ export const getRecommendedThickness = (
 ): number => {
   const candidates = getAvailableThicknesses(tubeDiameter);
 
-  // Радиусы трубы [м]
   const rOuterPipe = tubeDiameter / 2 / 1000;
   const rInnerPipe = Math.max(1e-6, rOuterPipe - (pipeWallThickness ?? 0) / 1000);
 
-  // Используется температура окружающей среды для определения lambda
-  // Используем T_amb вместо T_mean
-  const lambdaInsul = interpolateLambda(ambientTemp, material); // [Вт/(м·К)]
-  const lambdaPipe = 50; // теплопроводность стали, W/(m·K)
+  const lambdaInsul = interpolateLambda(ambientTemp, material);
+  const lambdaPipe = 50;
 
-  // Разность температур [К]
   const deltaT = mediumTemp - ambientTemp;
 
-  // Целевое значение теплопотерь [Вт/м]
   const targetHeatLoss = 15;
 
-  // Проверяем каждую доступную толщину
   for (const t of candidates) {
-    // Наружный радиус с изоляцией [м]
     const ro = rOuterPipe + t / 1000;
 
-    // Термические сопротивления на единицу длины [м·К/Вт]
     const R_pipe = Math.log(rOuterPipe / rInnerPipe) / (2 * Math.PI * lambdaPipe);
     const R_insul = Math.log(ro / rOuterPipe) / (2 * Math.PI * lambdaInsul);
     const R_conv = 1 / (h * 2 * Math.PI * ro);
     const R_total = R_pipe + R_insul + R_conv;
 
-    // Термическое сопротивление неизолированной трубы [м·К/Вт]
     const R_unins = R_pipe + 1 / (h * 2 * Math.PI * rOuterPipe);
 
-    // Расчёт теплопотерь [Вт/м]
     const { heatLoss } = calculateHeatLosses(deltaT, R_total, R_unins);
 
-    // Если теплопотери не превышают целевое значение, возвращаем эту толщину
     if (heatLoss <= targetHeatLoss) return t;
   }
 
-  // Если ни одна толщина не подходит, возвращаем максимальную
-  return candidates[candidates.length - 1];
+  return candidates[candidates.length - 1] ?? 32;
 };
-
-
-

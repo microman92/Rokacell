@@ -7,14 +7,11 @@ interface SlideProps {
   dict?: { title: string; subtitle?: string };
 }
 
-/**
- * Слайд 1 — Efficient Thermal Insulation
- * Тёмный фон с продуктом, текст слева-сверху
- */
+
 export default function ThermalSlide({ dict }: SlideProps) {
   return (
     <>
-      {/* Background */}
+      {}
       <img
         src={IMAGES.home.hero.bg.insulation}
         alt={dict?.title || "Rokacell efficient thermal insulation"}

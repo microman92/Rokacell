@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useCurrentLocale } from '@/hooks/useCurrentLocale';
 import { href, ROUTES } from '@/lib/routes';
 import styles from '../HeatLossCalculator.module.scss';
-// modal styles are now imported in child modals
+
 import CalculateHModal from './CalculateHModal';
 import HelpModal from './HelpModal';
 import type { CondensationResults, CondensationModalParams } from '@/types/calculator';
@@ -26,7 +26,7 @@ interface CondensationCalculatorProps {
 const CondensationCalculator: React.FC<CondensationCalculatorProps> = ({ dict }) => {
   const router = useRouter();
   const locale = useCurrentLocale();
-  // Using shared store for common parameters
+  
   const {
     ambientTemp,
     mediumTemp,
@@ -44,25 +44,25 @@ const CondensationCalculator: React.FC<CondensationCalculatorProps> = ({ dict })
     setEmissivity,
   } = useCalculatorStore();
 
-  // Local parameter for relative humidity
+  
   const [relativeHumidity, setRelativeHumidity] = useState<number>(60.0);
 
-  // Параметр для отключения коэффициента безопасности 0.75
+  
   const [applySafetyFactor, setApplySafetyFactor] = useState<boolean>(false);
-  // Использовать продвинутый алгоритм
+  
   const [useAdvancedAlgorithm, setUseAdvancedAlgorithm] = useState<boolean>(true);
 
-  // Calculation results state
+  
   const [results, setResults] = useState<CondensationResults>({
     dewpointTemperature: 0,
     minimumThickness: 0,
     nominalThickness: '',
   });
 
-  // State to track if at least one calculation was performed
+  
   const [, setHasCalculated] = useState<boolean>(false);
 
-  // Modal window state
+  
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalParams, setModalParams] = useState<CondensationModalParams>({
     calculationType: 'inside',
@@ -70,21 +70,21 @@ const CondensationCalculator: React.FC<CondensationCalculatorProps> = ({ dict })
     emissivity,
   });
 
-  // Help modal window state
+  
   const [isHelpModalOpen, setIsHelpModalOpen] = useState<boolean>(false);
 
-  // Main condensation calculation function
+  
   const calculateCondensation = (): void => {
-    // Input data validation
+    
     if (relativeHumidity <= 0 || relativeHumidity > 100 || h <= 0) {
       return;
     }
 
     try {
-      // Dew point calculation
+      
       const dewPoint = calculateDewPoint(ambientTemp, relativeHumidity);
 
-      // Minimum insulation thickness calculation
+      
       const minThickness = calculateMinimumThickness(
         tubeDiameter,
         ambientTemp,
@@ -94,19 +94,19 @@ const CondensationCalculator: React.FC<CondensationCalculatorProps> = ({ dict })
         h
       );
 
-      // Recommended thickness with 20% margin
+      
       const nominalThickness = Math.ceil(minThickness * 1.2);
 
-      // Find available thicknesses for selected pipe diameter
+      
       const selectedTube = ALL_TUBE_SIZES.find(tube => tube.mm === tubeDiameter);
       const availableThicknesses = selectedTube && selectedTube.wallThicknesses
         ? Object.keys(selectedTube.wallThicknesses).map(Number).sort((a, b) => a - b)
         : [6, 9, 13, 19, 25, 32];
 
-      // Select nearest available thickness that is greater than or equal to nominal
+      
       const recommendedThickness = availableThicknesses.find(t => t >= nominalThickness) || availableThicknesses[availableThicknesses.length - 1];
 
-      // Form recommendation with stock information
+      
       let recommendation = '';
       if (selectedTube) {
         recommendation = `${formatTubeName(selectedTube)} - ${recommendedThickness}mm`;
@@ -122,7 +122,7 @@ const CondensationCalculator: React.FC<CondensationCalculatorProps> = ({ dict })
 
       setHasCalculated(true);
     } catch (error) {
-      // Показываем ошибку пользователю
+      
       if (error instanceof Error) {
         alert(error.message);
       } else {
@@ -131,24 +131,24 @@ const CondensationCalculator: React.FC<CondensationCalculatorProps> = ({ dict })
     }
   };
 
-  // Handler for opening modal window for h coefficient calculation
+  
   const handleCalculateH = (): void => {
     setModalParams({ calculationType: 'inside', orientation, emissivity });
     setIsModalOpen(true);
   };
 
-  // Handler for opening help modal window
+  
   const handleOpenHelp = (): void => {
     setIsHelpModalOpen(true);
   };
 
-  // Heat transfer coefficient calculation function
+  
   const calculateH = (): void => {
     const { calculationType, orientation: modalOrientation, emissivity: modalEmissivity } = modalParams;
 
-    // Для расчёта H используем типичную толщину изоляции 9 мм для оценки наружного диаметра
-    // Это необходимо, так как H зависит от наружного диаметра изоляции
-    const typicalInsulationThickness = 9; // мм
+    
+    
+    const typicalInsulationThickness = 9; 
 
     const h_total = computeH({
       ambientTemp,
@@ -157,13 +157,13 @@ const CondensationCalculator: React.FC<CondensationCalculatorProps> = ({ dict })
       orientation: modalOrientation,
       emissivity: modalEmissivity,
       calculationType,
-      insulationThickness: typicalInsulationThickness, // Используем типичную толщину для оценки H
+      insulationThickness: typicalInsulationThickness, 
       useSimplifiedFormula: false,
-      applySafetyFactor, // Применять ли коэффициент безопасности 0.75
+      applySafetyFactor, 
       useAdvancedAlgorithm: false,
       useAdvancedSheetsAlgorithm: false,
-      useKFlexAlgorithm: true, // использовать алгоритм, согласованный с K‑FLEX
-      forCondensation: true, // специальный режим для конденсации
+      useKFlexAlgorithm: true, 
+      forCondensation: true, 
     });
 
     setH(h_total);
@@ -172,12 +172,12 @@ const CondensationCalculator: React.FC<CondensationCalculatorProps> = ({ dict })
     setIsModalOpen(false);
   };
 
-  // Reset default values and go back
+  
   const handleBack = (): void => {
-    // Reset common parameters from store
+    
     useCalculatorStore.getState().reset();
 
-    // Reset local parameters and results
+    
     setRelativeHumidity(60.0);
     setResults({ dewpointTemperature: 0, minimumThickness: 0, nominalThickness: '' });
     setHasCalculated(false);
@@ -188,7 +188,7 @@ const CondensationCalculator: React.FC<CondensationCalculatorProps> = ({ dict })
     router.push(href(locale, ROUTES.CALCULATOR));
   };
 
-  // Style adapter for common field
+  
   const fieldStyles = {
     heatLossCalculator__field: styles.heatLossCalculator__field as string,
     heatLossCalculator__field_label: styles.heatLossCalculator__field_label as string,
@@ -205,7 +205,7 @@ const CondensationCalculator: React.FC<CondensationCalculatorProps> = ({ dict })
         </div>
 
         <div className={styles.heatLossCalculator__content}>
-          {/* Parameters Section */}
+          {}
           <div className={styles.heatLossCalculator__section}>
             <h2 className={styles.heatLossCalculator__section_title}>{dict?.parameters || "Parameters"}</h2>
             <div className={styles.heatLossCalculator__grid}>
@@ -279,7 +279,7 @@ const CondensationCalculator: React.FC<CondensationCalculatorProps> = ({ dict })
             </div>
           </div>
 
-          {/* Results Section */}
+          {}
           <div className={styles.heatLossCalculator__section}>
             <h2 className={styles.heatLossCalculator__section_title}>{dict?.results || "Results"}</h2>
             <div className={styles.heatLossCalculator__grid}>
@@ -308,7 +308,7 @@ const CondensationCalculator: React.FC<CondensationCalculatorProps> = ({ dict })
             </div>
           </div>
 
-          {/* Control Section */}
+          {}
           <CalculatorControls
             onCalculate={calculateCondensation}
             onHelp={handleOpenHelp}

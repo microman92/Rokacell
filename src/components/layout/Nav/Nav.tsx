@@ -11,7 +11,7 @@ import Logo from "@/components/ui/Logo";
 
 interface NavProps {
   locale: Locale;
-  navDict?: any; // Dictionary['nav'] passed from parent
+  navDict?: any; 
   className?: string;
   isHeader?: boolean;
 }
@@ -21,18 +21,18 @@ export default function Nav({ locale, navDict, className, isHeader = false }: Na
   const links = getNavLinks(locale);
   const rawPathname = usePathname();
 
-  // Убираем локаль из пути: /ru/about -> /about, /en/about -> /about
+  
   const stripLocale = (path: string) => path.replace(/^\/(ru|en|uz)/, "") || "/";
   const pathname = stripLocale(rawPathname);
 
-  // Закрывать меню при смене роута
+  
   useEffect(() => {
     if (isHeader) {
       setIsOpen(false);
     }
   }, [pathname, isHeader]);
 
-  // Блокировать скролл на мобильном устройстве при открытом меню
+  
   useEffect(() => {
     if (isHeader && isOpen) {
       document.body.style.overflow = "hidden";
@@ -46,7 +46,7 @@ export default function Nav({ locale, navDict, className, isHeader = false }: Na
 
   return (
     <nav className={cn(styles.nav, className)} aria-label="Основная навигация">
-      {/* Кнопка открытия бургер-меню (видна только < 992px) */}
+      {}
       {isHeader && (
         <button className={styles.burger} onClick={() => setIsOpen(true)} aria-label="Отрыть меню">
           <span></span>
@@ -55,7 +55,7 @@ export default function Nav({ locale, navDict, className, isHeader = false }: Na
         </button>
       )}
 
-      {/* Десктопный список ссылок */}
+      {}
       <ul className={styles.nav__list}>
         {links.map((link) => {
           const isActive = pathname === stripLocale(link.path);
@@ -73,7 +73,7 @@ export default function Nav({ locale, navDict, className, isHeader = false }: Na
         })}
       </ul>
 
-      {/* Мобильное полноэкранное меню */}
+      {}
       {isHeader && (
         <div
           className={cn(styles.mobileMenu, isOpen && styles["active"])}

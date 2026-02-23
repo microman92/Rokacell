@@ -11,7 +11,7 @@ export type Branch = {
   logo?: string;
 };
 
-// Branches data
+
 export const BRANCHES: Branch[] = [
   {
     id: 'tashkent',

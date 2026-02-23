@@ -8,10 +8,11 @@ export const interpolateLambda = (temp: number, material: string): number => {
   const temps = Object.keys(lambdaData).map(Number).sort((a, b) => a - b);
   let lambda = 0.036;
   for (let i = 0; i < temps.length - 1; i++) {
-    if (temp >= temps[i] && temp <= temps[i + 1]) {
-      const t0 = temps[i], t1 = temps[i + 1];
-      const l0 = lambdaData[String(t0)];
-      const l1 = lambdaData[String(t1)];
+    const t0 = temps[i] ?? 0;
+    const t1 = temps[i + 1] ?? 0;
+    if (temp >= t0 && temp <= t1) {
+      const l0 = lambdaData[String(t0)] ?? 0.036;
+      const l1 = lambdaData[String(t1)] ?? 0.036;
       lambda = l0 + (l1 - l0) * (temp - t0) / (t1 - t0);
       break;
     }
@@ -72,13 +73,13 @@ export const calculateRadiativeHeatTransfer = (
   T_surface: number,
   T_ambient: number
 ): number => {
-  const sigma = 5.67e-8; // постоянная Стефана-Больцмана, Вт/(м²·К⁴)
-  // Точная формула Стефана-Больцмана: h_rad = ε * σ * (T_s⁴ - T_amb⁴) / (T_s - T_amb)
-  // Используем точную формулу вместо линейной аппроксимации для соответствия референсу
+  const sigma = 5.67e-8;
+
+
   const T_s4 = Math.pow(T_surface, 4);
   const T_amb4 = Math.pow(T_ambient, 4);
   const deltaT = T_surface - T_ambient;
-  // Избегаем деления на ноль
+
   if (Math.abs(deltaT) < 0.01) {
     const T_mean = (T_surface + T_ambient) / 2;
     return 4 * emissivity * sigma * Math.pow(T_mean, 3);

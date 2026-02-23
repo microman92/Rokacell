@@ -15,7 +15,7 @@ export default async function Footer({ locale }: LocaleProps) {
         <Logo locale={locale} />
 
         <div className={styles.footer__inner}>
-          {/* Контакты */}
+          {}
           <div className={styles.footer__contacts}>
             
             <div className={styles.footer__block}>
@@ -47,12 +47,12 @@ export default async function Footer({ locale }: LocaleProps) {
 
           </div>
 
-          {/* Навигация */}
+          {}
           <Nav locale={locale} navDict={dict.nav} className={styles.footer__nav} />
 
 
 
-          {/* Соцсети */}
+          {}
           <div className={styles.footer__social}>
             <span className={styles.footer__label}>{dict.footer?.socials || "We are on social media:"}</span>
             <div className={styles.footer__icons}>

@@ -160,9 +160,9 @@ const CalculateHModal: React.FC<CalculateHModalProps> = ({
             </div>
           </div>
 
-          {/* Скрытые поля для расчётов (не отображаются в UI, но используются в расчётах) */}
+          {}
           <div style={{ display: 'none' }}>
-            {/* Sheet orientation используется в расчётах h, но не отображается в UI */}
+            {}
             <div className={modalStyles.modal__field}>
               <label className={modalStyles.modal__field_label}>sheet orientation</label>
               <div className={modalStyles.modal__field_radioGroup}>

@@ -7,14 +7,11 @@ interface SlideProps {
   dict?: { title: string; subtitle?: string };
 }
 
-/**
- * Слайд 2 — The Benchmark of Quality in Insulation
- * Текст слева, логотип справа, 3 рулона внизу + голубая полоса
- */
+
 export default function QualitySlide({ dict }: SlideProps) {
   return (
     <>
-      {/* Background */}
+      {}
       <img
         src={IMAGES.home.hero.bg.energyEfficiency}
         alt="Dark background with geometric lines"
@@ -42,7 +39,7 @@ export default function QualitySlide({ dict }: SlideProps) {
             />
           </div>
         </Container>
-        {/* Blue bar — Bottom */}
+        {}
         <div className={styles.slide__bottomBar}>
           <Container className={styles.slide__products}>
             <img

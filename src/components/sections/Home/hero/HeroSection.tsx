@@ -5,11 +5,11 @@ import { Heading } from "@/components/ui/Heading/Heading";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
-// Swiper styles
+
 import "swiper/css";
 import "swiper/css/pagination";
 
-// Slide components
+
 import ThermalSlide from "./slides/ThermalSlide";
 import QualitySlide from "./slides/QualitySlide";
 import CooperationSlide from "./slides/CooperationSlide";
@@ -17,9 +17,9 @@ import ExhibitionSlide from "./slides/ExhibitionSlide";
 import { Dictionary } from "@/lib/i18n";
 
 export const HERO_SLIDER_CONFIG = {
-  autoplayInterval: 4500, // 6 секунд между слайдами
-  transitionDuration: 800, // длительность анимации перехода (ms)
-  pauseOnHover: true, // пауза при наведении
+  autoplayInterval: 4500, 
+  transitionDuration: 800, 
+  pauseOnHover: true, 
   slidesPerView: 1,
   spaceBetween: 0,
   loop: true,

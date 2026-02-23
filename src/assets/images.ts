@@ -1,28 +1,28 @@
 export const IMAGES = {
-  // Главная / Hero
+  
   home: {
     hero: {
       logo: "/svg/Logo-rokacell.svg",
       bg: {
-        exhibition: "/img/vystavka-stroitelnyh-materialov-rokacell-bg.png", // 1.7MB
-        energyEfficiency: "/img/insulations-bg.png", // 130KB
-        insulation: "/img/rokacell-effektivnaya-teploizolyaciya-elastomerniy-kauchuk.png", // 3.6MB
-        // 280KB
+        exhibition: "/img/vystavka-stroitelnyh-materialov-rokacell-bg.png", 
+        energyEfficiency: "/img/insulations-bg.png", 
+        insulation: "/img/rokacell-effektivnaya-teploizolyaciya-elastomerniy-kauchuk.png", 
+        
       },
 
       overlay: {
-        // Изображения поверх фона
+        
         pipeInsulation: "/img/rokacell-trubnaya-teploizolyaciya-produkty.png",
         insulationsLogo: "/img/insulations-logo.svg",
         copperPipes: "/img/teploizolyaciya-mednyh-trub-rokacell.png",
         foilRoll: "/img/folgirovannaya-rulonnaya-izolyaciya.png",
         aluCoating: "/img/izolyaciya-s-zaschitnym-pokrytiem-alyu.png",
         rubberSheet: "/img/kauchukovaya-izolyaciya-listovaya-chernaya.png",
-        blackRoll: "/img/izolyaciya-s-zaschitnym-pokrytiem-alyu.png", // Проверить, возможно дубль или замена
+        blackRoll: "/img/izolyaciya-s-zaschitnym-pokrytiem-alyu.png", 
       },
     },
 
-    // Блок “application areas” / области применения
+    
     applicationAreas: {
       hotels: "/img/uteplenie-oteley-rokacell.png",
       businessCenters: "/img/izolyaciya-biznes-centrov.png",
@@ -32,7 +32,7 @@ export const IMAGES = {
       shoppingMalls: "/img/uteplitel-dlya-torgovyh-centrov.png",
     },
 
-    // Примеры инженерных систем
+    
     engineering: {
       hvacPipes: "/img/industries__img.png",
       ventilationDucts: "/img/izolyaciya-vozduhovodov-ventilyacii.png",
@@ -41,11 +41,11 @@ export const IMAGES = {
       consultation: "/img/konsultaciya-po-tehnicheskoy-izolyacii.png",
     },
 
-    // Блок с калькулятором на главной (если отличается)
+    
     calculate: "/img/home-calculate.png",
   },
 
-  // About Company
+  
   about: {
     HeroBg: "/img/rokacell-hvac-teploizolyaciya-trub.png",
     heroVisual: "/img/rokacell-hero-background-energy-efficiency.png",
@@ -56,11 +56,11 @@ export const IMAGES = {
     downArrow: "/svg/down-arrow.svg",
   },
 
-  // Products
+  
   products: {
     hero: "/img/rokacell-effektivnaya-teploizolyaciya-produkciya.png",
 
-    // Items from public/img/products
+    
     items: {
       aluminiumTape: "/img/products/aluminium-self-adhesive-tape.png",
       pvcTape: "/img/products/pvc-self-adhesive-tape.png",
@@ -84,7 +84,7 @@ export const IMAGES = {
     },
   },
 
-  // News
+  
   news: {
     tashkent: "/img/news/rokacell-tashkent.png",
     kazakhstan: "/img/news/rokacell-kazakhstan.png",
@@ -92,13 +92,13 @@ export const IMAGES = {
     kazan: "/img/news/news-kazan.png",
   },
 
-  // Calculator
+  
   calculator: {
     hero: "/img/kalkulyator-ekonomii-energii-rokacell.png",
     access: "/img/rokacell-dostup-kalkulyator-teploizolyacii.png",
   },
 
-  // Logistics
+  
   logistics: {
     hero: "/img/rokacell-logistika-dostavka-produkcii.png",
     truck45m3: "/img/rokacell-gruzovoy-avtomobil-45m3-dostavka.png",
@@ -106,7 +106,7 @@ export const IMAGES = {
     container40hc: "/img/rokacell-konteyner-40hc-mezhdunarodnaya-dostavka.png",
   },
 
-  // Branches
+  
   branches: {
     bg: "/img/branches-bg.png",
     tashkent: "/img/rockacell-uzbekistna-tashkent.png",
@@ -114,7 +114,7 @@ export const IMAGES = {
     moscow: "/img/rokacell-russia-moskva.png",
   },
 
-  // Icons / SVG
+  
   icons: {
     logo: "/svg/Logo-rokacell.svg",
     durability: "/svg/dolgovochnost-rokacell.svg",
@@ -125,7 +125,7 @@ export const IMAGES = {
     instagram: "/svg/rokacell-instagram-official.svg",
   },
 
-  // Documents
+  
   documents: {
     documentsLogo: "/svg/documentsLogo.svg",
     certificatesIcon: "/img/rokacell-tehnicheskaya-dokumentaciya-i-sertifikaty.svg",

@@ -1,6 +1,6 @@
 import localFont from 'next/font/local';
 
-/* Open Sans */
+
 export const openSans = localFont({
   src: [
     {
@@ -23,7 +23,7 @@ export const openSans = localFont({
   display: 'swap',
 });
 
-/* Roboto Condensed */
+
 export const robotoCondensed = localFont({
   src: [
     {
@@ -36,7 +36,7 @@ export const robotoCondensed = localFont({
   display: 'swap',
 });
 
-/* Inter */
+
 export const inter = localFont({
   src: [
     {

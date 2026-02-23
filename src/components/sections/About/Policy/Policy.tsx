@@ -17,7 +17,7 @@ export default function Policy({ dict }: PolicyProps) {
   return (
     <section className={styles.policy}>
       <Container>
-        {/* Header */}
+        {}
         <motion.div
           className={styles.policy__header}
           initial={{ opacity: 0, y: -50 }}
@@ -36,7 +36,7 @@ export default function Policy({ dict }: PolicyProps) {
           </p>
         </motion.div>
 
-        {/* Vision & Mission */}
+        {}
         <div className={styles.policy__mission}>
           <motion.div
             className={styles.policy__mission_img}
@@ -75,11 +75,11 @@ export default function Policy({ dict }: PolicyProps) {
           </motion.div>
         </div>
 
-        {/* Main Areas of Activity */}
+        {}
         <div className={styles.policy__areas}>
           <div className={styles.policy__areas_content}>
             <h3 className={styles.policy__areas_title}>{policy?.areas.title}</h3>
-            {/* Accordion (Left) */}
+            {}
             <div className={styles.policy__activity}>
               <motion.div
                 className={styles.policy__accordion}
@@ -111,7 +111,7 @@ export default function Policy({ dict }: PolicyProps) {
                 ))}
               </motion.div>
 
-              {/* Image (Right) */}
+              {}
               <motion.div
                 className={styles.policy__areas_img}
                 initial={{ opacity: 0, x: 100 }}
@@ -133,7 +133,7 @@ export default function Policy({ dict }: PolicyProps) {
           </div>
         </div>
 
-        {/* Footer Disclaimer */}
+        {}
         <motion.p
           className={styles.policy__disclaimer}
           initial={{ opacity: 0, y: 50 }}

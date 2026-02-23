@@ -3,10 +3,7 @@ import type { Locale } from "@/lib/locales";
 
 const BASE_URL = "https://rokacell.com";
 
-/**
- * SEO-мета для каждой страницы, по каждому языку.
- * Единственное место хранения всех title/description.
- */
+
 export const PAGE_SEO: Record<
   string,
   Record<Locale, { title: string; description: string }>
@@ -132,10 +129,7 @@ export const PAGE_SEO: Record<
   },
 };
 
-/**
- * Создаёт Metadata для страницы по ключу и локали.
- * Используется через `export const generateMetadata = createPageMetadata("home")`.
- */
+
 export function createPageMetadata(pageKey: string, path?: string) {
   return async function generateMetadata({
     params,

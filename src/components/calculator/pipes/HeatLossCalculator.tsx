@@ -28,7 +28,7 @@ interface HeatLossCalculatorProps {
 const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
   const router = useRouter();
   const locale = useCurrentLocale();
-  // Using shared store for common parameters
+  
   const {
     ambientTemp,
     mediumTemp,
@@ -46,18 +46,18 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
     setEmissivity,
   } = useCalculatorStore();
 
-  // Local parameters for heat losses
+  
   const [localParams, setLocalParams] = useState<Pick<CalculationParams, 'insulationThickness' | 'pipeWallThickness' | 'pipeLength' | 'costPerKWh'>>({
     insulationThickness: 9,
-    pipeWallThickness: 0, // Сопротивление стенки трубы пренебрежимо мало для малых диаметров
+    pipeWallThickness: 0, 
     pipeLength: 1.0,
     costPerKWh: 0.5,
   });
 
-  // Параметр для отключения коэффициента безопасности 0.75
+  
   const [applySafetyFactor] = useState<boolean>(false);
 
-  // Calculation results state
+  
   const [results, setResults] = useState<CalculationResults>({
     meanLambda: 0,
     thermalTransmittance: 0,
@@ -68,10 +68,10 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
     recommendedThicknessMm: undefined,
   });
 
-  // Whether to show results (after clicking "Calculate")
+  
   const [hasCalculated, setHasCalculated] = useState<boolean>(false);
 
-  // Modal window state
+  
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalParams, setModalParams] = useState<ModalParams>({
     calculationType: 'inside',
@@ -79,65 +79,65 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
     emissivity,
   });
 
-  // Help modal window state
+  
   const [isHelpModalOpen, setIsHelpModalOpen] = useState<boolean>(false);
 
-  // Main heat loss calculation function
+  
   const calculateHeatLoss = (): void => {
     const { insulationThickness, pipeLength, costPerKWh } = localParams;
 
-    // Input data validation
+    
     if (insulationThickness <= 0 || pipeLength <= 0 || h <= 0) {
       return;
     }
 
-    // Use user-selected thickness for q calculation
+    
     const usedThickness = insulationThickness;
 
-    // Radii in meters
+    
     const rOuterPipe = tubeDiameter / 2 / 1000;
     const rInnerPipe = Math.max(1e-6, rOuterPipe - (localParams.pipeWallThickness ?? 0) / 1000);
     const ro = rOuterPipe + usedThickness / 1000;
 
-    // Используется формула для определения температуры lambda, соответствующая референсу
-    // T_lambda = ambientTemp + 0.533 * (mediumTemp - ambientTemp) + 21
-    // Это даёт lambda, которая меняется в зависимости от mediumTemp, как в референсе
+    
+    
+    
     const T_lambda = ambientTemp + 0.533 * (mediumTemp - ambientTemp) + 21;
     const lambda = interpolateLambda(T_lambda, material);
 
-    // Calculation of thermal resistances (pipe wall + insulation + convection)
-    // Все сопротивления рассчитываются на единицу длины трубы [м·К/Вт]
-    // Согласно ISO 12241: R' = ln(D/d) / (2πλ) для цилиндрической изоляции
-    const lambdaPipe = 50; // теплопроводность стали, W/(m·K)
+    
+    
+    
+    const lambdaPipe = 50; 
 
-    // Термическое сопротивление стенки трубы на единицу длины [м·К/Вт]
-    // Для малых диаметров сопротивление стенки может не учитываться
-    // или использоваться очень маленькое значение (стенка трубы пренебрежимо тонкая)
+    
+    
+    
     const pipeWallThicknessActual = localParams.pipeWallThickness ?? 0;
     let R_pipe: number;
     if (pipeWallThicknessActual > 0 && rInnerPipe < rOuterPipe) {
-      // Учитываем сопротивление стенки только если толщина стенки > 0
-      // Для малых диаметров (DN12) толщина стенки обычно ~0.8-1.0mm, что даёт очень маленькое сопротивление
+      
+      
       R_pipe = Math.log(rOuterPipe / rInnerPipe) / (2 * Math.PI * lambdaPipe);
     } else {
-      // Сопротивление стенки трубы не учитывается (пренебрежимо мало)
+      
       R_pipe = 0;
     }
 
-    // Термическое сопротивление изоляции на единицу длины [м·К/Вт]
-    // ISO 12241 формула: R' = ln(D/d) / (2πλ)
+    
+    
     const R_cond = Math.log(ro / rOuterPipe) / (2 * Math.PI * lambda);
 
-    // Термическое сопротивление конвекции на единицу длины [м·К/Вт]
-    // R' = 1 / (h * π * D), где D = 2*ro - наружный диаметр
+    
+    
     const R_conv = 1 / (h * 2 * Math.PI * ro);
 
-    // Общее термическое сопротивление на единицу длины [м·К/Вт]
+    
     const R_total = R_pipe + R_cond + R_conv;
 
-    // Для неизолированной трубы K‑FLEX пересчитывает h под меньший диаметр.
-    // Поэтому для корректного процента снижения теплопотерь считаем отдельный h
-    // для голой трубы (толщина изоляции = 0).
+    
+    
+    
     let hUninsulated = computeH({
       ambientTemp,
       mediumTemp,
@@ -153,9 +153,9 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
       useKFlexAlgorithm: true,
     });
 
-    // Для малых диаметров K‑FLEX даёт заметно больший h для голой трубы.
-    // Эмпирически усиливаем h_uninsulated для тонких труб через степенную
-    // поправку по диаметру относительно опорного 25 мм.
+    
+    
+    
     if (tubeDiameter > 0) {
       const diameterRatio = 25 / tubeDiameter;
       const boostPower = 0.2;
@@ -163,32 +163,32 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
       hUninsulated *= boostFactor;
     }
 
-    // Термическое сопротивление неизолированной трубы на единицу длины [м·К/Вт]
+    
     const R_total_uninsulated = R_pipe + 1 / (hUninsulated * 2 * Math.PI * rOuterPipe);
 
-    // Heat loss calculation
-    // Теплопотери на единицу длины: q = ΔT / R' [Вт/м]
-    // где R' - термическое сопротивление на единицу длины [м·К/Вт]
-    const deltaT = mediumTemp - ambientTemp; // [K]
+    
+    
+    
+    const deltaT = mediumTemp - ambientTemp; 
     const { heatLoss: heatLossPerMeter, decrease } = calculateHeatLosses(deltaT, R_total, R_total_uninsulated);
-    // heatLossPerMeter в [Вт/м] - теплопотери на метр длины трубы
+    
 
-    // Общие теплопотери для всей длины трубы [Вт]
+    
     const heatLoss = heatLossPerMeter * pipeLength;
 
-    // Economic data calculation
+    
     const costPerHour = calculateEconomicData(heatLossPerMeter, pipeLength, costPerKWh);
 
-    // ROKAFLEX dimension calculation
+    
     const rokaflexDimension = calculateRokaflexDimension(tubeDiameter, usedThickness);
 
-    // Insulation thermal transmittance
-    // Используется коэффициент теплопередачи на единицу длины [W/(m·K)]
-    // Правильная формула: U = q / ΔT,
-    // где q [Вт/м] - тепловой поток на единицу длины (heatLossPerMeter),
-    // ΔT [К] - разность температур.
-    // Важно: нельзя использовать суммарный heatLoss для всего участка,
-    // иначе при L ≠ 1м U будет завышен.
+    
+    
+    
+    
+    
+    
+    
     const thermalTransmittance = heatLossPerMeter / Math.abs(deltaT);
 
     setResults({
@@ -203,23 +203,23 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
     setHasCalculated(true);
   };
 
-  // Handler for opening modal window for h coefficient calculation
+  
   const handleCalculateH = (): void => {
     setModalParams({ calculationType: 'inside', orientation, emissivity });
     setIsModalOpen(true);
   };
 
-  // Handler for opening help modal window
+  
   const handleOpenHelp = (): void => {
     setIsHelpModalOpen(true);
   };
 
-  // Reset default values and go back
+  
   const handleBack = (): void => {
-    // Reset common parameters from store
+    
     useCalculatorStore.getState().reset();
 
-    // Reset local parameters
+    
     setLocalParams({
       insulationThickness: 9,
       pipeWallThickness: 0,
@@ -227,7 +227,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
       costPerKWh: 0.5,
     });
 
-    // Reset results
+    
     setResults({
       meanLambda: 0,
       thermalTransmittance: 0,
@@ -239,7 +239,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
     });
     setHasCalculated(false);
 
-    // Reset modal states
+    
     setIsModalOpen(false);
     setIsHelpModalOpen(false);
     setModalParams({
@@ -251,7 +251,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
     router.push(href(locale, ROUTES.CALCULATOR));
   };
 
-  // Heat transfer coefficient calculation function
+  
   const calculateH = (): void => {
     const { orientation: modalOrientation, emissivity: modalEmissivity, calculationType: modalCalculationType } = modalParams;
 
@@ -262,12 +262,12 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
       orientation: modalOrientation,
       emissivity: modalEmissivity,
       calculationType: modalCalculationType,
-      insulationThickness: localParams.insulationThickness, // Передаём толщину изоляции для расчёта по наружному диаметру
+      insulationThickness: localParams.insulationThickness, 
       useSimplifiedFormula: false,
-      applySafetyFactor, // Применять ли коэффициент безопасности 0.75 (оставляем на будущее)
+      applySafetyFactor, 
       useAdvancedAlgorithm: false,
       useAdvancedSheetsAlgorithm: false,
-      useKFlexAlgorithm: true, // используем алгоритм, приближенный к K‑FLEX
+      useKFlexAlgorithm: true, 
     });
 
     setH(h_total);
@@ -284,7 +284,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
         </div>
 
         <div className={styles.heatLossCalculator__content}>
-          {/* Parameters Section */}
+          {}
           <div className={styles.heatLossCalculator__section}>
             <h2 className={styles.heatLossCalculator__section_title}>{dict?.parameters || "Parameters"}</h2>
             <div className={styles.heatLossCalculator__grid}>
@@ -402,7 +402,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
             </div>
           </div>
 
-          {/* Results Section */}
+          {}
           {hasCalculated && (
             <div className={styles.heatLossCalculator__section}>
               <h2 className={styles.heatLossCalculator__section_title}>{dict?.results || "Calculation Results"}</h2>
@@ -466,7 +466,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
             </div>
           )}
 
-          {/* Control Section */}
+          {}
           <CalculatorControls
             onCalculate={calculateHeatLoss}
             onHelp={handleOpenHelp}
@@ -479,7 +479,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
         </div>
       </div>
 
-      {/* Modal for calculating h */}
+      {}
       {isModalOpen && (
         <div className={modalStyles.modal}>
           <div className={modalStyles.modal__container}>
@@ -488,7 +488,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
             </div>
 
             <div className={modalStyles.modal__content}>
-              {/* Calculation Type Section */}
+              {}
               <div className={modalStyles.modal__section}>
                 <h2 className={modalStyles.modal__section_title}>{dict?.hModal?.calcType || "Calculation Type"}</h2>
                 <div className={modalStyles.modal__grid}>
@@ -550,7 +550,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
                 </div>
               </div>
 
-              {/* Parameters Section */}
+              {}
               <div className={modalStyles.modal__section}>
                 <h2 className={modalStyles.modal__section_title}>{dict?.parameters || "Parameters"}</h2>
                 <div className={modalStyles.modal__grid}>
@@ -600,7 +600,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
                 </div>
               </div>
 
-              {/* Additional Settings Section */}
+              {}
               <div className={modalStyles.modal__section}>
                 <h2 className={modalStyles.modal__section_title}>{dict?.hModal?.additionalSettings || "Additional Settings"}</h2>
                 <div className={modalStyles.modal__grid}>
@@ -619,7 +619,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
                 </div>
               </div>
 
-              {/* Control Section */}
+              {}
               <div className={modalStyles.modal__controls}>
                 <button
                   onClick={calculateH}
@@ -639,7 +639,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
         </div>
       )}
 
-      {/* Modal for Help */}
+      {}
       {isHelpModalOpen && (
         <div className={modalStyles.modal}>
           <div className={modalStyles.modal__container}>

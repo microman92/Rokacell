@@ -22,7 +22,7 @@ export default function CalculateSavings({ dict }: CalculateSavingsProps) {
         className={styles.calculate__bg}
       />
 
-      {/* Content block */}
+      {}
       <div className={styles.calculate__content}>
         <Container className={styles.calculate__container}>
           <motion.div

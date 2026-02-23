@@ -1,14 +1,14 @@
-// Структура данных для труб с разделением на медные и стальные
+
 export interface TubeSize {
   type: 'copper' | 'steel';
-  dn: string; // Диаметр номинальный (DN)
-  inch: string; // Размер в дюймах
-  mm: number; // Наружный диаметр в мм
-  wallThicknesses: Record<number, number>; // Доступные толщины изоляции
+  dn: string; 
+  inch: string; 
+  mm: number; 
+  wallThicknesses: Record<number, number>; 
 }
 
 export const ALL_TUBE_SIZES: TubeSize[] = [
-  // Медные трубы (Cu)
+  
   { type: 'copper', dn: 'DN8', inch: '1/4"', mm: 6, wallThicknesses: { 6: 486, 9: 342, 13: 216 } },
   { type: 'copper', dn: 'DN8', inch: '5/16"', mm: 8, wallThicknesses: { 6: 432, 9: 306, 13: 198 } },
   { type: 'copper', dn: 'DN10', inch: '3/8"', mm: 10, wallThicknesses: { 6: 378, 9: 270, 13: 180 } },
@@ -21,7 +21,7 @@ export const ALL_TUBE_SIZES: TubeSize[] = [
   { type: 'copper', dn: 'DN32', inch: '1 3/8"', mm: 35, wallThicknesses: { 6: 120, 9: 96, 13: 72, 19: 48, 25: 32, 32: 24 } },
   { type: 'copper', dn: 'DN40', inch: '1 5/8"', mm: 42, wallThicknesses: { 6: 108, 9: 88, 13: 56, 19: 40, 25: 24, 32: 22 } },
 
-  // Стальные трубы (St) - согласно таблице EN 10220 / ISO 4200
+  
   { type: 'steel', dn: 'DN6', inch: '1/8"', mm: 10.2, wallThicknesses: {} },
   { type: 'steel', dn: 'DN8', inch: '1/4"', mm: 13.5, wallThicknesses: {} },
   { type: 'steel', dn: 'DN10', inch: '3/8"', mm: 17.2, wallThicknesses: {} },
@@ -44,17 +44,17 @@ export const MATERIALS = {
   },
 } as const;
 
-// Keys for strong typing across the app
+
 export type MaterialKey = keyof typeof MATERIALS;
 
 
-// Data for sheet materials (SHEETS)
-// Source: provided technical datasheets/tables in the task
+
+
 export const SHEET_MATERIALS = {
   'ROKAFLEX ST': {
-    // Thermal conductivity coefficient depending on temperature, W/m·K
+    
     lambda: { '-20': 0.032, '0': 0.034, '20': 0.036, '40': 0.038, '60': 0.040 },
-    mu: 7000, // water vapor diffusion resistance coefficient μ ≥ 7000
+    mu: 7000, 
     temperatureRange: { min: -200, max: 110 },
   },
 } as const;
@@ -63,43 +63,39 @@ export type SheetMaterialKey = keyof typeof SHEET_MATERIALS;
 
 export type AnyMaterialKey = MaterialKey | SheetMaterialKey;
 
-// Area of one roll (m²/roll) for different thicknesses and roll widths
+
 export const SHEET_ROLL_AREA_M2 = {
   width1m: { 6: 30, 9: 20, 10: 20, 13: 14, 19: 10, 25: 8, 32: 6, 40: 4, 50: 4 },
   width1_2m: { 6: 36, 9: 24, 10: 24, 13: 16.8, 19: 12, 25: 9.6, 32: 7.2, 40: 4.8, 50: 4.8 },
 } as const;
 
-// Cladding options for ROKAFLEX sheet materials
+
 export const CLADDING_TYPES = {
-  NONE: { code: '', label: 'not specified', emissivity: 0.93 }, // default value for rubber
-  STD: { code: 'STD', label: 'no coating', emissivity: 0.93 }, // standard rubber emissivity
-  AF: { code: 'AF', label: 'aluminum foil', emissivity: 0.05 }, // low foil emissivity
-  AG: { code: 'AG', label: 'aluminum foil + PVC', emissivity: 0.05 }, // foil with protective PVC layer
-  SA: { code: 'SA', label: 'self-adhesive layer', emissivity: 0.93 }, // emissivity same as base material
+  NONE: { code: '', label: 'not specified', emissivity: 0.93 }, 
+  STD: { code: 'STD', label: 'no coating', emissivity: 0.93 }, 
+  AF: { code: 'AF', label: 'aluminum foil', emissivity: 0.05 }, 
+  AG: { code: 'AG', label: 'aluminum foil + PVC', emissivity: 0.05 }, 
+  SA: { code: 'SA', label: 'self-adhesive layer', emissivity: 0.93 }, 
 } as const;
 
 export type CladdingCode = '' | 'STD' | 'AF' | 'AG' | 'SA';
 
-// List of cladding options for select
+
 export const CLADDING_OPTIONS = Object.values(CLADDING_TYPES).map(cladding => ({
   value: cladding.code,
   label: cladding.label,
 }));
 
-/**
- * Форматирует название трубы согласно требованиям:
- * - Медные: "1/2'' ( Cu ) - 12mm" (без DN)
- * - Стальные: "DN15 - 1/2'' (St) - 21,3mm" (с DN, запятая в мм)
- */
+
 export const formatTubeName = (size: TubeSize): string => {
   const materialLabel = size.type === 'copper' ? 'Cu' : 'St';
   const mmFormatted = size.mm.toString().replace('.', ',');
 
   if (size.type === 'copper') {
-    // Медные: без DN, с пробелами вокруг Cu
+    
     return `${size.inch} ( ${materialLabel} ) - ${mmFormatted}mm`;
   } else {
-    // Стальные: с DN, без пробелов вокруг St
+    
     return `${size.dn} - ${size.inch} (${materialLabel}) - ${mmFormatted}mm`;
   }
 };

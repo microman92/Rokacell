@@ -30,10 +30,10 @@ const AccessForm = ({ dict }: AccessFormProps) => {
     setLoading(true);
 
     try {
-      // Simulate API call
+      
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      // On success:
+      
       grantAccess({
         fullName: formData.fullName,
         phone: formData.phone,
@@ -42,7 +42,7 @@ const AccessForm = ({ dict }: AccessFormProps) => {
       });
     } catch (error) {
       console.error("Submission failed", error);
-      // Handle error (e.g., set general error message)
+      
     } finally {
       setLoading(false);
     }

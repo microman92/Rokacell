@@ -1,20 +1,20 @@
 import { IMAGES } from "@/assets/images";
 
-// Product categories for filtering
+
 export type ProductCategory = 'rolls' | 'tubes' | 'accessories';
 
 export interface Product {
   id: string;
   name: string;
   description: string;
-  fullDescription: string; // Full description for modal
+  fullDescription: string; 
   category: ProductCategory;
   image: string;
 }
 
-// Temporary product data - will be replaced with data from admin panel
+
 export const PRODUCTS: Product[] = [
-  // ROLLS (Рулоны)
+  
   {
     id: 'roll-std',
     name: 'ROKAFLEX ROLL STD',
@@ -64,7 +64,7 @@ export const PRODUCTS: Product[] = [
     image: IMAGES.products.items.roll.agsa,
   },
 
-  // TUBES (Трубки)
+  
   {
     id: 'tube-std',
     name: 'ROKAFLEX TUBE STD',
@@ -90,7 +90,7 @@ export const PRODUCTS: Product[] = [
     image: IMAGES.products.items.tube.ag,
   },
 
-  // ACCESSORIES (Аксессуары)
+  
   {
     id: 'acc-rubber-tape',
     name: 'ROKAFLEX RUBBER TAPE',
@@ -125,7 +125,7 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
-// Tab configuration
+
 export const PRODUCT_TABS = [
   { id: 'rolls', label: 'Rolls' },
   { id: 'tubes', label: 'Tubes' },

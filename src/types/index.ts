@@ -4,69 +4,69 @@ export interface LocaleProps {
     locale: Locale;
 }
 
-// Interface for air properties at different temperatures
+
 export interface AirProperties {
-    kinematicViscosity: number; // Kinematic viscosity, m²/s
-    thermalConductivity: number; // Thermal conductivity, W/(m·K)
-    prandtlNumber: number; // Prandtl number
-    thermalExpansion: number; // Thermal expansion coefficient, 1/K
+    kinematicViscosity: number; 
+    thermalConductivity: number; 
+    prandtlNumber: number; 
+    thermalExpansion: number; 
 }
 
-// Interface for heat loss calculation parameters (SOLID - Interface Segregation)
+
 export interface CalculationParams {
-    ambientTemp: number; // Ambient temperature, °C
-    mediumTemp: number; // Medium temperature in pipe, °C
-    tubeDiameter: number; // Pipe diameter, mm
-    insulationThickness: number; // Insulation thickness, mm
-    pipeWallThickness?: number; // Pipe wall thickness, mm
-    pipeLength: number; // Pipe length, m
-    material: import('../utils/constants').AnyMaterialKey; // Insulation material
-    h: number; // Heat transfer coefficient, W/m²K
-    costPerKWh: number; // Energy cost, ₽/kWh
-    // Optional: thickness selection by target heat losses
-    recommendByHeatLoss?: boolean; // Enable thickness selection
-    targetHeatLossWPerM?: number; // Target heat losses, W/m
+    ambientTemp: number; 
+    mediumTemp: number; 
+    tubeDiameter: number; 
+    insulationThickness: number; 
+    pipeWallThickness?: number; 
+    pipeLength: number; 
+    material: import('../utils/constants').AnyMaterialKey; 
+    h: number; 
+    costPerKWh: number; 
+    
+    recommendByHeatLoss?: boolean; 
+    targetHeatLossWPerM?: number; 
 }
 
-// Interface for heat loss calculation results
+
 export interface CalculationResults {
-    meanLambda: number; // Mean thermal conductivity, W/m·K
-    thermalTransmittance: number; // Insulation thermal transmittance, W/m²K
-    heatLoss: number; // Heat losses, W
-    decrease: number; // Heat loss reduction, %
-    costPerHour: number; // Cost per hour, ₽/h
-    rokaflexDimension: number; // ROKAFLEX dimension, mm
-    // Optional: recommended thickness when selecting
-    recommendedThicknessMm?: number; // mm
+    meanLambda: number; 
+    thermalTransmittance: number; 
+    heatLoss: number; 
+    decrease: number; 
+    costPerHour: number; 
+    rokaflexDimension: number; 
+    
+    recommendedThicknessMm?: number; 
 }
 
-// Interface for condensation calculation parameters
+
 export interface CondensationParams {
-    ambientTemp: number; // Ambient temperature, °C
-    mediumTemp: number; // Medium temperature in pipe, °C
-    tubeDiameter: number; // Pipe diameter, mm
-    material: import('../utils/constants').AnyMaterialKey; // Insulation material
-    h: number; // Heat transfer coefficient, W/m²K
-    relativeHumidity: number; // Relative humidity, %
+    ambientTemp: number; 
+    mediumTemp: number; 
+    tubeDiameter: number; 
+    material: import('../utils/constants').AnyMaterialKey; 
+    h: number; 
+    relativeHumidity: number; 
 }
 
-// Interface for condensation calculation results
+
 export interface CondensationResults {
-    dewpointTemperature: number; // Dew point, °C
-    minimumThickness: number; // Minimum insulation thickness, mm
-    nominalThickness: string; // Recommended pipe from stock
+    dewpointTemperature: number; 
+    minimumThickness: number; 
+    nominalThickness: string; 
 }
 
-// Interface for modal window parameters
+
 export interface ModalParams {
-    calculationType?: 'inside' | 'outside'; // Calculation type
-    orientation: import('./domain').Orientation; // Pipe orientation
-    emissivity: number; // Emissivity coefficient (0-1)
+    calculationType?: 'inside' | 'outside'; 
+    orientation: import('./domain').Orientation; 
+    emissivity: number; 
 }
 
-// Interface for modal window parameters for h calculation in condensation
+
 export interface CondensationModalParams {
-    calculationType: 'inside' | 'outside'; // Calculation type
-    orientation: import('./domain').Orientation; // Pipe orientation
-    emissivity: number; // Emissivity coefficient (0-1)
+    calculationType: 'inside' | 'outside'; 
+    orientation: import('./domain').Orientation; 
+    emissivity: number; 
 }

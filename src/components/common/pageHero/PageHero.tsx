@@ -31,7 +31,7 @@ export default function PageHero({
     contacts: styles.contacts,
   };
 
-  // Варианты с абсолютным overlay (декоративный фон, вне Container)
+  
   const isAbsoluteOverlay = variant === "about" || variant === "logistics";
 
   const overlayElement = overlayImage && (
@@ -48,14 +48,14 @@ export default function PageHero({
 
   return (
     <div className={cn(styles.hero, variantClass[variant])}>
-      {/* Background image */}
+      {}
       {bgImage && (
         <div className={styles.hero__bg}>
           <img src={bgImage} alt="" />
         </div>
       )}
 
-      {/* Overlay — абсолютный (About, Logistics) */}
+      {}
       {isAbsoluteOverlay && overlayElement}
 
       <Container className={styles.hero__content}>
@@ -76,7 +76,7 @@ export default function PageHero({
           {description && <p className={styles.hero__description}>{description}</p>}
         </motion.div>
 
-        {/* Overlay — в потоке (Documents и др.) */}
+        {}
         {!isAbsoluteOverlay && overlayElement}
       </Container>
     </div>

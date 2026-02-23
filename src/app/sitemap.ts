@@ -17,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
   for (const page of STATIC_PAGES) {
-    // Главная (ru — основная)
+    
     const alternates: Record<string, string> = {};
     for (const locale of LOCALES) {
       alternates[locale] = `${BASE_URL}/${locale}${page.path}`;

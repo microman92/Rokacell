@@ -31,7 +31,7 @@ export default function Branches({ dict }: BranchesProps) {
         >
           {BRANCHES.map((branch) => {
             const translatedBranch = { ...branch };
-            // Подменяем данные на переведенные, если они есть
+            
             const t = dict?.[branch.id as keyof Omit<NonNullable<Dictionary['branches']>, 'title'>];
 
             if (t) {

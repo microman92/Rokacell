@@ -21,17 +21,17 @@ export default function Contacts({ data, index = 0 }: ContactsProps) {
       transition={{ duration: 0.6, delay: index * 0.2 }}
       className={styles.contacts}
     >
-      {/* Если фото-вариант: фоновая картинка завода */}
+      {}
       {isPhotoVariant && <img src={data.image} alt={data.city} className={styles.contacts__bg} />}
 
-      {/* Левая часть: Визуал */}
+      {}
       <div
         className={cn(
           styles.contacts__visual,
           isPhotoVariant ? styles["contacts__visual--photo"] : styles["contacts__visual--products"]
         )}
       >
-        {/* Логотип */}
+        {}
         {data.logo && (
           <img
             src={data.logo}
@@ -43,7 +43,7 @@ export default function Contacts({ data, index = 0 }: ContactsProps) {
           />
         )}
 
-        {/* Если продукт-вариант: картинка продукции */}
+        {}
         {!isPhotoVariant && (
           <img
             src={data.image}
@@ -52,8 +52,8 @@ export default function Contacts({ data, index = 0 }: ContactsProps) {
           />
         )}
       </div>
-      {/* background: rgba(33, 89, 123, 0.8); */}
-      {/* Правая часть: Инфо */}
+      {}
+      {}
       <div className={cn(styles.contacts__info, isPhotoVariant && styles["photo"])}>
         <h3 className={styles.contacts__city}>{data.city}</h3>
         {data.address && <p className={styles.contacts__address}>{data.address}</p>}

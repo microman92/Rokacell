@@ -23,7 +23,7 @@ export default async function ContactsPage({ params }: { params: Promise<{ local
         <div className={styles.contacts__branches}>
           {BRANCHES.map((branch, index) => {
             const translatedBranch = { ...branch };
-            // Подменяем данные на переведенные, если они есть
+            
             const t =
               branchesDict?.[branch.id as keyof Omit<NonNullable<Dictionary["branches"]>, "title">];
 

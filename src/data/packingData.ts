@@ -1,20 +1,20 @@
 import { IMAGES } from "@/assets/images";
 
 export interface SpecValue {
-  dim?: string; // e.g. "100cm"
-  value: string; // e.g. "170–180"
-  unit?: "pcs" | "m3"; // if empty, don't append anything (e.g. for m³ if it's already in value, but we can do it properly)
+  dim?: string; 
+  value: string; 
+  unit?: "pcs" | "m3"; 
 }
 
 export interface Spec {
-  labelKey: string; // "rollWidth", "rollVolume", etc.
+  labelKey: string; 
   values: SpecValue[];
 }
 
 export interface PackingItem {
-  key: string; // unique key
-  titleKey: string; // "truck45", "truck88", "container40"
-  subtitleKey?: string; // "compact", "increased", "international"
+  key: string; 
+  titleKey: string; 
+  subtitleKey?: string; 
   image: string;
   specs: Spec[];
 }

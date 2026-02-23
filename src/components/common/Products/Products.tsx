@@ -13,7 +13,7 @@ import styles from "./Products.module.scss";
 import { Heading } from "@/components/ui/Heading/Heading";
 import { Dictionary } from "@/lib/i18n";
 
-// Lazy-load Swiper only when needed (mobile only, heavy dependency)
+
 const ProductSwiper = dynamic<ProductSwiperProps>(
   () => import("./ProductSwiper") as Promise<{ default: ComponentType<ProductSwiperProps> }>,
   {
@@ -23,15 +23,15 @@ const ProductSwiper = dynamic<ProductSwiperProps>(
 );
 
 interface ProductsProps {
-  /** Controls visual variant: 'home' shows as a section, 'page' as full-page content */
+  
   variant?: "home" | "page";
-  /** Default active tab on mount */
+  
   defaultTab?: string;
-  /** Whether to show the section title */
+  
   showTitle?: boolean;
   dict?: Dictionary["products"];
 
-  // Добавлены пропсы для данных из API
+  
   products?: Product[];
   categories?: Category[];
 }
@@ -42,9 +42,9 @@ export default function Products({
   showTitle = true,
   dict,
   products = PRODUCTS,
-  categories = PRODUCT_TABS as unknown as Category[], // Каст, так как PRODUCT_TABS read-only
+  categories = PRODUCT_TABS as unknown as Category[], 
 }: ProductsProps) {
-  // Инициализируем активную вкладку первой категорией из массива API или переданным defaultTab
+  
   const initialTab = defaultTab === "rolls" ? (categories?.[0]?.id || "rolls") : defaultTab;
   const [activeTab, setActiveTab] = useState<string>(initialTab);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -54,7 +54,7 @@ export default function Products({
     return products.filter((product) => product.category === activeTab);
   }, [activeTab, products]);
 
-  // Stable callback — passed to memoized ProductCard without creating new refs per item
+  
   const handleProductClick = useCallback((product: Product) => {
     setSelectedProduct(product);
   }, []);
@@ -82,7 +82,7 @@ export default function Products({
             </Heading>
           )}
 
-          {/* Tabs */}
+          {}
           <nav className={styles.tabs} role="tablist" aria-label="Product categories">
             {categories.map((tab) => (
               <button
@@ -99,13 +99,13 @@ export default function Products({
           </nav>
         </motion.div>
 
-        {/* Always display Swiper */}
+        {}
         <div className={styles.products__swiperWrapper}>
           <ProductSwiper products={filteredProducts} onProductClick={handleProductClick} />
         </div>
       </Container>
 
-      {/* Product Modal */}
+      {}
       <ProductModal
         product={selectedProduct}
         isOpen={selectedProduct !== null}

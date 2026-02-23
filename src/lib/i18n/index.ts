@@ -1,8 +1,8 @@
 import { Locale } from "@/lib/locales";
 
-// ──────────────────────────
-// Подтипы словаря переводов (ISP: Interface Segregation)
-// ──────────────────────────
+
+
+
 
 export interface NavDict {
   about?: string;
@@ -320,9 +320,9 @@ export interface DocumentsDict {
   };
 }
 
-// ──────────────────────────
-// Составной тип словаря (обратная совместимость)
-// ──────────────────────────
+
+
+
 
 export interface Dictionary {
   nav?: NavDict;
@@ -348,12 +348,10 @@ const dictionaries = {
   uz: () => import("./dictionaries/uz").then((module) => module.default),
 };
 
-/**
- * Получение словаря переводов (с фоллбэком на RU)
- */
+
 export async function getDictionary(locale: Locale): Promise<Dictionary> {
-  // Мы можем потом добавить логику получения с API:
-  // try { const apiDict = await fetchFromApi(); return merge({}, dict, apiDict) } catch {}
+  
+  
   return dictionaries[locale]?.() ?? dictionaries.ru();
 }
 

@@ -41,7 +41,7 @@ export const NEWS_SLIDER_CONFIG = {
 };
 
 interface NewsProps {
-  locale?: Locale; // Optional if needed for localization later
+  locale?: Locale; 
   variant?: "home" | "about";
   dict?: Dictionary["news"];
   news?: typeof NEWS_DATA;

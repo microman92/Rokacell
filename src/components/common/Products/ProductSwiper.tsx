@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import ProductCard from "./ProductCard";
 import styles from "./Products.module.scss";
 
-// Swiper styles
+
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -17,7 +17,7 @@ export interface ProductSwiperProps {
   onProductClick: (product: Product) => void;
 }
 
-// Split products into groups for slider
+
 function chunkProducts(products: Product[], size: number): Product[][] {
   const chunks: Product[][] = [];
   for (let i = 0; i < products.length; i += size) {

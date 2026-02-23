@@ -1,11 +1,8 @@
-/**
- * JSON-LD schema builders for ROKACELL.
- * Used on pages for Google structured data (rich results).
- */
+
 
 const BASE_URL = "https://rokacell.com";
 
-/** Organization + Local Business schema */
+
 export function organizationSchema(locale: string) {
   return {
     "@context": "https://schema.org",
@@ -73,7 +70,7 @@ export function organizationSchema(locale: string) {
   };
 }
 
-/** BreadcrumbList schema */
+
 export function breadcrumbSchema(items: { name: string; url: string }[]) {
   return {
     "@context": "https://schema.org",
@@ -87,7 +84,7 @@ export function breadcrumbSchema(items: { name: string; url: string }[]) {
   };
 }
 
-/** Product schema for products page */
+
 export function productListSchema() {
   return {
     "@context": "https://schema.org",
@@ -130,7 +127,7 @@ export function productListSchema() {
   };
 }
 
-/** FAQ schema for home page — часто ищут в Узбекистане */
+
 export function faqSchema(locale: string) {
   const faqs: Record<string, Array<{ q: string; a: string }>> = {
     ru: [

@@ -31,9 +31,9 @@ const SheetsHeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) =
   const [h, setH] = useState<number>(9);
   const [cost, setCost] = useState<number>(0.5);
 
-  // Параметр для отключения коэффициента безопасности 0.75
+  
   const [applySafetyFactor] = useState<boolean>(false);
-  // Использовать продвинутый алгоритм
+  
   const [useAdvancedAlgorithm] = useState<boolean>(true);
 
   const [isHModalOpen, setHModalOpen] = useState<boolean>(false);
@@ -71,14 +71,14 @@ const SheetsHeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) =
     const computed = computeH({
       ambientTemp,
       mediumTemp,
-      tubeDiameter: modalParams.sheetHeightM * 1000, // using height as characteristic dimension
+      tubeDiameter: modalParams.sheetHeightM * 1000, 
       orientation: modalParams.orientation,
       emissivity: modalParams.emissivity,
       calculationType: modalParams.calculationType,
-      useSimplifiedFormula: false, // Не используем упрощённую формулу, используем продвинутый алгоритм для листов
-      applySafetyFactor, // Применять ли коэффициент безопасности 0.75
-      useAdvancedAlgorithm: false, // Не используем продвинутый алгоритм для труб
-      useAdvancedSheetsAlgorithm: true, // Используем продвинутый алгоритм для листов с упрощённой формулой радиации
+      useSimplifiedFormula: false, 
+      applySafetyFactor, 
+      useAdvancedAlgorithm: false, 
+      useAdvancedSheetsAlgorithm: true, 
     });
     setH(Number(computed.toFixed(3)));
     setHModalOpen(false);
@@ -98,7 +98,7 @@ const SheetsHeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) =
   };
 
   const handleBack = () => {
-    // Reset all input parameters
+    
     setAmbientTemp(25);
     setMediumTemp(-5);
     setThickness(10);
@@ -107,10 +107,10 @@ const SheetsHeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) =
     setH(9);
     setCost(0.5);
 
-    // Reset results
+    
     setResults(null);
 
-    // Reset modal states
+    
     setHModalOpen(false);
     setIsHelpModalOpen(false);
     setModalParams({

@@ -12,7 +12,7 @@ interface MarqueeStripProps {
 }
 
 export default function MarqueeStrip({ items, className }: MarqueeStripProps) {
-  // Дублируем 4 раза для бесшовной анимации
+  
   const duplicatedItems = [...items, ...items, ...items, ...items];
 
   return (

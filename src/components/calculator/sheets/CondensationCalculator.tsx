@@ -30,10 +30,10 @@ const SheetsCondensationCalculator: React.FC<SheetsCondensationCalculatorProps> 
   const [h, setH] = useState<number>(9);
   const [relativeHumidity, setRelativeHumidity] = useState<number>(60);
 
-  // Для листов используется специальный алгоритм с коэффициентом конвекции 1.7516
-  // и коэффициентом безопасности 0.75
+  
+  
   const [applySafetyFactor] = useState<boolean>(true);
-  // Использовать продвинутый алгоритм для листов
+  
   const [useAdvancedSheetsAlgorithm] = useState<boolean>(true);
 
   const [isHModalOpen, setHModalOpen] = useState<boolean>(false);
@@ -56,12 +56,12 @@ const SheetsCondensationCalculator: React.FC<SheetsCondensationCalculatorProps> 
   type SheetCondResults = { dewpointTemperature: number; minimumThickness: number; nominalThickness: number } | null;
   const [results, setResults] = useState<SheetCondResults>(null);
 
-  // Business rule: if required minimum thickness is too high, we do not show numeric values
-  // and ask user to contact technical service.
+  
+  
   const CONDENSATION_LIMIT_MM = 48.1;
   const isMinThicknessExceeded = useMemo(() => {
     if (!results) return false;
-    // Compare rounded-to-display value (0.1 mm) to match what user sees in the UI.
+    
     return Number(results.minimumThickness.toFixed(1)) > CONDENSATION_LIMIT_MM;
   }, [results]);
 
@@ -73,9 +73,9 @@ const SheetsCondensationCalculator: React.FC<SheetsCondensationCalculatorProps> 
       orientation: modalParams.orientation,
       emissivity: modalParams.emissivity,
       calculationType: modalParams.calculationType,
-      useSimplifiedFormula: false, // Используем продвинутый алгоритм для листов
-      applySafetyFactor, // Применять ли коэффициент безопасности 0.75
-      useAdvancedSheetsAlgorithm, // Использовать продвинутый алгоритм для листов
+      useSimplifiedFormula: false, 
+      applySafetyFactor, 
+      useAdvancedSheetsAlgorithm, 
     });
     setH(Number(computed.toFixed(3)));
     setHModalOpen(false);
@@ -88,7 +88,7 @@ const SheetsCondensationCalculator: React.FC<SheetsCondensationCalculatorProps> 
       const nominal = getNominalSheetThicknessRecommendation(minT);
       setResults({ dewpointTemperature: dew, minimumThickness: minT, nominalThickness: nominal });
     } catch (error) {
-      // Показываем ошибку пользователю
+      
       if (error instanceof Error) {
         alert(error.message);
       } else {

@@ -6,14 +6,11 @@ interface SlideProps {
   dict?: { title: string; subtitle?: string };
 }
 
-/**
- * Слайд 4 — Rokacell Products at Leading International Exhibitions
- * Фото выставки, голубая полоса-overlay по центру с текстом
- */
+
 export default function ExhibitionSlide({ dict }: SlideProps) {
   return (
     <>
-      {/* Background — Exhibition photo */}
+      {}
       <img
         src={IMAGES.home.hero.bg.exhibition}
         alt="Rokacell exhibition stand at international construction materials fair"
@@ -24,7 +21,7 @@ export default function ExhibitionSlide({ dict }: SlideProps) {
         loading="lazy"
       />
 
-      {/* Blue overlay band */}
+      {}
       <div className={styles.slide__overlay}>
         <div className={styles.slide__overlay_content}>
           <Heading tag="h2" className={styles.slide__overlay_title}>
