@@ -20,6 +20,11 @@
   text-align: center;
   color: var(--txt-white);
   max-width: 845px;
+
+
+  @include media(576) {
+    font-size: 26px !important;
+  }
 }
 
 .accessForm__subtitle {
@@ -30,6 +35,10 @@
   color: var(--txt-white);
   margin-top: 24px;
   margin-bottom: 80px;
+
+  @include media(576) {
+    margin-bottom: 40px;
+  }
 }
 
 .accessForm__card {
@@ -45,12 +54,20 @@
   @include media(1200) {
     max-width: 600px;
   }
+
+  @include media(768) {
+    max-width: 500px;
+  }
 }
 
 .accessForm__form {
   display: flex;
   flex-direction: column;
   gap: 36px;
+
+  @include media(576) {
+    gap: 20px;
+  }
 }
 
 .accessForm__field {
@@ -69,6 +86,10 @@
 
   @include media(1200) {
     font-size: 20px;
+  }
+
+  @include media(576) {
+    font-size: 16px;
   }
 
   &::placeholder {

@@ -17,7 +17,7 @@ import ExhibitionSlide from "./slides/ExhibitionSlide";
 import { Dictionary } from "@/lib/i18n";
 
 export const HERO_SLIDER_CONFIG = {
-  autoplayInterval: 6000000, // 6 секунд между слайдами
+  autoplayInterval: 4500, // 6 секунд между слайдами
   transitionDuration: 800, // длительность анимации перехода (ms)
   pauseOnHover: true, // пауза при наведении
   slidesPerView: 1,

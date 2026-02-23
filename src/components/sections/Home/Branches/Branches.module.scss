@@ -1,6 +1,10 @@
 .branches {
     margin: 120px 0;
 
+    @include media(576) {
+        margin: 60px 0;
+    }
+
     &__title {
         // font styles moved to Heading
         color: #000;

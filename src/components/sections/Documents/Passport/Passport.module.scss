@@ -9,6 +9,10 @@
         text-transform: uppercase;
         text-align: center;
         color: var(--txt-black);
+
+        @include media(576) {
+            font-size: 36px;
+        }
     }
 
     &__grid {
@@ -20,6 +24,11 @@
 
         @include media(992) {
             gap: 40px;
+        }
+
+        @include media(576) {
+            flex-direction: column;
+            margin-top: 40px;
         }
     }
 
@@ -44,6 +53,10 @@
             text-transform: uppercase;
             color: var(--txt-black);
             margin-top: 55px;
+
+            @include media(576) {
+                margin-top: 20px;
+            }
         }
 
         &_download {

@@ -24,8 +24,11 @@ export default function Certificates({ dict }: CertificatesProps) {
             spaceBetween={10}
             slidesPerView={4}
             breakpoints={{
-              768: {
-                slidesPerView: 2,
+              375: {
+                slidesPerView: 1,
+              },
+              420: {
+                slidesPerView: 1.5,
               },
               1200: {
                 slidesPerView: 3.5,

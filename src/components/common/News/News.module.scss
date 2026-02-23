@@ -4,6 +4,10 @@
   padding: 100px 0;
   overflow: hidden;
 
+  @include media(576) {
+    padding: 60px 0;
+  }
+
   &__title {
     // font styles moved to Heading
     color: var(--txt-black);
@@ -17,11 +21,20 @@
   &__container {
     & h2 {
       margin-bottom: 64px;
+
+      @include media(576) {
+        margin-bottom: 0;
+      }
     }
 
     @include media(992) {
       margin-bottom: 40px;
     }
+
+    @include media(576) {
+      margin-bottom: 30px;
+    }
+
   }
 
   &__swiper {
@@ -68,6 +81,11 @@
 
     @include media(768) {
       grid-template-columns: 450px;
+    }
+
+    @include media(576) {
+      grid-template-columns: 360px;
+      grid-auto-rows: 450px;
     }
   }
 

@@ -71,6 +71,11 @@
       // font-size handled by Heading component or override here if different from default
       font-size: 36px; // Keep this override if it differs from Heading default (Heading h2 mobile behavior might be different)
     }
+
+    @include media(576) {
+
+      font-size: 26px;
+    }
   }
 
   &__description {
@@ -86,6 +91,11 @@
 
     @include media(1200) {
       font-size: 21px;
+    }
+
+    @include media(576) {
+
+      font-size: 18px;
     }
   }
 

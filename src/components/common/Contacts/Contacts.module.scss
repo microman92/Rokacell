@@ -81,6 +81,10 @@
         left: 50%;
         transform: translate(-50%);
       }
+
+      @include media(768) {
+        max-width: 265px;
+      }
     }
   }
 

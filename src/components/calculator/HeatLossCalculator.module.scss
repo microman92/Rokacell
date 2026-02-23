@@ -146,6 +146,10 @@
       display: flex;
       gap: 8px;
 
+      @media (max-width: 420px) {
+        flex-direction: column;
+      }
+
       .heatLossCalculator__field_input {
         flex: 1;
       }
@@ -154,6 +158,10 @@
         flex-shrink: 0;
         min-width: auto;
         padding: 8px 20px;
+
+        @media (max-width: 420px) {
+          width: 100%;
+        }
       }
     }
 

@@ -8,11 +8,20 @@
         text-transform: uppercase;
         color: var(--txt-black);
         margin-bottom: 64px;
+
+        @include media(576) {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
     }
 
     &__bg {
         background: url("/img/certificates-bg.png") center center/cover no-repeat;
         padding: 164px 0;
+
+        @include media(576) {
+            padding: 80px 0;
+        }
     }
 
     &__card {
@@ -24,7 +33,7 @@
         @include media(1440) {
             padding: 30px 20px;
         }
-        
+
 
         &_title {
             font-family: var(--second-family);

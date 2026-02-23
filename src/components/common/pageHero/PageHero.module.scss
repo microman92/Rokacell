@@ -67,6 +67,12 @@
 .about {
   height: 830px;
 
+  @include media(576) {
+    height: 680px;
+  }
+
+
+
   .hero__bg {
     &::after {
       content: '';
@@ -88,15 +94,29 @@
     @include media(992) {
       max-width: 579px;
     }
+
+    @include media(576) {
+      text-align: center;
+    }
   }
 
   .hero__title {
     font-size: 64px;
     max-width: 550px;
+
+    @include media(576) {
+      font-size: 36px;
+      max-width: 430px;
+      margin: 0 auto;
+    }
   }
 
   .hero__description {
     font-size: 24px;
+
+    @include media(576) {
+      font-size: 20px;
+    }
   }
 
   .hero__overlay {
@@ -118,9 +138,20 @@
       max-width: 620px;
     }
 
+    @include media(576) {
+      max-width: initial;
+      width: 100%;
+    }
+
     & img {
       @include media(1440) {
         object-fit: fill;
+      }
+
+      @include media(576) {
+        width: 100%;
+        transform: scale(1.1);
+        object-fit: cover;
       }
     }
 
@@ -186,6 +217,16 @@
 
   .hero__description {
     font-size: 20px;
+
+    @include media(576) {
+      font-size: 18px;
+    }
+  }
+
+  .hero__title {
+    @include media(576) {
+      font-size: 36px;
+    }
   }
 
 }
@@ -208,6 +249,12 @@
   .hero__desc {
     max-width: 922px;
     gap: 24px;
+  }
+
+  @include media(576) {
+    .hero__description {
+      font-size: 20px;
+    }
   }
 
 
@@ -238,9 +285,17 @@
       font-size: 48px;
     }
 
+    @include media(576) {
+      font-size: 36px;
+    }
+
     & span {
       @include media(1200) {
         font-size: 48px;
+      }
+
+      @include media(576) {
+        font-size: 36px;
       }
     }
   }
@@ -263,6 +318,10 @@
     height: 800px;
   }
 
+  @include media(576) {
+    height: 580px;
+  }
+
   .hero__content {
     display: flex;
     align-items: center;
@@ -280,6 +339,10 @@
     font-size: 64px;
     text-transform: uppercase;
     color: var(--txt-white);
+
+    @include media(576) {
+      font-size: 36px;
+    }
   }
 
   .hero__description {
@@ -288,6 +351,10 @@
     font-size: 24px;
     text-transform: uppercase;
     color: var(--txt-white);
+
+    @include media(576) {
+      font-size: 20px;
+    }
   }
 }
 

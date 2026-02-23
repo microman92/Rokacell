@@ -30,15 +30,20 @@
 
       & span {
         font-size: 48px;
+
+        @include media(576) {
+          font-size: 32px;
+        }
       }
     }
+
 
     @include media(768) {
       font-size: 40px;
     }
 
-    @include media(480) {
-      font-size: 32px;
+    @include media(576) {
+      font-size: 36px;
     }
   }
 
@@ -52,6 +57,10 @@
 
     @include media(768) {
       font-size: 32px;
+    }
+
+    @include media(576) {
+      font-size: 26px;
     }
 
 
