@@ -15,7 +15,7 @@ export default function CalculateSavings({ dict }: CalculateSavingsProps) {
   return (
     <section className={styles.calculate}>
       <img
-        src="/img/home-calculate.png"
+        src="/img/home-calculate.webp"
         alt=""
         width={1920}
         height={938}
