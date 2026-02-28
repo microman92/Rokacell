@@ -25,7 +25,10 @@ export const calculateHeatLosses = (
 
   const heatLossUninsulated = Math.abs(deltaT) / R_total_uninsulated;
 
-  const decrease = ((heatLossUninsulated - heatLoss) / heatLossUninsulated) * 100;
+  // Prevent NaN if heatLossUninsulated is 0
+  const decrease = heatLossUninsulated > 0
+    ? ((heatLossUninsulated - heatLoss) / heatLossUninsulated) * 100
+    : 0;
 
   return { heatLoss, heatLossUninsulated, decrease };
 };

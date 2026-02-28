@@ -13,7 +13,7 @@ interface ProductModalProps {
 }
 
 export default function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
-  
+
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -23,7 +23,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
     [onClose]
   );
 
-  
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -38,7 +38,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
 
   if (!isOpen || !product) return null;
 
-  
+
   return createPortal(
     <div className={styles.overlay} onClick={onClose} role="dialog" aria-modal="true">
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
@@ -75,7 +75,10 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
           </div>
           <div className={styles.modal__info}>
             <h3 className={styles.modal__title}>{product.name}</h3>
-            <p className={styles.modal__description}>{product.fullDescription}</p>
+            <div
+              className={styles.modal__description}
+              dangerouslySetInnerHTML={{ __html: product.fullDescription }}
+            />
           </div>
         </div>
       </div>

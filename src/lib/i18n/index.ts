@@ -216,6 +216,7 @@ export interface ProductsDict {
     all?: string;
   };
   viewAll?: string;
+  readMore?: string;
   hero?: {
     titlePart1?: string;
     titleHighlight?: string;
@@ -350,8 +351,8 @@ const dictionaries = {
 
 
 export async function getDictionary(locale: Locale): Promise<Dictionary> {
-  
-  
+
+
   return dictionaries[locale]?.() ?? dictionaries.ru();
 }
 

@@ -5,8 +5,7 @@ import { useCurrentLocale } from '@/hooks/useCurrentLocale';
 import { href, ROUTES } from '@/lib/routes';
 import styles from '../HeatLossCalculator.module.scss';
 import modalStyles from '../Modal.module.scss';
-import { SHEET_MATERIALS } from '@/utils/constants';
-import { computeSheetHeatLoss } from '@/utils/sheets';
+import { SHEET_MATERIALS, SHEET_ROLL_AREA_M2 } from '@/utils/constants'; import { computeSheetHeatLoss } from '@/utils/sheets';
 import { computeH } from '@/hooks/useHeatTransferCoefficient';
 import CalculateHModal from './CalculateHModal';
 import LabeledField from '@/components/calculator/shared/LabeledField';
@@ -31,9 +30,9 @@ const SheetsHeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) =
   const [h, setH] = useState<number>(9);
   const [cost, setCost] = useState<number>(0.5);
 
-  
+
   const [applySafetyFactor] = useState<boolean>(false);
-  
+
   const [useAdvancedAlgorithm] = useState<boolean>(true);
 
   const [isHModalOpen, setHModalOpen] = useState<boolean>(false);
@@ -71,14 +70,14 @@ const SheetsHeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) =
     const computed = computeH({
       ambientTemp,
       mediumTemp,
-      tubeDiameter: modalParams.sheetHeightM * 1000, 
+      tubeDiameter: modalParams.sheetHeightM * 1000,
       orientation: modalParams.orientation,
       emissivity: modalParams.emissivity,
       calculationType: modalParams.calculationType,
-      useSimplifiedFormula: false, 
-      applySafetyFactor, 
-      useAdvancedAlgorithm: false, 
-      useAdvancedSheetsAlgorithm: true, 
+      useSimplifiedFormula: false,
+      applySafetyFactor,
+      useAdvancedAlgorithm: false,
+      useAdvancedSheetsAlgorithm: true,
     });
     setH(Number(computed.toFixed(3)));
     setHModalOpen(false);
@@ -98,7 +97,7 @@ const SheetsHeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) =
   };
 
   const handleBack = () => {
-    
+
     setAmbientTemp(25);
     setMediumTemp(-5);
     setThickness(10);
@@ -107,10 +106,10 @@ const SheetsHeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) =
     setH(9);
     setCost(0.5);
 
-    
+
     setResults(null);
 
-    
+
     setHModalOpen(false);
     setIsHelpModalOpen(false);
     setModalParams({
@@ -138,8 +137,15 @@ const SheetsHeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) =
             <div className={styles.heatLossCalculator__fields}>
               <LabeledField label={dict?.ambientTemp || "ambient temperature"} helpText={dict?.ambientTempDesc || "air around insulation"} unit="°C" value={ambientTemp} onChange={setAmbientTemp} styles={fieldStyles} />
               <LabeledField label={dict?.mediumTemp || "medium temperature"} helpText={dict?.mediumTempSheetDesc || "surface/medium temperature"} unit="°C" value={mediumTemp} onChange={setMediumTemp} styles={fieldStyles} />
-              <LabeledField label={dict?.insulationThickness || "insulation thickness"} helpText={dict?.insulationThicknessDesc || "thermal insulation layer thickness"} unit="mm" value={thickness} onChange={setThickness} styles={fieldStyles} inputProps={{ min: 1, step: 1 }} />
-              <LabeledField label={dict?.surfaceArea || "surface area"} helpText={dict?.surfaceAreaDesc || "calculated heat exchange area"} unit="m²" value={area} onChange={setArea} styles={fieldStyles} inputProps={{ min: 0.01, step: 0.01 }} />
+              <LabeledSelect
+                label={dict?.insulationThickness || "insulation thickness"}
+                helpText={dict?.insulationThicknessDesc || "thermal insulation layer thickness"}
+                unit="mm"
+                value={thickness}
+                onChange={(v) => setThickness(Number(v))}
+                options={Object.keys(SHEET_ROLL_AREA_M2.width1m).map(Number).sort((a, b) => a - b).map(t => ({ value: t, label: String(t) }))}
+                styles={fieldStyles}
+              />              <LabeledField label={dict?.surfaceArea || "surface area"} helpText={dict?.surfaceAreaDesc || "calculated heat exchange area"} unit="m²" value={area} onChange={setArea} styles={fieldStyles} inputProps={{ min: 0.01, step: 0.01 }} />
               <LabeledSelect label={dict?.insulationMaterial || "insulation material"} helpText={dict?.insulationMaterialDesc || "sets thermal conductivity λ(T)"} value={material} onChange={(v) => setMaterial(String(v))} options={materialsList.map(m => ({ value: m, label: m }))} styles={fieldStyles} />
               <div className={styles.heatLossCalculator__field}>
                 <label className={styles.heatLossCalculator__field_label}>{dict?.hCoefficient || "heat transfer coefficient h"}</label>

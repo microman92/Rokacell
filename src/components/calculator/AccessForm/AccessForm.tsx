@@ -30,20 +30,10 @@ const AccessForm = ({ dict }: AccessFormProps) => {
     setLoading(true);
 
     try {
-      // Отправляем данные на наш API
-      const response = await fetch("/api/feedback", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      // Имитация отправки данных
+      await new Promise((resolve) => setTimeout(resolve, 800));
 
-      if (!response.ok) {
-        throw new Error("Failed to send email");
-      }
-
-      // После успешной отправки предоставляем доступ
+      // После "успешной" отправки предоставляем доступ
       grantAccess({
         fullName: formData.fullName,
         phone: formData.phone,
@@ -52,7 +42,6 @@ const AccessForm = ({ dict }: AccessFormProps) => {
       });
     } catch (error) {
       console.error("Submission failed", error);
-      // Можно добавить вывод ошибки пользователю
     } finally {
       setLoading(false);
     }

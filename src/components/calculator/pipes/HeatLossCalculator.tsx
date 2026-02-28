@@ -17,6 +17,7 @@ import {
   getAvailableThicknesses
 } from '@/utils/heatLoss';
 import { computeH } from '@/hooks/useHeatTransferCoefficient';
+import { getNumberValue } from '@/utils/formUtils';
 import { Dictionary } from '@/lib/i18n';
 
 type CalculatorDict = NonNullable<Dictionary['calculator']>['calc'];
@@ -28,7 +29,7 @@ interface HeatLossCalculatorProps {
 const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
   const router = useRouter();
   const locale = useCurrentLocale();
-  
+
   const {
     ambientTemp,
     mediumTemp,
@@ -46,18 +47,18 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
     setEmissivity,
   } = useCalculatorStore();
 
-  
+
   const [localParams, setLocalParams] = useState<Pick<CalculationParams, 'insulationThickness' | 'pipeWallThickness' | 'pipeLength' | 'costPerKWh'>>({
     insulationThickness: 9,
-    pipeWallThickness: 0, 
+    pipeWallThickness: 0,
     pipeLength: 1.0,
     costPerKWh: 0.5,
   });
 
-  
+
   const [applySafetyFactor] = useState<boolean>(false);
 
-  
+
   const [results, setResults] = useState<CalculationResults>({
     meanLambda: 0,
     thermalTransmittance: 0,
@@ -68,10 +69,10 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
     recommendedThicknessMm: undefined,
   });
 
-  
+
   const [hasCalculated, setHasCalculated] = useState<boolean>(false);
 
-  
+
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalParams, setModalParams] = useState<ModalParams>({
     calculationType: 'inside',
@@ -79,65 +80,65 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
     emissivity,
   });
 
-  
+
   const [isHelpModalOpen, setIsHelpModalOpen] = useState<boolean>(false);
 
-  
+
   const calculateHeatLoss = (): void => {
     const { insulationThickness, pipeLength, costPerKWh } = localParams;
 
-    
+
     if (insulationThickness <= 0 || pipeLength <= 0 || h <= 0) {
       return;
     }
 
-    
+
     const usedThickness = insulationThickness;
 
-    
+
     const rOuterPipe = tubeDiameter / 2 / 1000;
     const rInnerPipe = Math.max(1e-6, rOuterPipe - (localParams.pipeWallThickness ?? 0) / 1000);
     const ro = rOuterPipe + usedThickness / 1000;
 
-    
-    
-    
+
+
+
     const T_lambda = ambientTemp + 0.533 * (mediumTemp - ambientTemp) + 21;
     const lambda = interpolateLambda(T_lambda, material);
 
-    
-    
-    
-    const lambdaPipe = 50; 
 
-    
-    
-    
+
+
+    const lambdaPipe = 50;
+
+
+
+
     const pipeWallThicknessActual = localParams.pipeWallThickness ?? 0;
     let R_pipe: number;
     if (pipeWallThicknessActual > 0 && rInnerPipe < rOuterPipe) {
-      
-      
+
+
       R_pipe = Math.log(rOuterPipe / rInnerPipe) / (2 * Math.PI * lambdaPipe);
     } else {
-      
+
       R_pipe = 0;
     }
 
-    
-    
+
+
     const R_cond = Math.log(ro / rOuterPipe) / (2 * Math.PI * lambda);
 
-    
-    
+
+
     const R_conv = 1 / (h * 2 * Math.PI * ro);
 
-    
+
     const R_total = R_pipe + R_cond + R_conv;
 
-    
-    
-    
+
+
+
     let hUninsulated = computeH({
       ambientTemp,
       mediumTemp,
@@ -153,9 +154,9 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
       useKFlexAlgorithm: true,
     });
 
-    
-    
-    
+
+
+
     if (tubeDiameter > 0) {
       const diameterRatio = 25 / tubeDiameter;
       const boostPower = 0.2;
@@ -163,34 +164,34 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
       hUninsulated *= boostFactor;
     }
 
-    
+
     const R_total_uninsulated = R_pipe + 1 / (hUninsulated * 2 * Math.PI * rOuterPipe);
 
-    
-    
-    
-    const deltaT = mediumTemp - ambientTemp; 
-    const { heatLoss: heatLossPerMeter, decrease } = calculateHeatLosses(deltaT, R_total, R_total_uninsulated);
-    
 
-    
+
+
+    const deltaT = mediumTemp - ambientTemp;
+    const { heatLoss: heatLossPerMeter, decrease } = calculateHeatLosses(deltaT, R_total, R_total_uninsulated);
+
+
+
     const heatLoss = heatLossPerMeter * pipeLength;
 
-    
+
     const costPerHour = calculateEconomicData(heatLossPerMeter, pipeLength, costPerKWh);
 
-    
+
     const rokaflexDimension = calculateRokaflexDimension(tubeDiameter, usedThickness);
 
-    
-    
-    
-    
-    
-    
-    
-    const thermalTransmittance = heatLossPerMeter / Math.abs(deltaT);
 
+
+
+
+
+
+
+    // Prevent division by zero if deltaT is 0
+    const thermalTransmittance = 1 / R_total;
     setResults({
       meanLambda: lambda,
       thermalTransmittance,
@@ -203,23 +204,23 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
     setHasCalculated(true);
   };
 
-  
+
   const handleCalculateH = (): void => {
     setModalParams({ calculationType: 'inside', orientation, emissivity });
     setIsModalOpen(true);
   };
 
-  
+
   const handleOpenHelp = (): void => {
     setIsHelpModalOpen(true);
   };
 
-  
+
   const handleBack = (): void => {
-    
+
     useCalculatorStore.getState().reset();
 
-    
+
     setLocalParams({
       insulationThickness: 9,
       pipeWallThickness: 0,
@@ -227,7 +228,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
       costPerKWh: 0.5,
     });
 
-    
+
     setResults({
       meanLambda: 0,
       thermalTransmittance: 0,
@@ -239,7 +240,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
     });
     setHasCalculated(false);
 
-    
+
     setIsModalOpen(false);
     setIsHelpModalOpen(false);
     setModalParams({
@@ -251,7 +252,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
     router.push(href(locale, ROUTES.CALCULATOR));
   };
 
-  
+
   const calculateH = (): void => {
     const { orientation: modalOrientation, emissivity: modalEmissivity, calculationType: modalCalculationType } = modalParams;
 
@@ -262,12 +263,12 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
       orientation: modalOrientation,
       emissivity: modalEmissivity,
       calculationType: modalCalculationType,
-      insulationThickness: localParams.insulationThickness, 
+      insulationThickness: localParams.insulationThickness,
       useSimplifiedFormula: false,
-      applySafetyFactor, 
+      applySafetyFactor,
       useAdvancedAlgorithm: false,
       useAdvancedSheetsAlgorithm: false,
-      useKFlexAlgorithm: true, 
+      useKFlexAlgorithm: true,
     });
 
     setH(h_total);
@@ -284,7 +285,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
         </div>
 
         <div className={styles.heatLossCalculator__content}>
-          {}
+          { }
           <div className={styles.heatLossCalculator__section}>
             <h2 className={styles.heatLossCalculator__section_title}>{dict?.parameters || "Parameters"}</h2>
             <div className={styles.heatLossCalculator__grid}>
@@ -294,7 +295,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
                 <input
                   type="number"
                   value={ambientTemp}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmbientTemp(+e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmbientTemp(getNumberValue(e))}
                   className={styles.heatLossCalculator__field_input}
                 />
                 <span className={styles.heatLossCalculator__field_unit}>°C</span>
@@ -305,7 +306,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
                 <input
                   type="number"
                   value={mediumTemp}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setMediumTemp(+e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setMediumTemp(getNumberValue(e))}
                   className={styles.heatLossCalculator__field_input}
                 />
                 <span className={styles.heatLossCalculator__field_unit}>°C</span>
@@ -346,7 +347,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
                 <input
                   type="number"
                   value={localParams.pipeLength}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLocalParams({ ...localParams, pipeLength: +e.target.value })}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLocalParams({ ...localParams, pipeLength: getNumberValue(e) })}
                   className={styles.heatLossCalculator__field_input}
                   min="0.1"
                   step="0.1"
@@ -392,7 +393,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
                 <input
                   type="number"
                   value={localParams.costPerKWh}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLocalParams({ ...localParams, costPerKWh: +e.target.value })}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLocalParams({ ...localParams, costPerKWh: getNumberValue(e) })}
                   className={styles.heatLossCalculator__field_input}
                   min="0"
                   step="0.1"
@@ -402,7 +403,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
             </div>
           </div>
 
-          {}
+          { }
           {hasCalculated && (
             <div className={styles.heatLossCalculator__section}>
               <h2 className={styles.heatLossCalculator__section_title}>{dict?.results || "Calculation Results"}</h2>
@@ -466,7 +467,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
             </div>
           )}
 
-          {}
+          { }
           <CalculatorControls
             onCalculate={calculateHeatLoss}
             onHelp={handleOpenHelp}
@@ -479,7 +480,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
         </div>
       </div>
 
-      {}
+      { }
       {isModalOpen && (
         <div className={modalStyles.modal}>
           <div className={modalStyles.modal__container}>
@@ -488,7 +489,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
             </div>
 
             <div className={modalStyles.modal__content}>
-              {}
+              { }
               <div className={modalStyles.modal__section}>
                 <h2 className={modalStyles.modal__section_title}>{dict?.hModal?.calcType || "Calculation Type"}</h2>
                 <div className={modalStyles.modal__grid}>
@@ -550,7 +551,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
                 </div>
               </div>
 
-              {}
+              { }
               <div className={modalStyles.modal__section}>
                 <h2 className={modalStyles.modal__section_title}>{dict?.parameters || "Parameters"}</h2>
                 <div className={modalStyles.modal__grid}>
@@ -600,7 +601,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
                 </div>
               </div>
 
-              {}
+              { }
               <div className={modalStyles.modal__section}>
                 <h2 className={modalStyles.modal__section_title}>{dict?.hModal?.additionalSettings || "Additional Settings"}</h2>
                 <div className={modalStyles.modal__grid}>
@@ -609,7 +610,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
                     <input
                       type="number"
                       value={modalParams.emissivity}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setModalParams({ ...modalParams, emissivity: +e.target.value })}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setModalParams({ ...modalParams, emissivity: getNumberValue(e) })}
                       className={modalStyles.modal__field_input}
                       min="0"
                       max="1"
@@ -619,7 +620,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
                 </div>
               </div>
 
-              {}
+              { }
               <div className={modalStyles.modal__controls}>
                 <button
                   onClick={calculateH}
@@ -639,7 +640,7 @@ const HeatLossCalculator: React.FC<HeatLossCalculatorProps> = ({ dict }) => {
         </div>
       )}
 
-      {}
+      { }
       {isHelpModalOpen && (
         <div className={modalStyles.modal}>
           <div className={modalStyles.modal__container}>

@@ -234,6 +234,7 @@ export default {
       all: "Barchasi",
     },
     viewAll: "barchasini ko'rish...",
+    readMore: "batafsil...",
     hero: {
       titlePart1: "Har qanday vazifa uchun samarali ",
       titleHighlight: "issiqlik izolatsiyasi",

@@ -2,6 +2,7 @@ import React from 'react';
 import modalStyles from '../Modal.module.scss';
 import { CLADDING_OPTIONS } from '../../../utils/constants';
 import { Dictionary } from '@/lib/i18n';
+import { getNumberValue } from '@/utils/formUtils';
 
 type CalculatorDict = NonNullable<Dictionary['calculator']>['calc'];
 
@@ -128,7 +129,7 @@ const CalculateHModal: React.FC<CalculateHModalProps> = ({
                   type="number"
                   min="0" max="1" step="0.01"
                   value={modalParams.emissivity}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setModalParams({ ...modalParams, emissivity: +e.target.value })}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setModalParams({ ...modalParams, emissivity: getNumberValue(e) })}
                   className={modalStyles.modal__field_input}
                 />
               </div>
@@ -138,7 +139,7 @@ const CalculateHModal: React.FC<CalculateHModalProps> = ({
                   type="number"
                   min="0.01" step="0.01"
                   value={modalParams.sheetHeightM.toFixed(2)}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setModalParams({ ...modalParams, sheetHeightM: +e.target.value })}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setModalParams({ ...modalParams, sheetHeightM: getNumberValue(e) })}
                   className={modalStyles.modal__field_input}
                 />
               </div>
@@ -160,9 +161,9 @@ const CalculateHModal: React.FC<CalculateHModalProps> = ({
             </div>
           </div>
 
-          {}
+          { }
           <div style={{ display: 'none' }}>
-            {}
+            { }
             <div className={modalStyles.modal__field}>
               <label className={modalStyles.modal__field_label}>sheet orientation</label>
               <div className={modalStyles.modal__field_radioGroup}>

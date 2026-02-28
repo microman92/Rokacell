@@ -10,7 +10,7 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { NEWS_DATA } from "@/data/news";
+import type { NewsItem } from "@/data/news";
 import { NewsCard } from "@/components/ui/NewsCard/NewsCard";
 
 import { Locale } from "@/lib/locales";
@@ -41,20 +41,23 @@ export const NEWS_SLIDER_CONFIG = {
 };
 
 interface NewsProps {
-  locale?: Locale; 
+  locale?: Locale;
   variant?: "home" | "about";
   dict?: Dictionary["news"];
-  news?: typeof NEWS_DATA;
+  news?: NewsItem[];
+  title?: string;
 }
 
-export const News = ({ variant, dict, news = NEWS_DATA }: NewsProps) => {
+export const News = ({ variant, dict, news = [], title }: NewsProps) => {
   const isAboutPage = variant === "about";
+
+  const displayTitle = title || dict?.title || "WHATS NEW?";
 
   return (
     <section className={styles.news}>
       <Container className={styles.news__container}>
         <Heading variant="black" tag="h2" className={styles.news__title}>
-          {dict?.title || "WHATS NEW?"}
+          {displayTitle}
         </Heading>
       </Container>
 
@@ -84,7 +87,7 @@ export const News = ({ variant, dict, news = NEWS_DATA }: NewsProps) => {
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 0.5, delay: index * 0.15 }}
                 >
-                  <Link href={`/news/${item.slug}`} className={styles.slide__link}>
+                  <Link href={`/news/${item.id}`} className={styles.slide__link}>
                     <NewsCard item={item} />
                   </Link>
                 </motion.div>
@@ -104,7 +107,7 @@ export const News = ({ variant, dict, news = NEWS_DATA }: NewsProps) => {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
             >
-              <Link href={`/news/${item.slug}`} className={styles.news__link}>
+              <Link href={`/news/${item.id}`} className={styles.news__link}>
                 <NewsCard item={item} />
               </Link>
             </motion.div>

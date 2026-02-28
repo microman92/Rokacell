@@ -1,6 +1,7 @@
 import React from 'react';
 import modalStyles from '../Modal.module.scss';
 import { Dictionary } from '@/lib/i18n';
+import { getNumberValue } from '@/utils/formUtils';
 
 type CalculatorDict = NonNullable<Dictionary['calculator']>['calc'];
 
@@ -162,7 +163,7 @@ const CalculateHModal: React.FC<CalculateHModalProps> = ({
                 <input
                   type="number"
                   value={modalParams.emissivity}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setModalParams({ ...modalParams, emissivity: +e.target.value })}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setModalParams({ ...modalParams, emissivity: getNumberValue(e) })}
                   className={modalStyles.modal__field_input}
                   min="0"
                   max="1"

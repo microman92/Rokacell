@@ -236,6 +236,7 @@ export default {
       all: "Все",
     },
     viewAll: "смотреть всё...",
+    readMore: "читать далее...",
     hero: {
       titlePart1: "Эффективная ",
       titleHighlight: "теплоизоляция",

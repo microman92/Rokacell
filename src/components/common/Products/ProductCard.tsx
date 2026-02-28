@@ -5,9 +5,10 @@ import styles from './Products.module.scss';
 interface ProductCardProps {
   product: Product;
   onClick: (product: Product) => void;
+  readMoreText?: string;
 }
 
-const ProductCard = memo(function ProductCard({ product, onClick }: ProductCardProps) {
+const ProductCard = memo(function ProductCard({ product, onClick, readMoreText = "читать далее..." }: ProductCardProps) {
   return (
     <article
       className={styles.card}
@@ -36,7 +37,7 @@ const ProductCard = memo(function ProductCard({ product, onClick }: ProductCardP
         <p className={styles.card__description}>
           {product.description}
         </p>
-        <span className={styles.card__moreBtn}> читать далее...</span>
+        <span className={styles.card__moreBtn}> {readMoreText}</span>
       </div>
     </article>
   );

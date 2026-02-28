@@ -38,7 +38,14 @@ const LabeledField: React.FC<LabeledFieldProps> = ({
       <input
         type={type}
         value={value}
-        onChange={onChange ? (e: React.ChangeEvent<HTMLInputElement>) => onChange(+e.target.value) : undefined}
+        onChange={onChange ? (e: React.ChangeEvent<HTMLInputElement>) => {
+          let val = e.target.value;
+          if (/^-?0\d/.test(val)) {
+            val = val.replace(/^(-?)0+(?=\d)/, '$1');
+            e.target.value = val;
+          }
+          onChange(+val);
+        } : undefined}
         className={styles.heatLossCalculator__field_input}
         {...inputProps}
       />

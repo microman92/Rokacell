@@ -15,6 +15,7 @@ import "swiper/css/pagination";
 export interface ProductSwiperProps {
   products: Product[];
   onProductClick: (product: Product) => void;
+  readMoreText?: string;
 }
 
 
@@ -26,7 +27,7 @@ function chunkProducts(products: Product[], size: number): Product[][] {
   return chunks;
 }
 
-export default function ProductSwiper({ products, onProductClick }: ProductSwiperProps) {
+export default function ProductSwiper({ products, onProductClick, readMoreText }: ProductSwiperProps) {
   const [chunkSize, setChunkSize] = useState(
     typeof window !== "undefined" && window.innerWidth <= 768 ? 4 : 6
   );
@@ -61,7 +62,7 @@ export default function ProductSwiper({ products, onProductClick }: ProductSwipe
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
               >
-                <ProductCard product={product} onClick={onProductClick} />
+                <ProductCard product={product} onClick={onProductClick} readMoreText={readMoreText} />
               </motion.div>
             ))}
           </div>

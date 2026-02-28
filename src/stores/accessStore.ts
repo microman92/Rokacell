@@ -27,10 +27,9 @@ export const useAccessStore = create<AccessState>()(
     }),
     {
       name: 'calculator-access',
-      storage: createJSONStorage(() => sessionStorage),
+      storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         hasAccess: state.hasAccess,
-        userData: state.userData,
       }),
     }
   )

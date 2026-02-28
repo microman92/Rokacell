@@ -234,6 +234,7 @@ export default {
       all: "All",
     },
     viewAll: "view all...",
+    readMore: "read more...",
     hero: {
       titlePart1: "Effective ",
       titleHighlight: "thermal insulation",

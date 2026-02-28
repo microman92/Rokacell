@@ -1,14 +1,14 @@
 
 export interface TubeSize {
   type: 'copper' | 'steel';
-  dn: string; 
-  inch: string; 
-  mm: number; 
-  wallThicknesses: Record<number, number>; 
+  dn: string;
+  inch: string;
+  mm: number;
+  wallThicknesses: Record<number, number>;
 }
 
 export const ALL_TUBE_SIZES: TubeSize[] = [
-  
+
   { type: 'copper', dn: 'DN8', inch: '1/4"', mm: 6, wallThicknesses: { 6: 486, 9: 342, 13: 216 } },
   { type: 'copper', dn: 'DN8', inch: '5/16"', mm: 8, wallThicknesses: { 6: 432, 9: 306, 13: 198 } },
   { type: 'copper', dn: 'DN10', inch: '3/8"', mm: 10, wallThicknesses: { 6: 378, 9: 270, 13: 180 } },
@@ -21,7 +21,7 @@ export const ALL_TUBE_SIZES: TubeSize[] = [
   { type: 'copper', dn: 'DN32', inch: '1 3/8"', mm: 35, wallThicknesses: { 6: 120, 9: 96, 13: 72, 19: 48, 25: 32, 32: 24 } },
   { type: 'copper', dn: 'DN40', inch: '1 5/8"', mm: 42, wallThicknesses: { 6: 108, 9: 88, 13: 56, 19: 40, 25: 24, 32: 22 } },
 
-  
+
   { type: 'steel', dn: 'DN6', inch: '1/8"', mm: 10.2, wallThicknesses: {} },
   { type: 'steel', dn: 'DN8', inch: '1/4"', mm: 13.5, wallThicknesses: {} },
   { type: 'steel', dn: 'DN10', inch: '3/8"', mm: 17.2, wallThicknesses: {} },
@@ -52,9 +52,9 @@ export type MaterialKey = keyof typeof MATERIALS;
 
 export const SHEET_MATERIALS = {
   'ROKAFLEX ST': {
-    
+
     lambda: { '-20': 0.032, '0': 0.034, '20': 0.036, '40': 0.038, '60': 0.040 },
-    mu: 7000, 
+    mu: 7000,
     temperatureRange: { min: -200, max: 110 },
   },
 } as const;
@@ -71,11 +71,11 @@ export const SHEET_ROLL_AREA_M2 = {
 
 
 export const CLADDING_TYPES = {
-  NONE: { code: '', label: 'not specified', emissivity: 0.93 }, 
-  STD: { code: 'STD', label: 'no coating', emissivity: 0.93 }, 
-  AF: { code: 'AF', label: 'aluminum foil', emissivity: 0.05 }, 
-  AG: { code: 'AG', label: 'aluminum foil + PVC', emissivity: 0.05 }, 
-  SA: { code: 'SA', label: 'self-adhesive layer', emissivity: 0.93 }, 
+  NONE: { code: '', label: 'not specified', emissivity: 0.93 },
+  STD: { code: 'STD', label: 'no coating', emissivity: 0.93 },
+  AF: { code: 'AF', label: 'aluminum foil', emissivity: 0.05 },
+  AG: { code: 'AG', label: 'aluminum foil + PVC', emissivity: 0.05 },
+  SA: { code: 'SA', label: 'self-adhesive layer', emissivity: 0.93 },
 } as const;
 
 export type CladdingCode = '' | 'STD' | 'AF' | 'AG' | 'SA';
@@ -92,10 +92,10 @@ export const formatTubeName = (size: TubeSize): string => {
   const mmFormatted = size.mm.toString().replace('.', ',');
 
   if (size.type === 'copper') {
-    
+
     return `${size.inch} ( ${materialLabel} ) - ${mmFormatted}mm`;
   } else {
-    
+
     return `${size.dn} - ${size.inch} (${materialLabel}) - ${mmFormatted}mm`;
   }
 };

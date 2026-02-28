@@ -23,15 +23,15 @@ const ProductSwiper = dynamic<ProductSwiperProps>(
 );
 
 interface ProductsProps {
-  
+
   variant?: "home" | "page";
-  
+
   defaultTab?: string;
-  
+
   showTitle?: boolean;
   dict?: Dictionary["products"];
 
-  
+
   products?: Product[];
   categories?: Category[];
 }
@@ -42,9 +42,9 @@ export default function Products({
   showTitle = true,
   dict,
   products = PRODUCTS,
-  categories = PRODUCT_TABS as unknown as Category[], 
+  categories = PRODUCT_TABS as unknown as Category[],
 }: ProductsProps) {
-  
+
   const initialTab = defaultTab === "rolls" ? (categories?.[0]?.id || "rolls") : defaultTab;
   const [activeTab, setActiveTab] = useState<string>(initialTab);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -54,7 +54,7 @@ export default function Products({
     return products.filter((product) => product.category === activeTab);
   }, [activeTab, products]);
 
-  
+
   const handleProductClick = useCallback((product: Product) => {
     setSelectedProduct(product);
   }, []);
@@ -82,7 +82,7 @@ export default function Products({
             </Heading>
           )}
 
-          {}
+          { }
           <nav className={styles.tabs} role="tablist" aria-label="Product categories">
             {categories.map((tab) => (
               <button
@@ -99,13 +99,17 @@ export default function Products({
           </nav>
         </motion.div>
 
-        {}
+        { }
         <div className={styles.products__swiperWrapper}>
-          <ProductSwiper products={filteredProducts} onProductClick={handleProductClick} />
+          <ProductSwiper
+            products={filteredProducts}
+            onProductClick={handleProductClick}
+            readMoreText={dict?.readMore}
+          />
         </div>
       </Container>
 
-      {}
+      { }
       <ProductModal
         product={selectedProduct}
         isOpen={selectedProduct !== null}
