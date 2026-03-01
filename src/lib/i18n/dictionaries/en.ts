@@ -186,19 +186,31 @@ export default {
         p4: "The result shows heat losses, their reduction compared to an uninsulated pipe, and economic effect.",
         fieldsTitle: "Field Explanations",
         fAmbient: "<strong>Ambient temperature</strong> — air outside the insulation, °C.",
-        fMedium: "<strong>Medium temperature</strong> — heat carrier temperature inside the pipe, °C.",
-        fDiameter: "<strong>Pipe diameter</strong> — outer diameter, mm. The list shows equivalents: Cu — copper, St — steel.",
-        fThickness: "<strong>Insulation thickness</strong> — selected thermal insulation layer thickness, mm; calculation is performed with this value.",
-        fWall: "<strong>Pipe wall thickness</strong> — pipe metal thickness, mm; affects heat transfer through the wall.",
-        fLength: "<strong>Pipe length</strong> — calculation section, m; affects total losses and cost per hour.",
-        fMaterial: "<strong>Thermal insulation material</strong> — sets thermal conductivity λ(T) for calculation.",
-        fHeatTransfer: "<strong>Heat transfer coefficient h</strong> — takes into account convection and radiation from the surface; can be calculated using the \"calculate h\" button. Calculations are performed according to ISO 12241 standard.",
+        fMedium:
+          "<strong>Medium temperature</strong> — heat carrier temperature inside the pipe, °C.",
+        fDiameter:
+          "<strong>Pipe diameter</strong> — outer diameter, mm. The list shows equivalents: Cu — copper, St — steel.",
+        fThickness:
+          "<strong>Insulation thickness</strong> — selected thermal insulation layer thickness, mm; calculation is performed with this value.",
+        fWall:
+          "<strong>Pipe wall thickness</strong> — pipe metal thickness, mm; affects heat transfer through the wall.",
+        fLength:
+          "<strong>Pipe length</strong> — calculation section, m; affects total losses and cost per hour.",
+        fMaterial:
+          "<strong>Thermal insulation material</strong> — sets thermal conductivity λ(T) for calculation.",
+        fHeatTransfer:
+          '<strong>Heat transfer coefficient h</strong> — takes into account convection and radiation from the surface; can be calculated using the "calculate h" button. Calculations are performed according to ISO 12241 standard.',
         fEnergyCost: "<strong>Energy cost</strong> — tariff, J, for cost estimation.",
-        fCalcType: "<strong>Calculation Type</strong> — select \"inside\" to calculate heat released outward, or \"outside\" to calculate heat released inward.",
-        fOrientation: "<strong>Orientation</strong> — pipe orientation: \"vertical\" for vertical pipes, \"horizontal\" for horizontal pipes. Affects convective heat transfer.",
-        fEmissivity: "<strong>Emissivity coefficient</strong> — surface emissivity (0…1), typically 0.93 for most insulation materials. Affects radiative heat transfer.",
-        results: "<strong>Results:</strong> heat losses (W), reduction (%), cost per hour (J), insulation thermal transmittance (W/(m·K)).",
-        units: "<strong>Units:</strong> mm — millimeters, m — meters, m² — square meters, W — watts, W/(m·K) — watts per m·K (heat transfer coefficient per unit of length), J — joules.",
+        fCalcType:
+          '<strong>Calculation Type</strong> — select "inside" to calculate heat released outward, or "outside" to calculate heat released inward.',
+        fOrientation:
+          '<strong>Orientation</strong> — pipe orientation: "vertical" for vertical pipes, "horizontal" for horizontal pipes. Affects convective heat transfer.',
+        fEmissivity:
+          "<strong>Emissivity coefficient</strong> — surface emissivity (0…1), typically 0.93 for most insulation materials. Affects radiative heat transfer.",
+        results:
+          "<strong>Results:</strong> heat losses (W), reduction (%), cost per hour (J), insulation thermal transmittance (W/(m·K)).",
+        units:
+          "<strong>Units:</strong> mm — millimeters, m — meters, m² — square meters, W — watts, W/(m·K) — watts per m·K (heat transfer coefficient per unit of length), J — joules.",
         closeBtn: "Close",
       },
       helpModalCondensation: {
@@ -209,18 +221,30 @@ export default {
         p4: "The result will show the dew point and the recommended insulation thickness from stock.",
         fieldsTitle: "Field Explanations",
         fAmbient: "<strong>Ambient temperature</strong> — air outside the insulation, °C.",
-        fMedium: "<strong>Medium temperature</strong> — heat carrier temperature inside the pipe (for pipes) or surface/medium temperature (for sheets), °C.",
-        fDiameter: "<strong>Pipe diameter</strong> — outer diameter, mm. The list shows equivalents: Cu — copper, St — steel. (For sheets, this parameter is not used.)",
-        fMaterial: "<strong>Thermal insulation material</strong> — sets thermal conductivity λ(T) for calculation.",
-        fHeatTransfer: "<strong>Heat transfer coefficient h</strong> — takes into account convection and radiation from the surface; can be calculated using the \"calculate h\" button. Calculations are performed according to ISO 12241 standard.",
-        fRelHumidity: "<strong>Relative humidity (30%-95%)</strong> — used to calculate the dew point using the Magnus formula, %.",
-        fCalcType: "<strong>Calculation Type</strong> — select \"inside\" to calculate heat released outward, or \"outside\" to calculate heat released inward.",
-        fOrientation: "<strong>Orientation</strong> — pipe/sheet orientation: \"vertical\" for vertical orientation, \"horizontal\" for horizontal orientation. Affects convective heat transfer.",
-        fEmissivity: "<strong>Emissivity coefficient</strong> — surface emissivity (0…1), typically 0.93 for most insulation materials. Affects radiative heat transfer.",
-        fSheetHeight: "<strong>Sheet height</strong> — (for sheets only) characteristic dimension for heat transfer calculation, m.",
-        fCladding: "<strong>Type of cladding</strong> — (for sheets only) optional cladding type that affects surface properties.",
-        results: "<strong>Results:</strong> dew point (°C) — condensation start temperature; minimum insulation thickness (mm) — calculated value to prevent condensation; and also <strong>recommended thickness</strong> — recommended insulation thickness from stock (with 20% margin for pipes).",
-        units: "<strong>Units:</strong> mm — millimeters, °C — degrees Celsius, W/m²K — watts per m²·K, % — percent.",
+        fMedium:
+          "<strong>Medium temperature</strong> — heat carrier temperature inside the pipe (for pipes) or surface/medium temperature (for sheets), °C.",
+        fDiameter:
+          "<strong>Pipe diameter</strong> — outer diameter, mm. The list shows equivalents: Cu — copper, St — steel. (For sheets, this parameter is not used.)",
+        fMaterial:
+          "<strong>Thermal insulation material</strong> — sets thermal conductivity λ(T) for calculation.",
+        fHeatTransfer:
+          '<strong>Heat transfer coefficient h</strong> — takes into account convection and radiation from the surface; can be calculated using the "calculate h" button. Calculations are performed according to ISO 12241 standard.',
+        fRelHumidity:
+          "<strong>Relative humidity (30%-95%)</strong> — used to calculate the dew point using the Magnus formula, %.",
+        fCalcType:
+          '<strong>Calculation Type</strong> — select "inside" to calculate heat released outward, or "outside" to calculate heat released inward.',
+        fOrientation:
+          '<strong>Orientation</strong> — pipe/sheet orientation: "vertical" for vertical orientation, "horizontal" for horizontal orientation. Affects convective heat transfer.',
+        fEmissivity:
+          "<strong>Emissivity coefficient</strong> — surface emissivity (0…1), typically 0.93 for most insulation materials. Affects radiative heat transfer.",
+        fSheetHeight:
+          "<strong>Sheet height</strong> — (for sheets only) characteristic dimension for heat transfer calculation, m.",
+        fCladding:
+          "<strong>Type of cladding</strong> — (for sheets only) optional cladding type that affects surface properties.",
+        results:
+          "<strong>Results:</strong> dew point (°C) — condensation start temperature; minimum insulation thickness (mm) — calculated value to prevent condensation; and also <strong>recommended thickness</strong> — recommended insulation thickness from stock (with 20% margin for pipes).",
+        units:
+          "<strong>Units:</strong> mm — millimeters, °C — degrees Celsius, W/m²K — watts per m²·K, % — percent.",
         closeBtn: "Close",
       },
     },
@@ -260,6 +284,10 @@ export default {
     },
     moscow: {
       city: "MOSCOW, RUSSIAN FEDERATION",
+    },
+    baku: {
+      city: "BAKU, AZERBAIJAN",
+      address: "AZ1052 BAKU, BINEGADI AHMED RECEBLI 62 A / AZERBAIJAN",
     },
   },
   calculateSavings: {

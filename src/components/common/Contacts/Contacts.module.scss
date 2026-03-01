@@ -17,6 +17,12 @@
     flex-direction: column;
   }
 
+  &__phones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
   // Левая часть (Визуал)
   &__visual {
     width: 100%;
@@ -137,6 +143,23 @@
   }
 
 
+  &__company {
+    font-family: var(--second-family);
+    font-weight: 600;
+    font-size: 28px;
+    color: var(--txt-white);
+    margin-bottom: 15px;
+
+    @include media(1440) {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    @include media(1200) {
+      font-size: 16px;
+    }
+  }
+
   &__city {
     font-family: var(--second-family);
     font-weight: 500;
@@ -156,54 +179,34 @@
     }
   }
 
-  &__address {
+  &__link {
     font-family: var(--font-family);
     font-weight: 400;
     font-size: 36px;
     color: var(--txt-white);
-    margin-bottom: 97px;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 20px;
+    width: fit-content;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
 
     @include media(1440) {
       font-size: 24px;
-      margin-bottom: 40px;
+      margin-bottom: 15px;
     }
 
     @include media(1200) {
       font-size: 16px;
-      margin-bottom: 24px;
-    }
-  }
-
-  &__email {
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 36px;
-    color: var(--txt-white);
-    margin-bottom: 48px;
-
-    @include media(1440) {
-      font-size: 24px;
-      margin-bottom: 24px;
+      margin-bottom: 10px;
     }
 
-    @include media(1200) {
-      font-size: 16px;
-      margin-bottom: 16px;
-    }
-  }
-
-  &__phones {
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 36px;
-    color: var(--txt-white);
-
-    @include media(1440) {
-      font-size: 24px;
-    }
-
-    @include media(1200) {
-      font-size: 16px;
+    @media (hover: hover) {
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 

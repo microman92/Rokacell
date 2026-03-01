@@ -21,17 +21,14 @@ export default function Contacts({ data, index = 0 }: ContactsProps) {
       transition={{ duration: 0.6, delay: index * 0.2 }}
       className={styles.contacts}
     >
-      {}
       {isPhotoVariant && <img src={data.image} alt={data.city} className={styles.contacts__bg} />}
 
-      {}
       <div
         className={cn(
           styles.contacts__visual,
           isPhotoVariant ? styles["contacts__visual--photo"] : styles["contacts__visual--products"]
         )}
       >
-        {}
         {data.logo && (
           <img
             src={data.logo}
@@ -43,7 +40,6 @@ export default function Contacts({ data, index = 0 }: ContactsProps) {
           />
         )}
 
-        {}
         {!isPhotoVariant && (
           <img
             src={data.image}
@@ -52,17 +48,28 @@ export default function Contacts({ data, index = 0 }: ContactsProps) {
           />
         )}
       </div>
-      {}
-      {}
+
       <div className={cn(styles.contacts__info, isPhotoVariant && styles["photo"])}>
+        {data.companyName && <h4 className={styles.contacts__company}>{data.companyName}</h4>}
         <h3 className={styles.contacts__city}>{data.city}</h3>
-        {data.address && <p className={styles.contacts__address}>{data.address}</p>}
-        <p className={styles.contacts__email}>{data.email}</p>
-        {data.phones.map((phone, i) => (
-          <p key={i} className={styles.contacts__phones}>
-            {phone}
-          </p>
-        ))}
+        {data.address && <p className={styles.contacts__link}>{data.address}</p>}
+        <div className={styles.contacts__phones}>
+          {data.phones.map((phone, i) => (
+            <a key={i} href={`tel:${phone}`} className={styles.contacts__link}>
+              {phone}
+            </a>
+          ))}
+        </div>
+        {data.email && (
+          <a href={`mailto:${data.email}`} className={styles.contacts__link}>
+            {data.email}
+          </a>
+        )}
+        {data.website && (
+          <a href={data.website} className={styles.contacts__link}>
+            {data.website}
+          </a>
+        )}
       </div>
     </motion.div>
   );

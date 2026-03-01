@@ -186,19 +186,31 @@ export default {
         p4: "Natija issiqlik yo'qotishlarini, izolyatsiyalanmagan quvurga nisbatan ularning kamayishini va iqtisodiy samarani ko'rsatadi.",
         fieldsTitle: "Maydonlar tavsifi",
         fAmbient: "<strong>Atrof-muhit harorati</strong> — izolyatsiya atrofidagi havo, °C.",
-        fMedium: "<strong>Tashuvchi harorati</strong> — quvur ichidagi issiqlik tashuvchi harorati, °C.",
-        fDiameter: "<strong>Quvur diametri</strong> — tashqi diametr, mm. Ro'yxatda ekvivalentlar ko'rsatilgan: Cu — mis, St — po'lat.",
-        fThickness: "<strong>Izolyatsiya qalinligi</strong> — tanlangan issiqlik izolyatsiyasi qatlamining qalinligi, mm; hisoblash ushbu qiymat bilan amalga oshiriladi.",
-        fWall: "<strong>Quvur devori qalinligi</strong> — quvur metallining qalinligi, mm; devor orqali issiqlik uzatilishiga ta'sir qiladi.",
-        fLength: "<strong>Quvur uzunligi</strong> — hisoblash uchastkasi, m; umumiy yo'qotishlar va soatiga xarajatlarga ta'sir qiladi.",
-        fMaterial: "<strong>Issiqlik izolyatsiyasi materiali</strong> — hisoblash uchun λ(T) issiqlik o'tkazuvchanligini o'rnatadi.",
-        fHeatTransfer: "<strong>Issiqlik uzatish koeffitsiyenti h</strong> — sirtdan konveksiya va nurlanishni hisobga oladi; «h ni hisoblash» tugmasi yordamida hisoblash mumkin. Hisoblashlar ISO 12241 standartiga muvofiq amalga oshiriladi.",
+        fMedium:
+          "<strong>Tashuvchi harorati</strong> — quvur ichidagi issiqlik tashuvchi harorati, °C.",
+        fDiameter:
+          "<strong>Quvur diametri</strong> — tashqi diametr, mm. Ro'yxatda ekvivalentlar ko'rsatilgan: Cu — mis, St — po'lat.",
+        fThickness:
+          "<strong>Izolyatsiya qalinligi</strong> — tanlangan issiqlik izolyatsiyasi qatlamining qalinligi, mm; hisoblash ushbu qiymat bilan amalga oshiriladi.",
+        fWall:
+          "<strong>Quvur devori qalinligi</strong> — quvur metallining qalinligi, mm; devor orqali issiqlik uzatilishiga ta'sir qiladi.",
+        fLength:
+          "<strong>Quvur uzunligi</strong> — hisoblash uchastkasi, m; umumiy yo'qotishlar va soatiga xarajatlarga ta'sir qiladi.",
+        fMaterial:
+          "<strong>Issiqlik izolyatsiyasi materiali</strong> — hisoblash uchun λ(T) issiqlik o'tkazuvchanligini o'rnatadi.",
+        fHeatTransfer:
+          "<strong>Issiqlik uzatish koeffitsiyenti h</strong> — sirtdan konveksiya va nurlanishni hisobga oladi; «h ni hisoblash» tugmasi yordamida hisoblash mumkin. Hisoblashlar ISO 12241 standartiga muvofiq amalga oshiriladi.",
         fEnergyCost: "<strong>Energiya narxi</strong> — xarajatlarni hisoblash uchun tarif, J.",
-        fCalcType: "<strong>Hisoblash turi</strong> — tashqariga chiquvchi issiqlikni hisoblash uchun «tashqariga» yoki ichkariga kiruvchi issiqlikni hisoblash uchun «ichkariga» ni tanlang.",
-        fOrientation: "<strong>Oriyentatsiya</strong> — quvur yo'nalishi: «vertikal» yoki «gorizontal». Konvektiv issiqlik almashinuviga ta'sir qiladi.",
-        fEmissivity: "<strong>Nurlanish koeffitsiyenti</strong> — sirt nurlanish qobiliyati (0…1), odatda ko'pchilik izolyatsiya materiallari uchun 0.93. Radiatsion issiqlik almashinuviga ta'sir qiladi.",
-        results: "<strong>Natijalar:</strong> issiqlik yo'qotishlari (W), kamayish (%), soatiga xarajat (J), izolyatsiya issiqlik o'tkazuvchanligi (W/(m·K)).",
-        units: "<strong>O'lchov birliklari:</strong> mm — millimetr, m — metr, m² — kvadrat metr, W — vatt, W/(m·K) — metr-kelvin uchun vatt (uzunlik birligi uchun issiqlik o'tkazuvchanlik koeffitsienti), J — joul.",
+        fCalcType:
+          "<strong>Hisoblash turi</strong> — tashqariga chiquvchi issiqlikni hisoblash uchun «tashqariga» yoki ichkariga kiruvchi issiqlikni hisoblash uchun «ichkariga» ni tanlang.",
+        fOrientation:
+          "<strong>Oriyentatsiya</strong> — quvur yo'nalishi: «vertikal» yoki «gorizontal». Konvektiv issiqlik almashinuviga ta'sir qiladi.",
+        fEmissivity:
+          "<strong>Nurlanish koeffitsiyenti</strong> — sirt nurlanish qobiliyati (0…1), odatda ko'pchilik izolyatsiya materiallari uchun 0.93. Radiatsion issiqlik almashinuviga ta'sir qiladi.",
+        results:
+          "<strong>Natijalar:</strong> issiqlik yo'qotishlari (W), kamayish (%), soatiga xarajat (J), izolyatsiya issiqlik o'tkazuvchanligi (W/(m·K)).",
+        units:
+          "<strong>O'lchov birliklari:</strong> mm — millimetr, m — metr, m² — kvadrat metr, W — vatt, W/(m·K) — metr-kelvin uchun vatt (uzunlik birligi uchun issiqlik o'tkazuvchanlik koeffitsienti), J — joul.",
         closeBtn: "Yopish",
       },
       helpModalCondensation: {
@@ -209,17 +221,26 @@ export default {
         p4: "Natija shudring nuqtasi va assortimentdan tavsiya etilgan izolyatsiya qalinligini ko'rsatadi.",
         fieldsTitle: "Maydonlar tavsifi",
         fAmbient: "<strong>Atrof-muhit harorati</strong> — izolyatsiya atrofidagi havo, °C.",
-        fMedium: "<strong>Tashuvchi harorati</strong> — quvurdagi issiqlik tashuvchi yokisirt harorati, °C.",
-        fDiameter: "<strong>Quvur diametri</strong> — tashqi diametr, mm. Ro'yxatdagi ekvivalentlar: Cu — mis, St — po'lat. (Listlar uchun ishlatilmaydi.)",
-        fMaterial: "<strong>Issiqlik izolyatsiya materiali</strong> — hisoblash uchun λ(T) ni o'rnatadi.",
-        fHeatTransfer: "<strong>Issiqlik uzatish koeffitsiyenti h</strong> — konveksiya va nurlanishni hisobga oladi.",
-        fRelHumidity: "<strong>Nisbiy namlik (30%-95%)</strong> — shudring nuqtasini hisoblash uchu, %.",
-        fCalcType: "<strong>Hisoblash turi</strong> — ichkariga yoki tashqariga yo'nalishini tanlang.",
-        fOrientation: "<strong>Oryentatsiya</strong> — quvur/list yo'nalishi: vertikal yoki gorizontal.",
+        fMedium:
+          "<strong>Tashuvchi harorati</strong> — quvurdagi issiqlik tashuvchi yokisirt harorati, °C.",
+        fDiameter:
+          "<strong>Quvur diametri</strong> — tashqi diametr, mm. Ro'yxatdagi ekvivalentlar: Cu — mis, St — po'lat. (Listlar uchun ishlatilmaydi.)",
+        fMaterial:
+          "<strong>Issiqlik izolyatsiya materiali</strong> — hisoblash uchun λ(T) ni o'rnatadi.",
+        fHeatTransfer:
+          "<strong>Issiqlik uzatish koeffitsiyenti h</strong> — konveksiya va nurlanishni hisobga oladi.",
+        fRelHumidity:
+          "<strong>Nisbiy namlik (30%-95%)</strong> — shudring nuqtasini hisoblash uchu, %.",
+        fCalcType:
+          "<strong>Hisoblash turi</strong> — ichkariga yoki tashqariga yo'nalishini tanlang.",
+        fOrientation:
+          "<strong>Oryentatsiya</strong> — quvur/list yo'nalishi: vertikal yoki gorizontal.",
         fEmissivity: "<strong>Nurlanish koeffitsiyenti</strong> — sirt nurlanish qobiliyati (0…1).",
-        fSheetHeight: "<strong>List balandligi</strong> — (faqat listlar uchun) xarakterli o'lcham, m.",
+        fSheetHeight:
+          "<strong>List balandligi</strong> — (faqat listlar uchun) xarakterli o'lcham, m.",
         fCladding: "<strong>Qoplama turi</strong> — (faqat listlar uchun) qo'shimcha qoplama.",
-        results: "<strong>Natijalar:</strong> shudring nuqtasi (°C); minimal izolyatsiya qalinligi (mm); va <strong>tavsiya etilgan qalinlik</strong>.",
+        results:
+          "<strong>Natijalar:</strong> shudring nuqtasi (°C); minimal izolyatsiya qalinligi (mm); va <strong>tavsiya etilgan qalinlik</strong>.",
         units: "<strong>O'lchov birliklari:</strong> mm, °C, W/m²K, %.",
         closeBtn: "Yopish",
       },
@@ -260,6 +281,10 @@ export default {
     },
     moscow: {
       city: "MOSKVA, ROSSIYA FEDERATSIYASI",
+    },
+    baku: {
+      city: "BOKU, OZARBAYJON",
+      address: "AZ1052 BOKU, BINEGADI AHMED RECEBLI 62 A / OZARBAYJON",
     },
   },
   calculateSavings: {

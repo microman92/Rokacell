@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { openSans, robotoCondensed, inter } from '@/lib/fonts';
+import { openSans, robotoCondensed, inter } from "@/lib/fonts";
 import "@/styles/globals.scss";
 import Header from "@/components/layout/Header/Header";
 import Footer from "@/components/layout/Footer/Footer";
@@ -32,7 +32,7 @@ const META: Record<Locale, { title: string; description: string; keywords: strin
 };
 
 export async function generateMetadata({
-  params
+  params,
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
@@ -85,9 +85,9 @@ export async function generateMetadata({
       googleBot: { index: true, follow: true, "max-image-preview": "large" },
     },
     icons: {
-      icon: "/favicon.ico",
-      shortcut: "/favicon.ico",
-      apple: "/apple-touch-icon.png",
+      icon: "/svg/Logo-rokacell.svg",
+      shortcut: "/svg/Logo-rokacell.svg",
+      apple: "/svg/Logo-rokacell.svg",
     },
   };
 }
@@ -98,7 +98,7 @@ export function generateStaticParams() {
 
 export default async function LocalizedLayout({
   children,
-  params
+  params,
 }: Readonly<{
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
@@ -108,13 +108,11 @@ export default async function LocalizedLayout({
   return (
     <html lang={locale}>
       <body className={`${openSans.variable} ${robotoCondensed.variable} ${inter.variable}`}>
-
         <Header locale={locale} />
 
         {children}
 
         <Footer locale={locale} />
-
       </body>
     </html>
   );

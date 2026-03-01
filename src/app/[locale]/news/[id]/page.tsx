@@ -7,6 +7,7 @@ import styles from "./newsDetail.module.scss";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { OtherNewsSlider } from "./OtherNewsSlider";
+import Heading from "@/components/ui/Heading/Heading";
 
 export const revalidate = 60;
 
@@ -46,9 +47,7 @@ function getMediaBaseUrl(): string {
  */
 function cleanDescription(raw: string): string {
   // Убираем <pre> и </pre> обёртки
-  let html = raw
-    .replace(/<\/?pre>/gi, "")
-    .replace(/<\/?div>/gi, "");
+  let html = raw.replace(/<\/?pre>/gi, "").replace(/<\/?div>/gi, "");
 
   // Декодируем HTML-сущности (&lt; &gt; &amp; и т.д.)
   html = html
@@ -97,30 +96,32 @@ export default async function NewsDetailPage({ params }: PageParams) {
   const otherNews = await getOtherNews(id, locale);
 
   const backText =
-    locale === "ru" ? "← Назад к новостям" : locale === "uz" ? "← Yangiliklarga qaytish" : "← Back to news";
+    locale === "ru"
+      ? "← Назад к новостям"
+      : locale === "uz"
+        ? "← Yangiliklarga qaytish"
+        : "← Back to news";
 
   const otherNewsTitle =
     locale === "ru" ? "ДРУГИЕ НОВОСТИ" : locale === "uz" ? "BOSHQA YANGILIKLAR" : "OTHER NEWS";
 
   return (
     <main className="main">
-      <section className={styles.newsDetail}>
+      <section className={styles.detail}>
         <Container>
-          <Link href={`/news`} className={styles.backLink}>
+          <Link href={`/news`} className={styles.detail__link}>
             {backText}
           </Link>
 
-          <div className={styles.header}>
-            <h1 className={styles.title}>{newsItem.title}</h1>
-          </div>
+          <Heading tag="h1" variant="black" className={styles.detail__title}>{newsItem.title}</Heading>
 
           {mainImage && (
             <img
               src={mainImage}
               alt={newsItem.title}
               className={styles.heroImage}
-              width={1200}
-              height={600}
+              width={670}
+              height={700}
             />
           )}
 
