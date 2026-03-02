@@ -19,12 +19,7 @@ export interface ApiNewsDetail {
   posts: ApiNewsItem[];
 }
 
-/**
- * Получить базовый URL для медиа-файлов (без /app/api/)
- */
 export function getMediaBaseUrl(): string {
-  // API_URL = "https://api.rokacell.com/app/api/"
-  // Нам нужен "https://api.rokacell.com"
   try {
     const url = new URL(API_URL);
     return url.origin;
@@ -44,9 +39,6 @@ function decodeHtmlEntities(html: string): string {
     .replace(/&nbsp;/g, " ");
 }
 
-/**
- * Убрать HTML-теги из строки
- */
 function stripHtml(html: string): string {
   if (!html) return "";
   return decodeHtmlEntities(html)
@@ -55,39 +47,22 @@ function stripHtml(html: string): string {
     .trim();
 }
 
-/**
- * Получить полный URL для картинки (добавляет базовый домен, если нужно)
- */
 export function getFullMediaUrl(path: string | null): string | null {
   if (!path) return null;
   if (path.startsWith("http")) return path;
   return `${getMediaBaseUrl()}${path}`;
 }
 
-/**
- * Очистить HTML от экранированных тегов из <pre>, оставив чистый текст с p-тегами
- */
 export function cleanDescription(raw: string): string {
   if (!raw) return "";
-
-  // Убираем <pre> и </pre> обёртки, и <div>
   let html = raw.replace(/<\/?pre>/gi, "").replace(/<\/?div>/gi, "");
-
-  // Декодируем HTML-сущности (&lt; &gt; &amp; и т.д.)
   html = decodeHtmlEntities(html);
-
-  // Убираем class атрибуты
   html = html.replace(/\s*class="[^"]*"/gi, "");
-
-  // Убираем \r\n и лишние пробелы внутри тегов
   html = html.replace(/\\r\\n/g, "").replace(/\r\n/g, "");
 
   return html.trim();
 }
 
-/**
- * Привести данные из API к формату NewsItem
- */
 function mapApiToNewsItem(apiItem: ApiNewsItem): NewsItem {
   const mediaBase = getMediaBaseUrl();
   return {
@@ -102,14 +77,12 @@ function mapApiToNewsItem(apiItem: ApiNewsItem): NewsItem {
   };
 }
 
-/**
- * Получить список всех новостей
- */
 export async function getNews(locale: string): Promise<NewsItem[]> {
   try {
     const res = await fetch(`${API_URL}posts/`, {
       headers: {
         "Accept-Language": locale,
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
       },
       next: { revalidate: 60 },
     });
@@ -121,16 +94,11 @@ export async function getNews(locale: string): Promise<NewsItem[]> {
     const data: ApiNewsItem[] = await res.json();
     return data.map(mapApiToNewsItem);
   } catch (error) {
-    console.error("Ошибка загрузки новостей из API:", error);
-    // Фоллбэк на локальные данные
     const { NEWS_DATA } = await import("@/data/news");
     return NEWS_DATA;
   }
 }
 
-/**
- * Получить детальную информацию о новости по ID
- */
 export async function getNewsById(
   id: string,
   locale: string
@@ -139,6 +107,7 @@ export async function getNewsById(
     const res = await fetch(`${API_URL}posts/${id}/`, {
       headers: {
         "Accept-Language": locale,
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
       },
       next: { revalidate: 60 },
     });
@@ -150,14 +119,21 @@ export async function getNewsById(
     const data: ApiNewsDetail = await res.json();
     return data;
   } catch (error) {
-    console.error("Ошибка загрузки новости из API:", error);
-    return null;
+    const { NEWS_DATA } = await import("@/data/news");
+    const fallbackItem = NEWS_DATA.find((item) => item.id === id);
+    if (!fallbackItem) return null;
+
+    return {
+      id: Number(fallbackItem.id),
+      title: fallbackItem.title,
+      full_description: fallbackItem.description || "",
+      photo_1: fallbackItem.image?.src || fallbackItem.image || null,
+      photo_2: null,
+      posts: []
+    } as ApiNewsDetail;
   }
 }
 
-/**
- * Получить все новости кроме указанной (для "Другие новости")
- */
 export async function getOtherNews(
   currentId: string,
   locale: string

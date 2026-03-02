@@ -75,6 +75,7 @@ export async function getProducts(locale: string): Promise<Product[]> {
     const res = await fetch(`${API_URL}products/`, {
       headers: {
         "Accept-Language": locale,
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
       },
       next: { revalidate: 60 },
     });
@@ -86,8 +87,6 @@ export async function getProducts(locale: string): Promise<Product[]> {
     const data: ApiProduct[] = await res.json();
     return data.map(mapApiToProduct);
   } catch (error) {
-    console.error("Ошибка загрузки продуктов из API:", error);
-    // Фоллбэк на локальные данные
     return PRODUCTS;
   }
 }

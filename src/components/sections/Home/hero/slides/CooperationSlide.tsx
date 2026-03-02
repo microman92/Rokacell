@@ -11,12 +11,17 @@ interface SlideProps {
 export default function CooperationSlide({ dict }: SlideProps) {
   return (
     <>
-      {}
       <div className={styles.cooperation}>
-        <video className={styles.slide__video} src="/video/international.mp4" autoPlay loop muted></video>
+        <video
+          className={styles.slide__video}
+          src="/video/international.mp4"
+          autoPlay
+          loop
+          muted
+          preload="auto"
+          poster="/images/hero-bg.jpg"
+        />
 
-
-        {}
         <Container className={`${styles.slide__international}`}>
           <Heading tag="h2" className={cn(styles.slide__title, styles.slide__international_title)}>
             {dict?.title || "INTERNATIONAL COOPERATION OF ROKACELL"}

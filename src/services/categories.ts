@@ -31,6 +31,7 @@ export async function getCategories(locale: string): Promise<Category[]> {
     const res = await fetch(`${API_URL}categories/`, {
       headers: {
         "Accept-Language": locale,
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
       },
       next: { revalidate: 60 },
     });
@@ -47,8 +48,6 @@ export async function getCategories(locale: string): Promise<Category[]> {
 
     return categories;
   } catch (error) {
-    console.error("Ошибка загрузки категорий из API:", error);
-    // Фоллбэк на локальные данные
     return PRODUCT_TABS.map((tab) => ({ id: tab.id, label: tab.label }));
   }
 }

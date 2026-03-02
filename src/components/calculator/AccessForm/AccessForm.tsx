@@ -41,7 +41,7 @@ const AccessForm = ({ dict }: AccessFormProps) => {
         company: formData.company,
       });
     } catch (error) {
-      console.error("Submission failed", error);
+      // Игнорируем ошибку
     } finally {
       setLoading(false);
     }
