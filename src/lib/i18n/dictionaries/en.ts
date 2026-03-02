@@ -298,6 +298,8 @@ export default {
   },
   news: {
     title: "WHATS NEW?",
+    backToNews: "← Back to news",
+    otherNews: "OTHER NEWS",
   },
   footer: {
     operatingHours: "Operating hours:",

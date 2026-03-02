@@ -22,7 +22,7 @@ export interface ApiNewsDetail {
 /**
  * Получить базовый URL для медиа-файлов (без /app/api/)
  */
-function getMediaBaseUrl(): string {
+export function getMediaBaseUrl(): string {
   // API_URL = "https://api.rokacell.com/app/api/"
   // Нам нужен "https://api.rokacell.com"
   try {
@@ -53,6 +53,36 @@ function stripHtml(html: string): string {
     .replace(/<[^>]*>/g, "")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+/**
+ * Получить полный URL для картинки (добавляет базовый домен, если нужно)
+ */
+export function getFullMediaUrl(path: string | null): string | null {
+  if (!path) return null;
+  if (path.startsWith("http")) return path;
+  return `${getMediaBaseUrl()}${path}`;
+}
+
+/**
+ * Очистить HTML от экранированных тегов из <pre>, оставив чистый текст с p-тегами
+ */
+export function cleanDescription(raw: string): string {
+  if (!raw) return "";
+
+  // Убираем <pre> и </pre> обёртки, и <div>
+  let html = raw.replace(/<\/?pre>/gi, "").replace(/<\/?div>/gi, "");
+
+  // Декодируем HTML-сущности (&lt; &gt; &amp; и т.д.)
+  html = decodeHtmlEntities(html);
+
+  // Убираем class атрибуты
+  html = html.replace(/\s*class="[^"]*"/gi, "");
+
+  // Убираем \r\n и лишние пробелы внутри тегов
+  html = html.replace(/\\r\\n/g, "").replace(/\r\n/g, "");
+
+  return html.trim();
 }
 
 /**

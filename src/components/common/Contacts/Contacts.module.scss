@@ -20,7 +20,8 @@
   &__phones {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    column-gap: 30px;
+    row-gap: 10px;
   }
 
   // Левая часть (Визуал)
@@ -187,7 +188,19 @@
     text-decoration: none;
     display: block;
     margin-bottom: 20px;
-    width: fit-content;
+    transition: 0.3s ease;
+
+    &--small {
+      font-size: 18px;
+
+      @include media(1440) {
+        font-size: 16px;
+      }
+
+      @include media(1200) {
+        font-size: 14px;
+      }
+    }
 
     &:last-child {
       margin-bottom: 0;

@@ -8,6 +8,14 @@
     padding: 60px 0;
   }
 
+  &--no-padding-top {
+    padding-top: 0;
+
+    @include media(576) {
+      padding-top: 0;
+    }
+  }
+
   &__title {
     // font styles moved to Heading
     color: var(--txt-black);
@@ -81,11 +89,12 @@
 
     @include media(768) {
       grid-template-columns: 450px;
+      grid-auto-rows: 560px;
     }
 
     @include media(576) {
       grid-template-columns: 360px;
-      grid-auto-rows: 450px;
+      grid-auto-rows: 560px;
     }
   }
 

@@ -11,5 +11,5 @@ interface OtherNewsSliderProps {
 }
 
 export const OtherNewsSlider = ({ news, title, dict }: OtherNewsSliderProps) => {
-  return <News variant="home" news={news} title={title} dict={dict} />;
+  return <News variant="home" news={news} title={title} dict={dict} noPaddingTop={true} />;
 };

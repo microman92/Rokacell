@@ -2,6 +2,7 @@
 
 import styles from "./News.module.scss";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import Heading from "@/components/ui/Heading/Heading";
 
@@ -26,6 +27,7 @@ export const NEWS_SLIDER_CONFIG = {
   breakpoints: {
     375: {
       slidesPerView: 1,
+      spaceBetween: 0
     },
     992: {
       slidesPerView: 2,
@@ -46,15 +48,16 @@ interface NewsProps {
   dict?: Dictionary["news"];
   news?: NewsItem[];
   title?: string;
+  noPaddingTop?: boolean;
 }
 
-export const News = ({ variant, dict, news = [], title }: NewsProps) => {
+export const News = ({ variant, dict, news = [], title, noPaddingTop }: NewsProps) => {
   const isAboutPage = variant === "about";
 
   const displayTitle = title || dict?.title || "WHATS NEW?";
 
   return (
-    <section className={styles.news}>
+    <section className={cn(styles.news, noPaddingTop && styles["news--no-padding-top"])}>
       <Container className={styles.news__container}>
         <Heading variant="black" tag="h2" className={styles.news__title}>
           {displayTitle}
@@ -88,7 +91,7 @@ export const News = ({ variant, dict, news = [], title }: NewsProps) => {
                   transition={{ duration: 0.5, delay: index * 0.15 }}
                 >
                   <Link href={`/news/${item.id}`} className={styles.slide__link}>
-                    <NewsCard item={item} />
+                    <NewsCard item={item} isDynamicCard={noPaddingTop} />
                   </Link>
                 </motion.div>
               </SwiperSlide>
@@ -108,7 +111,7 @@ export const News = ({ variant, dict, news = [], title }: NewsProps) => {
               transition={{ duration: 0.5, delay: index * 0.15 }}
             >
               <Link href={`/news/${item.id}`} className={styles.news__link}>
-                <NewsCard item={item} />
+                <NewsCard item={item} isDynamicCard={noPaddingTop} />
               </Link>
             </motion.div>
           ))}

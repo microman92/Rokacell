@@ -6,7 +6,7 @@ export type Branch = {
   companyName?: string;
   city: string;
   address: string;
-  email: string;
+  emails: string[];
   website?: string;
   phones: string[];
   image: string;
@@ -22,7 +22,7 @@ export const BRANCHES: Branch[] = [
     companyName: 'СП ООО "ROKA-CELL"',
     city: "TASHKENT, UZBEKISTAN",
     address: "17 Obikhaet Street, Sergeli District",
-    email: "info@rokacell.com",
+    emails: ["info@rokacell.com"],
     website: "www.rokacell.com",
     phones: ["+998 95 778-71-32", "+998 77 292-00-99"],
   },
@@ -34,7 +34,7 @@ export const BRANCHES: Branch[] = [
     companyName: 'ТОО "ROKA-CELL"',
     city: "ALMATY, KAZAKHSTAN",
     address: "Zhetysu district, Turar Ryskulov Avenue 61E.",
-    email: "infokz@rokacell.com",
+    emails: ["infokz@rokacell.com"],
     website: "www.rokacell.kz",
     phones: ["+7 707 422-89-58"],
   },
@@ -46,7 +46,7 @@ export const BRANCHES: Branch[] = [
     companyName: 'ООО "ROKA-CELL"',
     city: "MOSCOW, RUSSIAN FEDERATION",
     address: "",
-    email: "inforu@rokacell.com",
+    emails: ["inforu@rokacell.com"],
     website: "www.rokacell.ru",
     phones: ["+7 925 078-01-11"],
   },
@@ -58,8 +58,13 @@ export const BRANCHES: Branch[] = [
     companyName: "NET YAPI PAZARLAMA MMC",
     city: "BAKU, AZERBAIJAN",
     address: "AZ1052 BAKU, BINEGADI AHMED RECEBLI 62 A",
-    email:
-      "netyapi@netyapi.az, sales@netyapi.az, sales2@netyapi.az, finance@netyapi.az, finance2@netyapi.az",
+    emails: [
+      "netyapi@netyapi.az",
+      "sales@netyapi.az",
+      "sales2@netyapi.az",
+      "finance@netyapi.az",
+      "finance2@netyapi.az"
+    ],
     website: "www.netyapi.az",
     phones: [
       "+99 (412) 564 74 60",

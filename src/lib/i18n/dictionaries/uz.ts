@@ -295,6 +295,8 @@ export default {
   },
   news: {
     title: "YANGILIKLAR",
+    backToNews: "← Yangiliklarga qaytish",
+    otherNews: "BOSHQA YANGILIKLAR",
   },
   footer: {
     operatingHours: "Ish vaqti:",

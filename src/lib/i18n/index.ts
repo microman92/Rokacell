@@ -245,6 +245,8 @@ export interface CalculateSavingsDict {
 
 export interface NewsDict {
   title?: string;
+  backToNews?: string;
+  otherNews?: string;
 }
 
 export interface FooterDict {

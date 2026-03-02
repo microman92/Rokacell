@@ -52,21 +52,42 @@ export default function Contacts({ data, index = 0 }: ContactsProps) {
       <div className={cn(styles.contacts__info, isPhotoVariant && styles["photo"])}>
         {data.companyName && <h4 className={styles.contacts__company}>{data.companyName}</h4>}
         <h3 className={styles.contacts__city}>{data.city}</h3>
-        {data.address && <p className={styles.contacts__link}>{data.address}</p>}
+        {data.address && (
+          <p className={cn(styles.contacts__link, data.id === "baku" && styles["contacts__link--small"])}>
+            {data.address}
+          </p>
+        )}
         <div className={styles.contacts__phones}>
           {data.phones.map((phone, i) => (
-            <a key={i} href={`tel:${phone}`} className={styles.contacts__link}>
+            <a
+              key={i}
+              href={`tel:${phone}`}
+              className={cn(styles.contacts__link, data.id === "baku" && styles["contacts__link--small"])}
+            >
               {phone}
             </a>
           ))}
         </div>
-        {data.email && (
-          <a href={`mailto:${data.email}`} className={styles.contacts__link}>
-            {data.email}
-          </a>
+        {data.emails && data.emails.length > 0 && (
+          <div className={styles.contacts__phones}>
+            {data.emails.map((email, i) => (
+              <a
+                key={i}
+                href={`mailto:${email}`}
+                className={cn(styles.contacts__link, data.id === "baku" && styles["contacts__link--small"])}
+              >
+                {email}
+              </a>
+            ))}
+          </div>
         )}
         {data.website && (
-          <a href={data.website} className={styles.contacts__link}>
+          <a
+            href={data.website.startsWith('http') ? data.website : `https://${data.website}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(styles.contacts__link, data.id === "baku" && styles["contacts__link--small"])}
+          >
             {data.website}
           </a>
         )}

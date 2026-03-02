@@ -300,6 +300,8 @@ export default {
   },
   news: {
     title: "НОВОСТИ",
+    backToNews: "← Назад на главную",
+    otherNews: "ДРУГИЕ НОВОСТИ",
   },
   footer: {
     operatingHours: "Режим работы:",
